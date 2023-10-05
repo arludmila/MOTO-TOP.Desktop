@@ -13,6 +13,7 @@ namespace WinFormsApp
         List<Category> categories;
         List<ProductViewModel> products;
         List<Client> clients;
+        List<Supplier> suppliers;
         public Main()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -62,6 +63,11 @@ namespace WinFormsApp
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
+            // SUPPLIERSs
+            foreach (DataGridViewColumn column in dataGridViewSuppliers.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
         private async Task LoadData()
         {
@@ -80,6 +86,11 @@ namespace WinFormsApp
             {
                 dataGridViewClients.DataSource = new BindingList<Client>(clients);
             }
+            suppliers = await ApiHelper.GetAsync<Supplier>("https://localhost:7215/api/suppliers");
+            if (suppliers != null)
+            {
+                dataGridViewSuppliers.DataSource = new BindingList<Supplier>(suppliers);
+            }
         }
 
         private async void buttonCreateProduct_Click(object sender, EventArgs e)
@@ -92,6 +103,13 @@ namespace WinFormsApp
         private async void buttonCreateClient_Click(object sender, EventArgs e)
         {
             var form = new CreateClient();
+            form.ShowDialog();
+            await LoadData();
+        }
+
+        private async void buttonCreateSupplier_Click(object sender, EventArgs e)
+        {
+            var form = new CreateSupplier();
             form.ShowDialog();
             await LoadData();
         }
