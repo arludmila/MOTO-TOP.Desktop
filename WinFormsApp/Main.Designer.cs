@@ -37,6 +37,9 @@
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             hopeTabPage = new ReaLTaiizor.Controls.HopeTabPage();
             tabPageOrders = new TabPage();
             dataGridViewOrders = new ReaLTaiizor.Controls.PoisonDataGridView();
@@ -60,6 +63,12 @@
             tabPageInvoices = new TabPage();
             tabPageReports = new TabPage();
             tabPageClients = new TabPage();
+            dataGridViewClients = new ReaLTaiizor.Controls.PoisonDataGridView();
+            buttonCreateClient = new ReaLTaiizor.Controls.Button();
+            labelSearchClients = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxSearchClients = new ReaLTaiizor.Controls.DungeonTextBox();
+            tabPageSellers = new TabPage();
+            tabPageOfficeWorkers = new TabPage();
             hopeTabPage.SuspendLayout();
             tabPageOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrders).BeginInit();
@@ -67,6 +76,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewCategories).BeginInit();
             tabPageProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).BeginInit();
+            tabPageClients.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClients).BeginInit();
             SuspendLayout();
             // 
             // hopeTabPage
@@ -80,6 +91,8 @@
             hopeTabPage.Controls.Add(tabPageInvoices);
             hopeTabPage.Controls.Add(tabPageReports);
             hopeTabPage.Controls.Add(tabPageClients);
+            hopeTabPage.Controls.Add(tabPageSellers);
+            hopeTabPage.Controls.Add(tabPageOfficeWorkers);
             hopeTabPage.Dock = DockStyle.Fill;
             hopeTabPage.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             hopeTabPage.ForeColorA = Color.WhiteSmoke;
@@ -89,7 +102,7 @@
             hopeTabPage.Location = new Point(0, 0);
             hopeTabPage.Name = "hopeTabPage";
             hopeTabPage.SelectedIndex = 0;
-            hopeTabPage.Size = new Size(995, 575);
+            hopeTabPage.Size = new Size(1213, 575);
             hopeTabPage.SizeMode = TabSizeMode.Fixed;
             hopeTabPage.TabIndex = 0;
             hopeTabPage.ThemeColorA = Color.FromArgb(64, 158, 255);
@@ -104,7 +117,7 @@
             tabPageOrders.Location = new Point(0, 40);
             tabPageOrders.Name = "tabPageOrders";
             tabPageOrders.Padding = new Padding(3);
-            tabPageOrders.Size = new Size(995, 535);
+            tabPageOrders.Size = new Size(1213, 535);
             tabPageOrders.TabIndex = 0;
             tabPageOrders.Text = "Pedidos";
             tabPageOrders.UseVisualStyleBackColor = true;
@@ -117,19 +130,19 @@
             dataGridViewOrders.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewOrders.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 174, 219);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 198, 247);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(244, 133, 72);
             dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridViewOrders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 198, 247);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(244, 133, 72);
             dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dataGridViewOrders.DefaultCellStyle = dataGridViewCellStyle2;
@@ -140,10 +153,10 @@
             dataGridViewOrders.Name = "dataGridViewOrders";
             dataGridViewOrders.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 174, 219);
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(243, 119, 53);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 198, 247);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(244, 133, 72);
             dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dataGridViewOrders.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
@@ -151,6 +164,7 @@
             dataGridViewOrders.RowTemplate.Height = 25;
             dataGridViewOrders.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewOrders.Size = new Size(983, 472);
+            dataGridViewOrders.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewOrders.TabIndex = 2;
             // 
             // labelOrdersSearch
@@ -194,7 +208,7 @@
             tabPageCategories.Location = new Point(0, 40);
             tabPageCategories.Name = "tabPageCategories";
             tabPageCategories.Padding = new Padding(3);
-            tabPageCategories.Size = new Size(995, 535);
+            tabPageCategories.Size = new Size(1213, 535);
             tabPageCategories.TabIndex = 1;
             tabPageCategories.Text = "Rubros";
             tabPageCategories.UseVisualStyleBackColor = true;
@@ -272,19 +286,19 @@
             dataGridViewCategories.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewCategories.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(0, 174, 219);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle4.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(0, 198, 247);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(244, 133, 72);
             dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             dataGridViewCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle5.ForeColor = Color.FromArgb(136, 136, 136);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(0, 198, 247);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(244, 133, 72);
             dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
             dataGridViewCategories.DefaultCellStyle = dataGridViewCellStyle5;
@@ -295,10 +309,10 @@
             dataGridViewCategories.Name = "dataGridViewCategories";
             dataGridViewCategories.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(0, 174, 219);
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(243, 119, 53);
             dataGridViewCellStyle6.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle6.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(0, 198, 247);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(244, 133, 72);
             dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
             dataGridViewCategories.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
@@ -306,6 +320,7 @@
             dataGridViewCategories.RowTemplate.Height = 25;
             dataGridViewCategories.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCategories.Size = new Size(983, 407);
+            dataGridViewCategories.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewCategories.TabIndex = 3;
             // 
             // labelSearchCategories
@@ -345,7 +360,7 @@
             tabPageProducts.Controls.Add(txtBoxProductsSearch);
             tabPageProducts.Location = new Point(0, 40);
             tabPageProducts.Name = "tabPageProducts";
-            tabPageProducts.Size = new Size(995, 535);
+            tabPageProducts.Size = new Size(1213, 535);
             tabPageProducts.TabIndex = 2;
             tabPageProducts.Text = "Productos";
             tabPageProducts.UseVisualStyleBackColor = true;
@@ -378,19 +393,19 @@
             dataGridViewProducts.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewProducts.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(0, 174, 219);
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle7.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(0, 198, 247);
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(244, 133, 72);
             dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
             dataGridViewProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dataGridViewProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle8.ForeColor = Color.FromArgb(136, 136, 136);
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(0, 198, 247);
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(244, 133, 72);
             dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
             dataGridViewProducts.DefaultCellStyle = dataGridViewCellStyle8;
@@ -401,10 +416,10 @@
             dataGridViewProducts.Name = "dataGridViewProducts";
             dataGridViewProducts.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(0, 174, 219);
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(243, 119, 53);
             dataGridViewCellStyle9.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle9.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(0, 198, 247);
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(244, 133, 72);
             dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
             dataGridViewProducts.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
@@ -412,6 +427,7 @@
             dataGridViewProducts.RowTemplate.Height = 25;
             dataGridViewProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewProducts.Size = new Size(974, 430);
+            dataGridViewProducts.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewProducts.TabIndex = 4;
             // 
             // labelProductsSearch
@@ -447,7 +463,7 @@
             // 
             tabPageSuppliers.Location = new Point(0, 40);
             tabPageSuppliers.Name = "tabPageSuppliers";
-            tabPageSuppliers.Size = new Size(995, 535);
+            tabPageSuppliers.Size = new Size(1213, 535);
             tabPageSuppliers.TabIndex = 3;
             tabPageSuppliers.Text = "Proveedores";
             tabPageSuppliers.UseVisualStyleBackColor = true;
@@ -456,7 +472,7 @@
             // 
             tabPageBillingTransactions.Location = new Point(0, 40);
             tabPageBillingTransactions.Name = "tabPageBillingTransactions";
-            tabPageBillingTransactions.Size = new Size(995, 535);
+            tabPageBillingTransactions.Size = new Size(1213, 535);
             tabPageBillingTransactions.TabIndex = 4;
             tabPageBillingTransactions.Text = "Cobranzas";
             tabPageBillingTransactions.UseVisualStyleBackColor = true;
@@ -465,7 +481,7 @@
             // 
             tabPageInvoices.Location = new Point(0, 40);
             tabPageInvoices.Name = "tabPageInvoices";
-            tabPageInvoices.Size = new Size(995, 535);
+            tabPageInvoices.Size = new Size(1213, 535);
             tabPageInvoices.TabIndex = 5;
             tabPageInvoices.Text = "Facturas";
             tabPageInvoices.UseVisualStyleBackColor = true;
@@ -474,28 +490,145 @@
             // 
             tabPageReports.Location = new Point(0, 40);
             tabPageReports.Name = "tabPageReports";
-            tabPageReports.Size = new Size(995, 535);
+            tabPageReports.Size = new Size(1213, 535);
             tabPageReports.TabIndex = 6;
             tabPageReports.Text = "Informes";
             tabPageReports.UseVisualStyleBackColor = true;
             // 
             // tabPageClients
             // 
+            tabPageClients.Controls.Add(dataGridViewClients);
+            tabPageClients.Controls.Add(buttonCreateClient);
+            tabPageClients.Controls.Add(labelSearchClients);
+            tabPageClients.Controls.Add(txtBoxSearchClients);
             tabPageClients.Location = new Point(0, 40);
             tabPageClients.Name = "tabPageClients";
-            tabPageClients.Size = new Size(995, 535);
+            tabPageClients.Size = new Size(1213, 535);
             tabPageClients.TabIndex = 7;
             tabPageClients.Text = "Clientes";
             tabPageClients.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewClients
+            // 
+            dataGridViewClients.AllowUserToResizeRows = false;
+            dataGridViewClients.BackgroundColor = Color.FromArgb(255, 255, 255);
+            dataGridViewClients.BorderStyle = BorderStyle.None;
+            dataGridViewClients.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewClients.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle10.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle10.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dataGridViewClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle11.ForeColor = Color.FromArgb(136, 136, 136);
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle11.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dataGridViewClients.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewClients.EnableHeadersVisualStyles = false;
+            dataGridViewClients.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewClients.GridColor = Color.FromArgb(255, 255, 255);
+            dataGridViewClients.Location = new Point(119, 52);
+            dataGridViewClients.Name = "dataGridViewClients";
+            dataGridViewClients.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle12.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle12.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dataGridViewClients.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewClients.RowHeadersVisible = false;
+            dataGridViewClients.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewClients.RowTemplate.Height = 25;
+            dataGridViewClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewClients.Size = new Size(974, 430);
+            dataGridViewClients.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
+            dataGridViewClients.TabIndex = 11;
+            // 
+            // buttonCreateClient
+            // 
+            buttonCreateClient.BackColor = Color.Transparent;
+            buttonCreateClient.BorderColor = Color.FromArgb(32, 34, 37);
+            buttonCreateClient.EnteredBorderColor = Color.FromArgb(165, 37, 37);
+            buttonCreateClient.EnteredColor = Color.FromArgb(32, 34, 37);
+            buttonCreateClient.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCreateClient.Image = null;
+            buttonCreateClient.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonCreateClient.InactiveColor = Color.FromArgb(32, 34, 37);
+            buttonCreateClient.Location = new Point(12, 488);
+            buttonCreateClient.Name = "buttonCreateClient";
+            buttonCreateClient.PressedBorderColor = Color.FromArgb(165, 37, 37);
+            buttonCreateClient.PressedColor = Color.FromArgb(165, 37, 37);
+            buttonCreateClient.Size = new Size(151, 35);
+            buttonCreateClient.TabIndex = 10;
+            buttonCreateClient.Text = "Agregar Cliente";
+            buttonCreateClient.TextAlignment = StringAlignment.Center;
+            buttonCreateClient.Click += buttonCreateClient_Click;
+            // 
+            // labelSearchClients
+            // 
+            labelSearchClients.AutoSize = true;
+            labelSearchClients.BackColor = Color.Transparent;
+            labelSearchClients.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSearchClients.ForeColor = Color.FromArgb(76, 76, 77);
+            labelSearchClients.Location = new Point(268, 13);
+            labelSearchClients.Name = "labelSearchClients";
+            labelSearchClients.Size = new Size(72, 25);
+            labelSearchClients.TabIndex = 3;
+            labelSearchClients.Text = "Buscar:";
+            // 
+            // txtBoxSearchClients
+            // 
+            txtBoxSearchClients.BackColor = Color.Transparent;
+            txtBoxSearchClients.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxSearchClients.EdgeColor = Color.White;
+            txtBoxSearchClients.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxSearchClients.ForeColor = Color.DimGray;
+            txtBoxSearchClients.Location = new Point(346, 13);
+            txtBoxSearchClients.MaxLength = 32767;
+            txtBoxSearchClients.Multiline = false;
+            txtBoxSearchClients.Name = "txtBoxSearchClients";
+            txtBoxSearchClients.ReadOnly = false;
+            txtBoxSearchClients.Size = new Size(589, 28);
+            txtBoxSearchClients.TabIndex = 2;
+            txtBoxSearchClients.TextAlignment = HorizontalAlignment.Left;
+            txtBoxSearchClients.UseSystemPasswordChar = false;
+            // 
+            // tabPageSellers
+            // 
+            tabPageSellers.Location = new Point(0, 40);
+            tabPageSellers.Name = "tabPageSellers";
+            tabPageSellers.Size = new Size(1213, 535);
+            tabPageSellers.TabIndex = 8;
+            tabPageSellers.Text = "Vendedores";
+            tabPageSellers.UseVisualStyleBackColor = true;
+            // 
+            // tabPageOfficeWorkers
+            // 
+            tabPageOfficeWorkers.Location = new Point(0, 40);
+            tabPageOfficeWorkers.Name = "tabPageOfficeWorkers";
+            tabPageOfficeWorkers.Size = new Size(1213, 535);
+            tabPageOfficeWorkers.TabIndex = 9;
+            tabPageOfficeWorkers.Text = "Central";
+            tabPageOfficeWorkers.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(995, 575);
+            ClientSize = new Size(1213, 575);
             Controls.Add(hopeTabPage);
             Name = "Main";
-            Text = "Form1";
+            Text = "MOTO-TOP";
             Load += Main_Load;
             hopeTabPage.ResumeLayout(false);
             tabPageOrders.ResumeLayout(false);
@@ -507,6 +640,9 @@
             tabPageProducts.ResumeLayout(false);
             tabPageProducts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).EndInit();
+            tabPageClients.ResumeLayout(false);
+            tabPageClients.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClients).EndInit();
             ResumeLayout(false);
         }
 
@@ -535,5 +671,11 @@
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxProductsSearch;
         private ReaLTaiizor.Controls.MetroDivider metroDivider1;
         private TabPage tabPageClients;
+        private TabPage tabPageSellers;
+        private TabPage tabPageOfficeWorkers;
+        private ReaLTaiizor.Controls.DungeonLabel labelSearchClients;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxSearchClients;
+        private ReaLTaiizor.Controls.Button buttonCreateClient;
+        private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewClients;
     }
 }

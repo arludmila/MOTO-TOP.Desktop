@@ -12,10 +12,12 @@ namespace WinFormsApp
     {
         List<Category> categories;
         List<ProductViewModel> products;
+        List<Client> clients;
         public Main()
         {
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "MOTO-TOP";
             InitializeComponent();
-
         }
 
         private async void btnProducts_Click(object sender, EventArgs e)
@@ -23,19 +25,6 @@ namespace WinFormsApp
 
         }
 
-        private async void foreverTabPage1_MouseClick(object sender, MouseEventArgs e)
-        {
-            //List<Product> products = await ApiHelper.GetAsync<Product>("https://localhost:7215/api/products");
-            //if (products != null)
-            //{
-            //    dataGridViewProducts.DataSource = new BindingList<Product>(products);
-            //}
-            //List<Category> categories = await ApiHelper.GetAsync<Category>("https://localhost:7215/api/categories");
-            //if (categories != null)
-            //{
-            //    dataGridViewCategories.DataSource = new BindingList<Category>(categories);
-            //}
-        }
 
         private async void buttonCreateCategory_Click(object sender, EventArgs e)
         {
@@ -45,6 +34,7 @@ namespace WinFormsApp
             };
             await ApiHelper.PostAsync("https://localhost:7215/api/categories", category);
             await LoadData();
+            txtBoxCategoryName.Text = string.Empty;
         }
 
         private async void Main_Load(object sender, EventArgs e)
@@ -67,6 +57,11 @@ namespace WinFormsApp
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
+            // CLIENTS
+            foreach (DataGridViewColumn column in dataGridViewClients.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
         private async Task LoadData()
         {
@@ -80,11 +75,23 @@ namespace WinFormsApp
             {
                 dataGridViewProducts.DataSource = new BindingList<ProductViewModel>(products);
             }
+            clients = await ApiHelper.GetAsync<Client>("https://localhost:7215/api/clients");
+            if (clients != null)
+            {
+                dataGridViewClients.DataSource = new BindingList<Client>(clients);
+            }
         }
 
         private async void buttonCreateProduct_Click(object sender, EventArgs e)
         {
             var form = new CreateProduct();
+            form.ShowDialog();
+            await LoadData();
+        }
+
+        private async void buttonCreateClient_Click(object sender, EventArgs e)
+        {
+            var form = new CreateClient();
             form.ShowDialog();
             await LoadData();
         }
