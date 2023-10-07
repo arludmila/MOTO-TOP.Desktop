@@ -14,6 +14,7 @@ namespace WinFormsApp
         List<ProductViewModel> products;
         List<Client> clients;
         List<Supplier> suppliers;
+        List<Seller> sellers;
         public Main()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -91,6 +92,11 @@ namespace WinFormsApp
             {
                 dataGridViewSuppliers.DataSource = new BindingList<Supplier>(suppliers);
             }
+            sellers = await ApiHelper.GetAsync<Seller>("https://localhost:7215/api/sellers");
+            if (sellers != null)
+            {
+                dataGridViewSellers.DataSource = new BindingList<Seller>(sellers);
+            }
         }
 
         private async void buttonCreateProduct_Click(object sender, EventArgs e)
@@ -110,6 +116,13 @@ namespace WinFormsApp
         private async void buttonCreateSupplier_Click(object sender, EventArgs e)
         {
             var form = new CreateSupplier();
+            form.ShowDialog();
+            await LoadData();
+        }
+
+        private async void buttonCreateSeller_Click(object sender, EventArgs e)
+        {
+            var form = new CreateSeller();
             form.ShowDialog();
             await LoadData();
         }

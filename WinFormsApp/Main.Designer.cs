@@ -43,6 +43,9 @@
             DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
             hopeTabPage = new ReaLTaiizor.Controls.HopeTabPage();
             tabPageOrders = new TabPage();
             dataGridViewOrders = new ReaLTaiizor.Controls.PoisonDataGridView();
@@ -76,6 +79,10 @@
             txtBoxSearchClients = new ReaLTaiizor.Controls.DungeonTextBox();
             tabPageSellers = new TabPage();
             tabPageOfficeWorkers = new TabPage();
+            buttonCreateSeller = new ReaLTaiizor.Controls.Button();
+            dataGridViewSellers = new ReaLTaiizor.Controls.PoisonDataGridView();
+            labelSearchSellers = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxSearchSellers = new ReaLTaiizor.Controls.DungeonTextBox();
             hopeTabPage.SuspendLayout();
             tabPageOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrders).BeginInit();
@@ -87,6 +94,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewSuppliers).BeginInit();
             tabPageClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClients).BeginInit();
+            tabPageSellers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewSellers).BeginInit();
             SuspendLayout();
             // 
             // hopeTabPage
@@ -712,6 +721,10 @@
             // 
             // tabPageSellers
             // 
+            tabPageSellers.Controls.Add(buttonCreateSeller);
+            tabPageSellers.Controls.Add(dataGridViewSellers);
+            tabPageSellers.Controls.Add(labelSearchSellers);
+            tabPageSellers.Controls.Add(txtBoxSearchSellers);
             tabPageSellers.Location = new Point(0, 40);
             tabPageSellers.Name = "tabPageSellers";
             tabPageSellers.Size = new Size(1213, 535);
@@ -727,6 +740,100 @@
             tabPageOfficeWorkers.TabIndex = 9;
             tabPageOfficeWorkers.Text = "Central";
             tabPageOfficeWorkers.UseVisualStyleBackColor = true;
+            // 
+            // buttonCreateSeller
+            // 
+            buttonCreateSeller.BackColor = Color.Transparent;
+            buttonCreateSeller.BorderColor = Color.FromArgb(32, 34, 37);
+            buttonCreateSeller.EnteredBorderColor = Color.FromArgb(165, 37, 37);
+            buttonCreateSeller.EnteredColor = Color.FromArgb(32, 34, 37);
+            buttonCreateSeller.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCreateSeller.Image = null;
+            buttonCreateSeller.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonCreateSeller.InactiveColor = Color.FromArgb(32, 34, 37);
+            buttonCreateSeller.Location = new Point(32, 489);
+            buttonCreateSeller.Name = "buttonCreateSeller";
+            buttonCreateSeller.PressedBorderColor = Color.FromArgb(165, 37, 37);
+            buttonCreateSeller.PressedColor = Color.FromArgb(165, 37, 37);
+            buttonCreateSeller.Size = new Size(151, 35);
+            buttonCreateSeller.TabIndex = 13;
+            buttonCreateSeller.Text = "Agregar Vendedor";
+            buttonCreateSeller.TextAlignment = StringAlignment.Center;
+            buttonCreateSeller.Click += buttonCreateSeller_Click;
+            // 
+            // dataGridViewSellers
+            // 
+            dataGridViewSellers.AllowUserToResizeRows = false;
+            dataGridViewSellers.BackgroundColor = Color.FromArgb(255, 255, 255);
+            dataGridViewSellers.BorderStyle = BorderStyle.None;
+            dataGridViewSellers.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewSellers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle16.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle16.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle16.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            dataGridViewSellers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewSellers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle17.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle17.ForeColor = Color.FromArgb(136, 136, 136);
+            dataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle17.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.False;
+            dataGridViewSellers.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewSellers.EnableHeadersVisualStyles = false;
+            dataGridViewSellers.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewSellers.GridColor = Color.FromArgb(255, 255, 255);
+            dataGridViewSellers.Location = new Point(135, 53);
+            dataGridViewSellers.Name = "dataGridViewSellers";
+            dataGridViewSellers.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle18.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle18.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle18.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.True;
+            dataGridViewSellers.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewSellers.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewSellers.RowTemplate.Height = 25;
+            dataGridViewSellers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewSellers.Size = new Size(974, 430);
+            dataGridViewSellers.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
+            dataGridViewSellers.TabIndex = 12;
+            // 
+            // labelSearchSellers
+            // 
+            labelSearchSellers.AutoSize = true;
+            labelSearchSellers.BackColor = Color.Transparent;
+            labelSearchSellers.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSearchSellers.ForeColor = Color.FromArgb(76, 76, 77);
+            labelSearchSellers.Location = new Point(253, 13);
+            labelSearchSellers.Name = "labelSearchSellers";
+            labelSearchSellers.Size = new Size(72, 25);
+            labelSearchSellers.TabIndex = 11;
+            labelSearchSellers.Text = "Buscar:";
+            // 
+            // txtBoxSearchSellers
+            // 
+            txtBoxSearchSellers.BackColor = Color.Transparent;
+            txtBoxSearchSellers.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxSearchSellers.EdgeColor = Color.White;
+            txtBoxSearchSellers.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxSearchSellers.ForeColor = Color.DimGray;
+            txtBoxSearchSellers.Location = new Point(331, 13);
+            txtBoxSearchSellers.MaxLength = 32767;
+            txtBoxSearchSellers.Multiline = false;
+            txtBoxSearchSellers.Name = "txtBoxSearchSellers";
+            txtBoxSearchSellers.ReadOnly = false;
+            txtBoxSearchSellers.Size = new Size(589, 28);
+            txtBoxSearchSellers.TabIndex = 10;
+            txtBoxSearchSellers.TextAlignment = HorizontalAlignment.Left;
+            txtBoxSearchSellers.UseSystemPasswordChar = false;
             // 
             // Main
             // 
@@ -753,6 +860,9 @@
             tabPageClients.ResumeLayout(false);
             tabPageClients.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClients).EndInit();
+            tabPageSellers.ResumeLayout(false);
+            tabPageSellers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewSellers).EndInit();
             ResumeLayout(false);
         }
 
@@ -791,5 +901,9 @@
         private ReaLTaiizor.Controls.Button buttonCreateSupplier;
         private ReaLTaiizor.Controls.DungeonLabel labelSearchSuppliers;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxSearchSuppliers;
+        private ReaLTaiizor.Controls.Button buttonCreateSeller;
+        private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewSellers;
+        private ReaLTaiizor.Controls.DungeonLabel labelSearchSellers;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxSearchSellers;
     }
 }
