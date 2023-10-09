@@ -51,24 +51,42 @@ namespace WinFormsApp
             // CATEGORIES
             dataGridViewCategories.Columns["Id"].DisplayIndex = 0;
             dataGridViewCategories.Columns["Name"].DisplayIndex = 1;
+            dataGridViewCategories.Columns["Name"].HeaderText = "Nombre";
             dataGridViewCategories.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCategories.RowHeadersVisible = false;
             // PRODUCTS
+            dataGridViewProducts.Columns["CategoryName"].HeaderText = "Rubro";
+            dataGridViewProducts.Columns["Name"].HeaderText = "Nombre";
+            dataGridViewProducts.Columns["Price"].HeaderText = "Precio";
+            dataGridViewProducts.Columns["Description"].HeaderText = "Descripción";
+            dataGridViewProducts.Columns["Quantity"].HeaderText = "Stock";
             dataGridViewProducts.RowHeadersVisible = false;
             foreach (DataGridViewColumn column in dataGridViewProducts.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             // CLIENTS
+            dataGridViewClients.Columns["Id"].DisplayIndex = 0;
+            dataGridViewClients.Columns["FirstName"].HeaderText = "Nombre";
+            dataGridViewClients.Columns["LastName"].HeaderText = "Apellido";
+            dataGridViewClients.Columns["Location"].HeaderText = "Ubicación";
+            dataGridViewClients.Columns["PhoneNumber"].HeaderText = "Número de Telefono";
             foreach (DataGridViewColumn column in dataGridViewClients.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-            // SUPPLIERSs
+            // SUPPLIERS
+            dataGridViewSuppliers.Columns["Id"].DisplayIndex = 0;
+            dataGridViewSuppliers.Columns["Name"].HeaderText = "Nombre";
+            dataGridViewSuppliers.Columns["PhoneNumber"].HeaderText = "Número de Telefono";
+            dataGridViewProducts.RowHeadersVisible = false;
             foreach (DataGridViewColumn column in dataGridViewSuppliers.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
+            // SELLERS
+            
+            dataGridViewSellers.RowHeadersVisible = false;
         }
         private async Task LoadData()
         {
