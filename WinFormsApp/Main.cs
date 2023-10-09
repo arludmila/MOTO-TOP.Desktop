@@ -14,7 +14,7 @@ namespace WinFormsApp
         List<ProductViewModel> products;
         List<Client> clients;
         List<Supplier> suppliers;
-        List<Seller> sellers;
+        List<SellerViewModel> sellers;
         public Main()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -85,8 +85,14 @@ namespace WinFormsApp
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             // SELLERS
-            
+            dataGridViewSellers.Columns["FirstName"].HeaderText = "Nombre";
+            dataGridViewSellers.Columns["LastName"].HeaderText = "Apellido";
+            dataGridViewSellers.Columns["Zone"].HeaderText = "Zona Asignada";
             dataGridViewSellers.RowHeadersVisible = false;
+            foreach (DataGridViewColumn column in dataGridViewSellers.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
         private async Task LoadData()
         {
@@ -110,10 +116,10 @@ namespace WinFormsApp
             {
                 dataGridViewSuppliers.DataSource = new BindingList<Supplier>(suppliers);
             }
-            sellers = await ApiHelper.GetAsync<Seller>("https://localhost:7215/api/sellers");
+            sellers = await ApiHelper.GetAsync<SellerViewModel>("https://localhost:7215/api/sellers/view-models");
             if (sellers != null)
             {
-                dataGridViewSellers.DataSource = new BindingList<Seller>(sellers);
+                dataGridViewSellers.DataSource = new BindingList<SellerViewModel>(sellers);
             }
         }
 
