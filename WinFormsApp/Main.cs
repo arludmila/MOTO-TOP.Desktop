@@ -15,6 +15,7 @@ namespace WinFormsApp
         List<Client> clients;
         List<Supplier> suppliers;
         List<SellerViewModel> sellers;
+        List<OrderViewModel> orders;
         public Main()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -54,6 +55,7 @@ namespace WinFormsApp
             dataGridViewCategories.Columns["Name"].HeaderText = "Nombre";
             dataGridViewCategories.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCategories.RowHeadersVisible = false;
+            dataGridViewCategories.AllowUserToAddRows = false;
             // PRODUCTS
             dataGridViewProducts.Columns["CategoryName"].HeaderText = "Rubro";
             dataGridViewProducts.Columns["Name"].HeaderText = "Nombre";
@@ -61,6 +63,7 @@ namespace WinFormsApp
             dataGridViewProducts.Columns["Description"].HeaderText = "Descripción";
             dataGridViewProducts.Columns["Quantity"].HeaderText = "Stock";
             dataGridViewProducts.RowHeadersVisible = false;
+            dataGridViewProducts.AllowUserToAddRows = false;
             foreach (DataGridViewColumn column in dataGridViewProducts.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -71,6 +74,8 @@ namespace WinFormsApp
             dataGridViewClients.Columns["LastName"].HeaderText = "Apellido";
             dataGridViewClients.Columns["Location"].HeaderText = "Ubicación";
             dataGridViewClients.Columns["PhoneNumber"].HeaderText = "Número de Telefono";
+            dataGridViewClients.RowHeadersVisible = false;
+            dataGridViewClients.AllowUserToAddRows = false;
             foreach (DataGridViewColumn column in dataGridViewClients.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -80,6 +85,7 @@ namespace WinFormsApp
             dataGridViewSuppliers.Columns["Name"].HeaderText = "Nombre";
             dataGridViewSuppliers.Columns["PhoneNumber"].HeaderText = "Número de Telefono";
             dataGridViewProducts.RowHeadersVisible = false;
+            dataGridViewProducts.AllowUserToAddRows = false;
             foreach (DataGridViewColumn column in dataGridViewSuppliers.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -89,10 +95,36 @@ namespace WinFormsApp
             dataGridViewSellers.Columns["LastName"].HeaderText = "Apellido";
             dataGridViewSellers.Columns["Zone"].HeaderText = "Zona Asignada";
             dataGridViewSellers.RowHeadersVisible = false;
+            dataGridViewSellers.AllowUserToAddRows = false;
+
             foreach (DataGridViewColumn column in dataGridViewSellers.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
+            // ORDERS
+
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.Name = "ReviewButton";
+            buttonColumn.HeaderText = "Revisar";
+            buttonColumn.Text = "Revisar";
+            buttonColumn.UseColumnTextForButtonValue = true;
+            dataGridViewOrders.Columns.Add(buttonColumn);
+
+            dataGridViewOrders.Columns["ShipmentStatus"].HeaderText = "Estado";
+            dataGridViewOrders.Columns["ClientName"].HeaderText = "Cliente";
+            dataGridViewOrders.Columns["SellerName"].HeaderText = "Vendedor";
+            dataGridViewOrders.Columns["TransportCompanyName"].HeaderText = "Transporte";
+            dataGridViewOrders.Columns["DateSent"].HeaderText = "Fecha de Envio";
+            dataGridViewOrders.Columns["DateReceived"].HeaderText = "Fecha de Recepción";
+            dataGridViewOrders.Columns["HasInvoice"].HeaderText = "Facturado";
+            dataGridViewOrders.RowHeadersVisible = false;
+            dataGridViewOrders.AllowUserToAddRows = false;
+
+            foreach (DataGridViewColumn column in dataGridViewOrders.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
         }
         private async Task LoadData()
         {
@@ -120,6 +152,11 @@ namespace WinFormsApp
             if (sellers != null)
             {
                 dataGridViewSellers.DataSource = new BindingList<SellerViewModel>(sellers);
+            }
+            orders = await ApiHelper.GetAsync<OrderViewModel>("https://localhost:7215/api/orders/view-models");
+            if (sellers != null)
+            {
+                dataGridViewOrders.DataSource = new BindingList<OrderViewModel>(orders);
             }
         }
 

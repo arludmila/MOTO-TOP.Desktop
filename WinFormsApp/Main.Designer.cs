@@ -78,11 +78,11 @@
             labelSearchClients = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxSearchClients = new ReaLTaiizor.Controls.DungeonTextBox();
             tabPageSellers = new TabPage();
-            tabPageOfficeWorkers = new TabPage();
             buttonCreateSeller = new ReaLTaiizor.Controls.Button();
             dataGridViewSellers = new ReaLTaiizor.Controls.PoisonDataGridView();
             labelSearchSellers = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxSearchSellers = new ReaLTaiizor.Controls.DungeonTextBox();
+            tabPageOfficeWorkers = new TabPage();
             hopeTabPage.SuspendLayout();
             tabPageOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrders).BeginInit();
@@ -148,10 +148,10 @@
             dataGridViewOrders.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewOrders.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 170, 173);
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 201, 206);
             dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridViewOrders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -160,7 +160,7 @@
             dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 201, 206);
             dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dataGridViewOrders.DefaultCellStyle = dataGridViewCellStyle2;
@@ -171,10 +171,10 @@
             dataGridViewOrders.Name = "dataGridViewOrders";
             dataGridViewOrders.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 170, 173);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 201, 206);
             dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dataGridViewOrders.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
@@ -182,8 +182,9 @@
             dataGridViewOrders.RowTemplate.Height = 25;
             dataGridViewOrders.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewOrders.Size = new Size(983, 472);
-            dataGridViewOrders.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
+            dataGridViewOrders.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Teal;
             dataGridViewOrders.TabIndex = 2;
+            dataGridViewOrders.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
             // 
             // labelOrdersSearch
             // 
@@ -732,15 +733,6 @@
             tabPageSellers.Text = "Vendedores";
             tabPageSellers.UseVisualStyleBackColor = true;
             // 
-            // tabPageOfficeWorkers
-            // 
-            tabPageOfficeWorkers.Location = new Point(0, 40);
-            tabPageOfficeWorkers.Name = "tabPageOfficeWorkers";
-            tabPageOfficeWorkers.Size = new Size(1213, 535);
-            tabPageOfficeWorkers.TabIndex = 9;
-            tabPageOfficeWorkers.Text = "Central";
-            tabPageOfficeWorkers.UseVisualStyleBackColor = true;
-            // 
             // buttonCreateSeller
             // 
             buttonCreateSeller.BackColor = Color.Transparent;
@@ -834,6 +826,15 @@
             txtBoxSearchSellers.TabIndex = 10;
             txtBoxSearchSellers.TextAlignment = HorizontalAlignment.Left;
             txtBoxSearchSellers.UseSystemPasswordChar = false;
+            // 
+            // tabPageOfficeWorkers
+            // 
+            tabPageOfficeWorkers.Location = new Point(0, 40);
+            tabPageOfficeWorkers.Name = "tabPageOfficeWorkers";
+            tabPageOfficeWorkers.Size = new Size(1213, 535);
+            tabPageOfficeWorkers.TabIndex = 9;
+            tabPageOfficeWorkers.Text = "Central";
+            tabPageOfficeWorkers.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
