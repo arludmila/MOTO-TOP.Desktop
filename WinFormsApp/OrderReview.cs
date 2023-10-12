@@ -66,7 +66,6 @@ namespace WinFormsApp
 
             dataGridViewOrderDetails.Columns.Add("ProductQuantity", "Stock Disponible");
             dataGridViewOrderDetails.Columns["ProductQuantity"].DataPropertyName = "ProductQuantity";
-
             dataGridViewOrderDetails.DataSource = new BindingList<OrderProductViewModel>(_orderViewModel.OrderProducts);
             foreach (DataGridViewColumn column in dataGridViewOrderDetails.Columns)
             {
@@ -82,17 +81,23 @@ namespace WinFormsApp
                 int productQuantity = Convert.ToInt32(row.Cells["ProductQuantity"].Value);
                 if (quantity > productQuantity)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Red;
+                    row.DefaultCellStyle.BackColor = Color.LightCoral;
                 }
                 else
                 {
-                    row.DefaultCellStyle.BackColor = Color.Green;
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
                 }
+                row.DefaultCellStyle.ForeColor = Color.Black;
             }
         }
         private void buttonCreateOrderInvoice_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridViewOrderDetails_SelectionChanged(object sender, EventArgs e)
+        {
+            dataGridViewOrderDetails.ClearSelection();
         }
     }
 }

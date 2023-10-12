@@ -83,6 +83,7 @@
             labelSearchSellers = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxSearchSellers = new ReaLTaiizor.Controls.DungeonTextBox();
             tabPageOfficeWorkers = new TabPage();
+            crownSeparator1 = new ReaLTaiizor.Controls.CrownSeparator();
             hopeTabPage.SuspendLayout();
             tabPageOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrders).BeginInit();
@@ -480,6 +481,7 @@
             // 
             // tabPageSuppliers
             // 
+            tabPageSuppliers.Controls.Add(crownSeparator1);
             tabPageSuppliers.Controls.Add(dataGridViewSuppliers);
             tabPageSuppliers.Controls.Add(buttonCreateSupplier);
             tabPageSuppliers.Controls.Add(labelSearchSuppliers);
@@ -518,7 +520,7 @@
             dataGridViewSuppliers.EnableHeadersVisualStyles = false;
             dataGridViewSuppliers.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewSuppliers.GridColor = Color.FromArgb(255, 255, 255);
-            dataGridViewSuppliers.Location = new Point(131, 51);
+            dataGridViewSuppliers.Location = new Point(24, 51);
             dataGridViewSuppliers.Name = "dataGridViewSuppliers";
             dataGridViewSuppliers.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -533,7 +535,7 @@
             dataGridViewSuppliers.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewSuppliers.RowTemplate.Height = 25;
             dataGridViewSuppliers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewSuppliers.Size = new Size(974, 430);
+            dataGridViewSuppliers.Size = new Size(510, 430);
             dataGridViewSuppliers.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewSuppliers.TabIndex = 15;
             // 
@@ -563,7 +565,7 @@
             labelSearchSuppliers.BackColor = Color.Transparent;
             labelSearchSuppliers.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             labelSearchSuppliers.ForeColor = Color.FromArgb(76, 76, 77);
-            labelSearchSuppliers.Location = new Point(280, 12);
+            labelSearchSuppliers.Location = new Point(24, 15);
             labelSearchSuppliers.Name = "labelSearchSuppliers";
             labelSearchSuppliers.Size = new Size(72, 25);
             labelSearchSuppliers.TabIndex = 13;
@@ -576,12 +578,12 @@
             txtBoxSearchSuppliers.EdgeColor = Color.White;
             txtBoxSearchSuppliers.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxSearchSuppliers.ForeColor = Color.DimGray;
-            txtBoxSearchSuppliers.Location = new Point(358, 12);
+            txtBoxSearchSuppliers.Location = new Point(102, 17);
             txtBoxSearchSuppliers.MaxLength = 32767;
             txtBoxSearchSuppliers.Multiline = false;
             txtBoxSearchSuppliers.Name = "txtBoxSearchSuppliers";
             txtBoxSearchSuppliers.ReadOnly = false;
-            txtBoxSearchSuppliers.Size = new Size(589, 28);
+            txtBoxSearchSuppliers.Size = new Size(432, 28);
             txtBoxSearchSuppliers.TabIndex = 12;
             txtBoxSearchSuppliers.TextAlignment = HorizontalAlignment.Left;
             txtBoxSearchSuppliers.UseSystemPasswordChar = false;
@@ -837,6 +839,15 @@
             tabPageOfficeWorkers.Text = "Central";
             tabPageOfficeWorkers.UseVisualStyleBackColor = true;
             // 
+            // crownSeparator1
+            // 
+            crownSeparator1.Dock = DockStyle.Top;
+            crownSeparator1.Location = new Point(0, 0);
+            crownSeparator1.Name = "crownSeparator1";
+            crownSeparator1.Size = new Size(1213, 2);
+            crownSeparator1.TabIndex = 16;
+            crownSeparator1.Text = "crownSeparator1";
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -907,5 +918,6 @@
         private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewSellers;
         private ReaLTaiizor.Controls.DungeonLabel labelSearchSellers;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxSearchSellers;
+        private ReaLTaiizor.Controls.CrownSeparator crownSeparator1;
     }
 }

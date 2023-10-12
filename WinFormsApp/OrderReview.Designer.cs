@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            buttonCreateOrderInvoice = new ReaLTaiizor.Controls.Button();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             dungeonHeaderLabel1 = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             labelClient = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxClientName = new ReaLTaiizor.Controls.DungeonTextBox();
@@ -39,33 +38,14 @@
             txtBoxSelllerName = new ReaLTaiizor.Controls.DungeonTextBox();
             labelTransportCompany = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxTransportCompany = new ReaLTaiizor.Controls.DungeonTextBox();
-            buttonModifyOrder = new ReaLTaiizor.Controls.Button();
-            buttonCancelOrder = new ReaLTaiizor.Controls.Button();
-            dataGridViewOrderDetails = new ReaLTaiizor.Controls.PoisonDataGridView();
             labelOrderId = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxOrderId = new ReaLTaiizor.Controls.DungeonTextBox();
+            dataGridViewOrderDetails = new ReaLTaiizor.Controls.PoisonDataGridView();
+            foreverButton1 = new ReaLTaiizor.Controls.ForeverButton();
+            foreverButton2 = new ReaLTaiizor.Controls.ForeverButton();
+            foreverButton3 = new ReaLTaiizor.Controls.ForeverButton();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrderDetails).BeginInit();
             SuspendLayout();
-            // 
-            // buttonCreateOrderInvoice
-            // 
-            buttonCreateOrderInvoice.BackColor = Color.Transparent;
-            buttonCreateOrderInvoice.BorderColor = Color.FromArgb(32, 34, 37);
-            buttonCreateOrderInvoice.EnteredBorderColor = Color.FromArgb(165, 37, 37);
-            buttonCreateOrderInvoice.EnteredColor = Color.FromArgb(32, 34, 37);
-            buttonCreateOrderInvoice.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonCreateOrderInvoice.Image = null;
-            buttonCreateOrderInvoice.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonCreateOrderInvoice.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonCreateOrderInvoice.Location = new Point(12, 398);
-            buttonCreateOrderInvoice.Name = "buttonCreateOrderInvoice";
-            buttonCreateOrderInvoice.PressedBorderColor = Color.FromArgb(165, 37, 37);
-            buttonCreateOrderInvoice.PressedColor = Color.FromArgb(165, 37, 37);
-            buttonCreateOrderInvoice.Size = new Size(120, 40);
-            buttonCreateOrderInvoice.TabIndex = 16;
-            buttonCreateOrderInvoice.Text = "Facturar Pedido";
-            buttonCreateOrderInvoice.TextAlignment = StringAlignment.Center;
-            buttonCreateOrderInvoice.Click += buttonCreateOrderInvoice_Click;
             // 
             // dungeonHeaderLabel1
             // 
@@ -73,7 +53,7 @@
             dungeonHeaderLabel1.BackColor = Color.Transparent;
             dungeonHeaderLabel1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             dungeonHeaderLabel1.ForeColor = Color.FromArgb(76, 76, 77);
-            dungeonHeaderLabel1.Location = new Point(327, 9);
+            dungeonHeaderLabel1.Location = new Point(306, 9);
             dungeonHeaderLabel1.Name = "dungeonHeaderLabel1";
             dungeonHeaderLabel1.Size = new Size(182, 32);
             dungeonHeaderLabel1.TabIndex = 15;
@@ -166,89 +146,6 @@
             txtBoxTransportCompany.TextAlignment = HorizontalAlignment.Left;
             txtBoxTransportCompany.UseSystemPasswordChar = false;
             // 
-            // buttonModifyOrder
-            // 
-            buttonModifyOrder.BackColor = Color.Transparent;
-            buttonModifyOrder.BorderColor = Color.FromArgb(32, 34, 37);
-            buttonModifyOrder.EnteredBorderColor = Color.FromArgb(165, 37, 37);
-            buttonModifyOrder.EnteredColor = Color.FromArgb(32, 34, 37);
-            buttonModifyOrder.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonModifyOrder.Image = null;
-            buttonModifyOrder.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonModifyOrder.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonModifyOrder.Location = new Point(351, 398);
-            buttonModifyOrder.Name = "buttonModifyOrder";
-            buttonModifyOrder.PressedBorderColor = Color.FromArgb(165, 37, 37);
-            buttonModifyOrder.PressedColor = Color.FromArgb(165, 37, 37);
-            buttonModifyOrder.Size = new Size(120, 40);
-            buttonModifyOrder.TabIndex = 21;
-            buttonModifyOrder.Text = "Modificar Pedido";
-            buttonModifyOrder.TextAlignment = StringAlignment.Center;
-            // 
-            // buttonCancelOrder
-            // 
-            buttonCancelOrder.BackColor = Color.Transparent;
-            buttonCancelOrder.BorderColor = Color.FromArgb(32, 34, 37);
-            buttonCancelOrder.EnteredBorderColor = Color.FromArgb(165, 37, 37);
-            buttonCancelOrder.EnteredColor = Color.FromArgb(32, 34, 37);
-            buttonCancelOrder.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonCancelOrder.Image = null;
-            buttonCancelOrder.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonCancelOrder.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonCancelOrder.Location = new Point(668, 398);
-            buttonCancelOrder.Name = "buttonCancelOrder";
-            buttonCancelOrder.PressedBorderColor = Color.FromArgb(165, 37, 37);
-            buttonCancelOrder.PressedColor = Color.FromArgb(165, 37, 37);
-            buttonCancelOrder.Size = new Size(120, 40);
-            buttonCancelOrder.TabIndex = 22;
-            buttonCancelOrder.Text = "Cancelar Pedido";
-            buttonCancelOrder.TextAlignment = StringAlignment.Center;
-            // 
-            // dataGridViewOrderDetails
-            // 
-            dataGridViewOrderDetails.AllowUserToResizeRows = false;
-            dataGridViewOrderDetails.BackgroundColor = Color.FromArgb(255, 255, 255);
-            dataGridViewOrderDetails.BorderStyle = BorderStyle.None;
-            dataGridViewOrderDetails.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridViewOrderDetails.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridViewOrderDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewOrderDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = Color.FromArgb(136, 136, 136);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridViewOrderDetails.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridViewOrderDetails.EnableHeadersVisualStyles = false;
-            dataGridViewOrderDetails.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewOrderDetails.GridColor = Color.FromArgb(255, 255, 255);
-            dataGridViewOrderDetails.Location = new Point(16, 148);
-            dataGridViewOrderDetails.Name = "dataGridViewOrderDetails";
-            dataGridViewOrderDetails.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridViewOrderDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewOrderDetails.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewOrderDetails.RowTemplate.Height = 25;
-            dataGridViewOrderDetails.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewOrderDetails.Size = new Size(772, 227);
-            dataGridViewOrderDetails.Style = ReaLTaiizor.Enum.Poison.ColorStyle.White;
-            dataGridViewOrderDetails.TabIndex = 23;
-            // 
             // labelOrderId
             // 
             labelOrderId.AutoSize = true;
@@ -278,21 +175,106 @@
             txtBoxOrderId.TextAlignment = HorizontalAlignment.Left;
             txtBoxOrderId.UseSystemPasswordChar = false;
             // 
+            // dataGridViewOrderDetails
+            // 
+            dataGridViewOrderDetails.AllowUserToResizeRows = false;
+            dataGridViewOrderDetails.BackgroundColor = Color.FromArgb(255, 255, 255);
+            dataGridViewOrderDetails.BorderStyle = BorderStyle.None;
+            dataGridViewOrderDetails.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewOrderDetails.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(85, 85, 85);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(102, 102, 102);
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataGridViewOrderDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewOrderDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(136, 136, 136);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(102, 102, 102);
+            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dataGridViewOrderDetails.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewOrderDetails.EnableHeadersVisualStyles = false;
+            dataGridViewOrderDetails.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewOrderDetails.GridColor = Color.FromArgb(255, 255, 255);
+            dataGridViewOrderDetails.Location = new Point(4, 148);
+            dataGridViewOrderDetails.Name = "dataGridViewOrderDetails";
+            dataGridViewOrderDetails.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(85, 85, 85);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(102, 102, 102);
+            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridViewOrderDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewOrderDetails.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewOrderDetails.RowTemplate.Height = 25;
+            dataGridViewOrderDetails.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewOrderDetails.Size = new Size(778, 244);
+            dataGridViewOrderDetails.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Silver;
+            dataGridViewOrderDetails.TabIndex = 26;
+            dataGridViewOrderDetails.SelectionChanged += dataGridViewOrderDetails_SelectionChanged;
+            // 
+            // foreverButton1
+            // 
+            foreverButton1.BackColor = Color.Transparent;
+            foreverButton1.BaseColor = Color.OliveDrab;
+            foreverButton1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            foreverButton1.Location = new Point(10, 398);
+            foreverButton1.Name = "foreverButton1";
+            foreverButton1.Rounded = true;
+            foreverButton1.Size = new Size(134, 40);
+            foreverButton1.TabIndex = 27;
+            foreverButton1.Text = "Facturar Pedido";
+            foreverButton1.TextColor = Color.FromArgb(243, 243, 243);
+            // 
+            // foreverButton2
+            // 
+            foreverButton2.BackColor = Color.Transparent;
+            foreverButton2.BaseColor = Color.DimGray;
+            foreverButton2.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            foreverButton2.Location = new Point(330, 398);
+            foreverButton2.Name = "foreverButton2";
+            foreverButton2.Rounded = true;
+            foreverButton2.Size = new Size(150, 40);
+            foreverButton2.TabIndex = 28;
+            foreverButton2.Text = "Modificar Pedido";
+            foreverButton2.TextColor = Color.FromArgb(243, 243, 243);
+            // 
+            // foreverButton3
+            // 
+            foreverButton3.BackColor = Color.Transparent;
+            foreverButton3.BaseColor = Color.IndianRed;
+            foreverButton3.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            foreverButton3.Location = new Point(648, 398);
+            foreverButton3.Name = "foreverButton3";
+            foreverButton3.Rounded = true;
+            foreverButton3.Size = new Size(134, 40);
+            foreverButton3.TabIndex = 29;
+            foreverButton3.Text = "Cancelar Pedido";
+            foreverButton3.TextColor = Color.FromArgb(243, 243, 243);
+            // 
             // OrderReview
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(foreverButton3);
+            Controls.Add(foreverButton2);
+            Controls.Add(foreverButton1);
+            Controls.Add(dataGridViewOrderDetails);
             Controls.Add(labelOrderId);
             Controls.Add(txtBoxOrderId);
-            Controls.Add(dataGridViewOrderDetails);
-            Controls.Add(buttonCancelOrder);
-            Controls.Add(buttonModifyOrder);
             Controls.Add(labelTransportCompany);
             Controls.Add(txtBoxTransportCompany);
             Controls.Add(labelSeller);
             Controls.Add(txtBoxSelllerName);
-            Controls.Add(buttonCreateOrderInvoice);
             Controls.Add(dungeonHeaderLabel1);
             Controls.Add(labelClient);
             Controls.Add(txtBoxClientName);
@@ -314,10 +296,11 @@
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxSelllerName;
         private ReaLTaiizor.Controls.DungeonLabel labelTransportCompany;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxTransportCompany;
-        private ReaLTaiizor.Controls.Button buttonModifyOrder;
-        private ReaLTaiizor.Controls.Button buttonCancelOrder;
-        private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewOrderDetails;
         private ReaLTaiizor.Controls.DungeonLabel labelOrderId;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxOrderId;
+        private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewOrderDetails;
+        private ReaLTaiizor.Controls.ForeverButton foreverButton1;
+        private ReaLTaiizor.Controls.ForeverButton foreverButton2;
+        private ReaLTaiizor.Controls.ForeverButton foreverButton3;
     }
 }
