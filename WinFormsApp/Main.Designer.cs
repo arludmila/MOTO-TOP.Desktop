@@ -185,6 +185,7 @@
             dataGridViewOrders.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Teal;
             dataGridViewOrders.TabIndex = 2;
             dataGridViewOrders.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
+            dataGridViewOrders.CellContentClick += dataGridViewOrders_CellContentClick;
             // 
             // labelOrdersSearch
             // 

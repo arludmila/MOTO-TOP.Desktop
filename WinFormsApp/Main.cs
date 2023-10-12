@@ -128,32 +128,32 @@ namespace WinFormsApp
         }
         private async Task LoadData()
         {
-            categories = await ApiHelper.GetAsync<Category>("https://localhost:7215/api/categories");
+            categories = await ApiHelper.GetListAsync<Category>("https://localhost:7215/api/categories");
             if (categories != null)
             {
                 dataGridViewCategories.DataSource = new BindingList<Category>(categories);
             }
-            products = await ApiHelper.GetAsync<ProductViewModel>("https://localhost:7215/api/products/view-models");
+            products = await ApiHelper.GetListAsync<ProductViewModel>("https://localhost:7215/api/products/view-models");
             if (products != null)
             {
                 dataGridViewProducts.DataSource = new BindingList<ProductViewModel>(products);
             }
-            clients = await ApiHelper.GetAsync<Client>("https://localhost:7215/api/clients");
+            clients = await ApiHelper.GetListAsync<Client>("https://localhost:7215/api/clients");
             if (clients != null)
             {
                 dataGridViewClients.DataSource = new BindingList<Client>(clients);
             }
-            suppliers = await ApiHelper.GetAsync<Supplier>("https://localhost:7215/api/suppliers");
+            suppliers = await ApiHelper.GetListAsync<Supplier>("https://localhost:7215/api/suppliers");
             if (suppliers != null)
             {
                 dataGridViewSuppliers.DataSource = new BindingList<Supplier>(suppliers);
             }
-            sellers = await ApiHelper.GetAsync<SellerViewModel>("https://localhost:7215/api/sellers/view-models");
+            sellers = await ApiHelper.GetListAsync<SellerViewModel>("https://localhost:7215/api/sellers/view-models");
             if (sellers != null)
             {
                 dataGridViewSellers.DataSource = new BindingList<SellerViewModel>(sellers);
             }
-            orders = await ApiHelper.GetAsync<OrderViewModel>("https://localhost:7215/api/orders/view-models");
+            orders = await ApiHelper.GetListAsync<OrderViewModel>("https://localhost:7215/api/orders/view-models");
             if (sellers != null)
             {
                 dataGridViewOrders.DataSource = new BindingList<OrderViewModel>(orders);
@@ -186,6 +186,16 @@ namespace WinFormsApp
             var form = new CreateSeller();
             form.ShowDialog();
             await LoadData();
+        }
+
+        private void dataGridViewOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridViewOrders.Columns["ReviewButton"].Index && e.RowIndex >= 0)
+            {
+                int orderId = (int)dataGridViewOrders.Rows[e.RowIndex].Cells["Id"].Value;
+                var form = new OrderReview(orderId);
+                form.ShowDialog();
+            }
         }
     }
 }

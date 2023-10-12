@@ -44,7 +44,7 @@ namespace WinFormsApp
 
         private async void CreateProduct_Load(object sender, EventArgs e)
         {
-            var categories = await ApiHelper.GetAsync<Category>("https://localhost:7215/api/categories");
+            var categories = await ApiHelper.GetListAsync<Category>("https://localhost:7215/api/categories");
             if (categories != null)
             {
                 comboBoxCategories.DataSource = new BindingList<Category>(categories);
