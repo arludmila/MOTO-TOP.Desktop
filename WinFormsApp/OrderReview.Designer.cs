@@ -44,6 +44,8 @@
             buttonCancelOrder = new ReaLTaiizor.Controls.ForeverButton();
             buttonCreateOrderInvoice = new ReaLTaiizor.Controls.ForeverButton();
             buttonModifyOrder = new ReaLTaiizor.Controls.ForeverButton();
+            labelTotal = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxTotalAmount = new ReaLTaiizor.Controls.DungeonTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrderDetails).BeginInit();
             SuspendLayout();
             // 
@@ -226,34 +228,35 @@
             buttonCancelOrder.BackColor = Color.Transparent;
             buttonCancelOrder.BaseColor = Color.DarkRed;
             buttonCancelOrder.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonCancelOrder.Location = new Point(648, 398);
+            buttonCancelOrder.Location = new Point(648, 432);
             buttonCancelOrder.Name = "buttonCancelOrder";
             buttonCancelOrder.Rounded = true;
             buttonCancelOrder.Size = new Size(134, 40);
             buttonCancelOrder.TabIndex = 29;
             buttonCancelOrder.Text = "Cancelar Pedido";
             buttonCancelOrder.TextColor = Color.FromArgb(243, 243, 243);
+            buttonCancelOrder.Click += buttonCancelOrder_Click;
             // 
             // buttonCreateOrderInvoice
             // 
             buttonCreateOrderInvoice.BackColor = Color.Transparent;
             buttonCreateOrderInvoice.BaseColor = Color.DarkGreen;
             buttonCreateOrderInvoice.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonCreateOrderInvoice.Location = new Point(10, 398);
+            buttonCreateOrderInvoice.Location = new Point(10, 432);
             buttonCreateOrderInvoice.Name = "buttonCreateOrderInvoice";
             buttonCreateOrderInvoice.Rounded = true;
             buttonCreateOrderInvoice.Size = new Size(134, 40);
             buttonCreateOrderInvoice.TabIndex = 30;
             buttonCreateOrderInvoice.Text = "Facturar Pedido";
             buttonCreateOrderInvoice.TextColor = Color.FromArgb(243, 243, 243);
-            buttonCreateOrderInvoice.Click += buttonCreateOrderInvoice_Click_1;
+            buttonCreateOrderInvoice.Click += buttonCreateOrderInvoice_Click;
             // 
             // buttonModifyOrder
             // 
             buttonModifyOrder.BackColor = Color.Transparent;
             buttonModifyOrder.BaseColor = Color.Black;
             buttonModifyOrder.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonModifyOrder.Location = new Point(346, 398);
+            buttonModifyOrder.Location = new Point(346, 432);
             buttonModifyOrder.Name = "buttonModifyOrder";
             buttonModifyOrder.Rounded = true;
             buttonModifyOrder.Size = new Size(142, 40);
@@ -261,11 +264,42 @@
             buttonModifyOrder.Text = "Modificar Pedido";
             buttonModifyOrder.TextColor = Color.FromArgb(243, 243, 243);
             // 
+            // labelTotal
+            // 
+            labelTotal.AutoSize = true;
+            labelTotal.BackColor = Color.Transparent;
+            labelTotal.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            labelTotal.ForeColor = Color.FromArgb(76, 76, 77);
+            labelTotal.Location = new Point(473, 401);
+            labelTotal.Name = "labelTotal";
+            labelTotal.Size = new Size(53, 25);
+            labelTotal.TabIndex = 33;
+            labelTotal.Text = "Total:";
+            // 
+            // txtBoxTotalAmount
+            // 
+            txtBoxTotalAmount.BackColor = Color.Transparent;
+            txtBoxTotalAmount.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxTotalAmount.EdgeColor = Color.White;
+            txtBoxTotalAmount.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxTotalAmount.ForeColor = Color.DimGray;
+            txtBoxTotalAmount.Location = new Point(532, 398);
+            txtBoxTotalAmount.MaxLength = 32767;
+            txtBoxTotalAmount.Multiline = false;
+            txtBoxTotalAmount.Name = "txtBoxTotalAmount";
+            txtBoxTotalAmount.ReadOnly = false;
+            txtBoxTotalAmount.Size = new Size(250, 28);
+            txtBoxTotalAmount.TabIndex = 32;
+            txtBoxTotalAmount.TextAlignment = HorizontalAlignment.Left;
+            txtBoxTotalAmount.UseSystemPasswordChar = false;
+            // 
             // OrderReview
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 485);
+            Controls.Add(labelTotal);
+            Controls.Add(txtBoxTotalAmount);
             Controls.Add(buttonModifyOrder);
             Controls.Add(buttonCreateOrderInvoice);
             Controls.Add(buttonCancelOrder);
@@ -304,5 +338,7 @@
         private ReaLTaiizor.Controls.ForeverButton buttonCancelOrder;
         private ReaLTaiizor.Controls.ForeverButton buttonCreateOrderInvoice;
         private ReaLTaiizor.Controls.ForeverButton buttonModifyOrder;
+        private ReaLTaiizor.Controls.DungeonLabel labelTotal;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxTotalAmount;
     }
 }

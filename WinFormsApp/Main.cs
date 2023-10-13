@@ -137,6 +137,7 @@ namespace WinFormsApp
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
 
+
         }
         private async Task LoadData()
         {
@@ -204,9 +205,13 @@ namespace WinFormsApp
         {
             if (e.ColumnIndex == dataGridViewOrders.Columns["ReviewButton"].Index && e.RowIndex >= 0)
             {
-                int orderId = (int)dataGridViewOrders.Rows[e.RowIndex].Cells["Id"].Value;
-                var form = new OrderReview(orderId);
-                form.ShowDialog();
+                bool hasInvoice = (bool)dataGridViewOrders.Rows[e.RowIndex].Cells["HasInvoice"].Value;
+                if (!hasInvoice)
+                {
+                    int orderId = (int)dataGridViewOrders.Rows[e.RowIndex].Cells["Id"].Value;
+                    var form = new OrderReview(orderId);
+                    form.ShowDialog();
+                }
             }
         }
 

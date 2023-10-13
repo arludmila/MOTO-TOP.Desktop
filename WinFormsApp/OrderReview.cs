@@ -1,20 +1,14 @@
-﻿using Contracts.Utils;
+﻿using Contracts.DTOs.Entities;
+using Contracts.Utils;
 using Contracts.ViewModels;
 using Entities.Core;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace WinFormsApp
 {
     public partial class OrderReview : Form
     {
+        private double total = 0;
         private readonly int _orderId;
         private OrderViewModel _orderViewModel;
         public OrderReview(int orderId)
@@ -43,6 +37,7 @@ namespace WinFormsApp
             txtBoxSelllerName.Enabled = false;
             txtBoxTransportCompany.Enabled = false;
             txtBoxOrderId.Enabled = false;
+            txtBoxTotalAmount.Enabled = false;
             // data grid
             dataGridViewOrderDetails.RowHeadersVisible = false;
             dataGridViewOrderDetails.AllowUserToAddRows = false;
@@ -72,6 +67,7 @@ namespace WinFormsApp
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             CheckStock();
+            SumTotal();
         }
         private void CheckStock()
         {
@@ -90,9 +86,35 @@ namespace WinFormsApp
                 row.DefaultCellStyle.ForeColor = Color.Black;
             }
         }
-        private void buttonCreateOrderInvoice_Click(object sender, EventArgs e)
+        private void SumTotal()
         {
 
+            foreach (DataGridViewRow row in dataGridViewOrderDetails.Rows)
+            {
+                int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
+                double price = Convert.ToInt32(row.Cells["Price"].Value);
+                total += quantity * price;
+            }
+            txtBoxTotalAmount.Text = $"$ {total}";
+        }
+        private async void buttonCreateOrderInvoice_Click(object sender, EventArgs e)
+        {
+            var invoice = new InvoiceDto()
+            {
+                Amount = total,
+                Date = DateTime.Now,
+                OrderId = Convert.ToInt32(txtBoxOrderId.Text),
+            };
+            string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices", invoice);
+            if (response.Contains("error"))
+            {
+                MessageBox.Show("Error al facturar", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Pedido facturado!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
         }
 
         private void dataGridViewOrderDetails_SelectionChanged(object sender, EventArgs e)
@@ -100,11 +122,18 @@ namespace WinFormsApp
             dataGridViewOrderDetails.ClearSelection();
         }
 
-
-
-        private void buttonCreateOrderInvoice_Click_1(object sender, EventArgs e)
+        private async void buttonCancelOrder_Click(object sender, EventArgs e)
         {
-
+            var response = await ApiHelper.DeleteAsync("https://localhost:7215/api/orders");
+            if (response.Contains("error"))
+            {
+                MessageBox.Show("Error al borrar pedido", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Pedido borrado!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
         }
     }
 }
