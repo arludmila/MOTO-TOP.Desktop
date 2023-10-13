@@ -1,4 +1,5 @@
 using Contracts.DTOs.Entities;
+using Contracts.DTOs.Relationships;
 using Contracts.Utils;
 using Contracts.ViewModels;
 using Entities.Core;
@@ -20,6 +21,7 @@ namespace WinFormsApp
         {
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "MOTO-TOP";
+
             InitializeComponent();
         }
 
@@ -45,7 +47,8 @@ namespace WinFormsApp
 
             await LoadData();
             StyleDataGrids();
-
+            txtBoxSupplierProductSupplierId.Enabled = false;
+            txtBoxSupplierProductProductId.Enabled = false;
         }
         private void StyleDataGrids()
         {
@@ -84,8 +87,8 @@ namespace WinFormsApp
             dataGridViewSuppliers.Columns["Id"].DisplayIndex = 0;
             dataGridViewSuppliers.Columns["Name"].HeaderText = "Nombre";
             dataGridViewSuppliers.Columns["PhoneNumber"].HeaderText = "Número de Telefono";
-            dataGridViewProducts.RowHeadersVisible = false;
-            dataGridViewProducts.AllowUserToAddRows = false;
+            dataGridViewSuppliers.RowHeadersVisible = false;
+            dataGridViewSuppliers.AllowUserToAddRows = false;
             foreach (DataGridViewColumn column in dataGridViewSuppliers.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -196,6 +199,69 @@ namespace WinFormsApp
                 var form = new OrderReview(orderId);
                 form.ShowDialog();
             }
+        }
+
+        private void tabPageOrders_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCreateSupplier_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void buttonCreateSupplierProduct_Click(object sender, EventArgs e)
+        {
+            var supplierProduct = new SupplierProductDto()
+            {
+                ProductId = Convert.ToInt32(txtBoxSupplierProductProductId.Text),
+                SupplierId = Convert.ToInt32(txtBoxSupplierProductSupplierId.Text),
+                Quantity = Convert.ToInt32(txtBoxSupplierProductPrice.Text),
+                Price = Convert.ToDouble(txtBoxSupplierProductPrice.Text),
+            };
+            await ApiHelper.PostAsync("https://localhost:7215/api/supplier-products",supplierProduct);
+            txtBoxSupplierProductProductId.Text = string.Empty;
+            txtBoxSupplierProductSupplierId.Text = string.Empty;
+            txtBoxSupplierProductPrice.Text = string.Empty;
+            txtBoxSupplierProductPrice.Text = string.Empty;
+            // TODO: arreglar en api -> suppProd tendria que aumentar los stock de los prod seleccionados
+            // ademas, deberia cambiar el precio del producto al ultimo que se manda...
+        }
+
+        private void txtBoxSupplierProductProductId_DoubleClick(object sender, EventArgs e)
+        {
+        }
+
+        private void txtBoxSupplierProductSupplierId_DoubleClick(object sender, EventArgs e)
+        {
+        }
+
+        private void buttonSelectProduct_Click(object sender, EventArgs e)
+        {
+
+            using (ProductSelector productSelectorForm = new ProductSelector())
+            {
+                productSelectorForm.ProductSelected += HandleProductSelected;
+                productSelectorForm.ShowDialog();
+            }
+        }
+        private void HandleProductSelected(int selectedProductId)
+        {
+            txtBoxSupplierProductProductId.Text = selectedProductId.ToString();
+        }
+
+        private void buttonSelectSupplier_Click(object sender, EventArgs e)
+        {
+            using (SupplierSelector productSelectorForm = new SupplierSelector())
+            {
+                productSelectorForm.SupplierSelected += HandleSupplierSelected;
+                productSelectorForm.ShowDialog();
+            }
+        }
+        private void HandleSupplierSelected(int selectedSupplierId)
+        {
+            txtBoxSupplierProductSupplierId.Text = selectedSupplierId.ToString();
         }
     }
 }

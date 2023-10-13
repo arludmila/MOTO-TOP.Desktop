@@ -99,5 +99,12 @@ namespace WinFormsApp
         {
             dataGridViewOrderDetails.ClearSelection();
         }
+
+
+
+        private void buttonCreateOrderInvoice_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
