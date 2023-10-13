@@ -18,6 +18,9 @@ namespace WinFormsApp
         private List<Supplier> suppliers;
         private List<SellerViewModel> sellers;
         private List<OrderViewModel> orders;
+        private List<Invoice> invoices;
+        private List<BillingTransaction> billingTransactions;
+
         private Timer refreshTimer;
         public Main()
         {
@@ -167,9 +170,21 @@ namespace WinFormsApp
                 dataGridViewSellers.DataSource = new BindingList<SellerViewModel>(sellers);
             }
             orders = await ApiHelper.GetListAsync<OrderViewModel>("https://localhost:7215/api/orders/view-models");
-            if (sellers != null)
+            if (orders != null)
             {
                 dataGridViewOrders.DataSource = new BindingList<OrderViewModel>(orders);
+            }
+            invoices = await ApiHelper.GetListAsync<Invoice>("https://localhost:7215/api/invoices");
+
+            if (invoices != null)
+            {
+                dataGridViewInvoices.DataSource = new BindingList<Invoice>(invoices);
+            }
+            billingTransactions = await ApiHelper.GetListAsync<BillingTransaction>("https://localhost:7215/api/billing-transactions");
+
+            if (billingTransactions != null)
+            {
+                dataGridViewBillingTransactions.DataSource = new BindingList<BillingTransaction>(billingTransactions);
             }
         }
 
@@ -201,7 +216,7 @@ namespace WinFormsApp
             await LoadData();
         }
 
-        private void dataGridViewOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dataGridViewOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dataGridViewOrders.Columns["ReviewButton"].Index && e.RowIndex >= 0)
             {
@@ -211,6 +226,7 @@ namespace WinFormsApp
                     int orderId = (int)dataGridViewOrders.Rows[e.RowIndex].Cells["Id"].Value;
                     var form = new OrderReview(orderId);
                     form.ShowDialog();
+                    await LoadData();
                 }
             }
         }
@@ -245,7 +261,7 @@ namespace WinFormsApp
                 txtBoxSupplierProductProductId.Text = string.Empty;
                 txtBoxSupplierProductSupplierId.Text = string.Empty;
                 txtBoxSupplierProductPrice.Text = string.Empty;
-                txtBoxSupplierProductPrice.Text = string.Empty;
+                txtBoxSupplierProductQuantity.Text = string.Empty;
                 await LoadData();
 
             }

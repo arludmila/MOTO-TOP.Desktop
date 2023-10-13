@@ -11,6 +11,7 @@ namespace WinFormsApp
         private double total = 0;
         private readonly int _orderId;
         private OrderViewModel _orderViewModel;
+        private bool allStockAvailable = true;
         public OrderReview(int orderId)
         {
             _orderId = orderId;
@@ -78,6 +79,7 @@ namespace WinFormsApp
                 if (quantity > productQuantity)
                 {
                     row.DefaultCellStyle.BackColor = Color.LightCoral;
+
                 }
                 else
                 {
@@ -124,7 +126,7 @@ namespace WinFormsApp
 
         private async void buttonCancelOrder_Click(object sender, EventArgs e)
         {
-            var response = await ApiHelper.DeleteAsync("https://localhost:7215/api/orders");
+            var response = await ApiHelper.DeleteAsync($"https://localhost:7215/api/orders/{_orderId}");
             if (response.Contains("error"))
             {
                 MessageBox.Show("Error al borrar pedido", response, MessageBoxButtons.OK, MessageBoxIcon.Error);

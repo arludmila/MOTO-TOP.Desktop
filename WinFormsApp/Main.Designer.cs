@@ -46,6 +46,15 @@
             DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
             hopeTabPage = new ReaLTaiizor.Controls.HopeTabPage();
             tabPageOrders = new TabPage();
             dataGridViewOrders = new ReaLTaiizor.Controls.PoisonDataGridView();
@@ -87,7 +96,24 @@
             txtBoxSupplierProductPrice = new ReaLTaiizor.Controls.DungeonTextBox();
             buttonCreateSupplierProduct = new ReaLTaiizor.Controls.ForeverButton();
             tabPageBillingTransactions = new TabPage();
+            airTabPageBillTransactions = new ReaLTaiizor.Controls.AirTabPage();
+            tabPageBTBillTrans = new TabPage();
+            dataGridViewBillingTransactions = new ReaLTaiizor.Controls.PoisonDataGridView();
+            labelSearchBillingTransactions = new ReaLTaiizor.Controls.DungeonLabel();
+            button1 = new ReaLTaiizor.Controls.Button();
+            txtBoxSearchBillingTransactions = new ReaLTaiizor.Controls.DungeonTextBox();
+            tabPageBTPendingInvoices = new TabPage();
+            dataGridViewPendingInvoices = new ReaLTaiizor.Controls.PoisonDataGridView();
+            labelSearchPendingInvoices = new ReaLTaiizor.Controls.DungeonLabel();
+            button2 = new ReaLTaiizor.Controls.Button();
+            txtBoxSearchPendingInvoices = new ReaLTaiizor.Controls.DungeonTextBox();
+            tabPageBTClientsBalances = new TabPage();
+            airSeparator2 = new ReaLTaiizor.Controls.AirSeparator();
             tabPageInvoices = new TabPage();
+            buttonCreateInvoice = new ReaLTaiizor.Controls.ForeverButton();
+            dataGridViewInvoices = new ReaLTaiizor.Controls.PoisonDataGridView();
+            labelSearchInvoices = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxSearchInvoices = new ReaLTaiizor.Controls.DungeonTextBox();
             tabPageReports = new TabPage();
             tabPageClients = new TabPage();
             dataGridViewClients = new ReaLTaiizor.Controls.PoisonDataGridView();
@@ -112,6 +138,15 @@
             tabPagePSuppliers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewSuppliers).BeginInit();
             tabPagePOrdersSupp.SuspendLayout();
+            tabPageBillingTransactions.SuspendLayout();
+            airTabPageBillTransactions.SuspendLayout();
+            tabPageBTBillTrans.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBillingTransactions).BeginInit();
+            tabPageBTPendingInvoices.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPendingInvoices).BeginInit();
+            tabPageBTClientsBalances.SuspendLayout();
+            tabPageInvoices.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewInvoices).BeginInit();
             tabPageClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClients).BeginInit();
             tabPageSellers.SuspendLayout();
@@ -861,6 +896,7 @@
             // 
             // tabPageBillingTransactions
             // 
+            tabPageBillingTransactions.Controls.Add(airTabPageBillTransactions);
             tabPageBillingTransactions.Location = new Point(0, 40);
             tabPageBillingTransactions.Name = "tabPageBillingTransactions";
             tabPageBillingTransactions.Size = new Size(1213, 535);
@@ -868,14 +904,367 @@
             tabPageBillingTransactions.Text = "Cobranzas";
             tabPageBillingTransactions.UseVisualStyleBackColor = true;
             // 
+            // airTabPageBillTransactions
+            // 
+            airTabPageBillTransactions.Alignment = TabAlignment.Left;
+            airTabPageBillTransactions.BaseColor = Color.FromArgb(44, 55, 66);
+            airTabPageBillTransactions.Controls.Add(tabPageBTBillTrans);
+            airTabPageBillTransactions.Controls.Add(tabPageBTPendingInvoices);
+            airTabPageBillTransactions.Controls.Add(tabPageBTClientsBalances);
+            airTabPageBillTransactions.Dock = DockStyle.Fill;
+            airTabPageBillTransactions.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            airTabPageBillTransactions.ItemSize = new Size(50, 125);
+            airTabPageBillTransactions.Location = new Point(0, 0);
+            airTabPageBillTransactions.Multiline = true;
+            airTabPageBillTransactions.Name = "airTabPageBillTransactions";
+            airTabPageBillTransactions.NormalTextColor = Color.White;
+            airTabPageBillTransactions.SelectedIndex = 0;
+            airTabPageBillTransactions.SelectedTabBackColor = Color.White;
+            airTabPageBillTransactions.SelectedTextColor = Color.White;
+            airTabPageBillTransactions.ShowOuterBorders = false;
+            airTabPageBillTransactions.Size = new Size(1213, 535);
+            airTabPageBillTransactions.SizeMode = TabSizeMode.Fixed;
+            airTabPageBillTransactions.SquareColor = Color.CornflowerBlue;
+            airTabPageBillTransactions.TabCursor = Cursors.Hand;
+            airTabPageBillTransactions.TabIndex = 11;
+            // 
+            // tabPageBTBillTrans
+            // 
+            tabPageBTBillTrans.BackColor = Color.White;
+            tabPageBTBillTrans.Controls.Add(dataGridViewBillingTransactions);
+            tabPageBTBillTrans.Controls.Add(labelSearchBillingTransactions);
+            tabPageBTBillTrans.Controls.Add(button1);
+            tabPageBTBillTrans.Controls.Add(txtBoxSearchBillingTransactions);
+            tabPageBTBillTrans.Location = new Point(129, 4);
+            tabPageBTBillTrans.Name = "tabPageBTBillTrans";
+            tabPageBTBillTrans.Padding = new Padding(3);
+            tabPageBTBillTrans.Size = new Size(1080, 527);
+            tabPageBTBillTrans.TabIndex = 0;
+            tabPageBTBillTrans.Text = "Cobranzas";
+            // 
+            // dataGridViewBillingTransactions
+            // 
+            dataGridViewBillingTransactions.AllowUserToResizeRows = false;
+            dataGridViewBillingTransactions.BackgroundColor = Color.FromArgb(255, 255, 255);
+            dataGridViewBillingTransactions.BorderStyle = BorderStyle.None;
+            dataGridViewBillingTransactions.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewBillingTransactions.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle13.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle13.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle13.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dataGridViewBillingTransactions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewBillingTransactions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle14.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle14.ForeColor = Color.FromArgb(136, 136, 136);
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle14.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            dataGridViewBillingTransactions.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewBillingTransactions.EnableHeadersVisualStyles = false;
+            dataGridViewBillingTransactions.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewBillingTransactions.GridColor = Color.FromArgb(255, 255, 255);
+            dataGridViewBillingTransactions.Location = new Point(15, 46);
+            dataGridViewBillingTransactions.Name = "dataGridViewBillingTransactions";
+            dataGridViewBillingTransactions.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle15.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle15.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle15.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            dataGridViewBillingTransactions.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewBillingTransactions.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewBillingTransactions.RowTemplate.Height = 25;
+            dataGridViewBillingTransactions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewBillingTransactions.Size = new Size(1067, 432);
+            dataGridViewBillingTransactions.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
+            dataGridViewBillingTransactions.TabIndex = 4;
+            // 
+            // labelSearchBillingTransactions
+            // 
+            labelSearchBillingTransactions.AutoSize = true;
+            labelSearchBillingTransactions.BackColor = Color.Transparent;
+            labelSearchBillingTransactions.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSearchBillingTransactions.ForeColor = Color.FromArgb(76, 76, 77);
+            labelSearchBillingTransactions.Location = new Point(226, 15);
+            labelSearchBillingTransactions.Name = "labelSearchBillingTransactions";
+            labelSearchBillingTransactions.Size = new Size(72, 25);
+            labelSearchBillingTransactions.TabIndex = 3;
+            labelSearchBillingTransactions.Text = "Buscar:";
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Transparent;
+            button1.BorderColor = Color.FromArgb(32, 34, 37);
+            button1.EnteredBorderColor = Color.FromArgb(165, 37, 37);
+            button1.EnteredColor = Color.FromArgb(32, 34, 37);
+            button1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Image = null;
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.InactiveColor = Color.FromArgb(32, 34, 37);
+            button1.Location = new Point(15, 484);
+            button1.Name = "button1";
+            button1.PressedBorderColor = Color.FromArgb(165, 37, 37);
+            button1.PressedColor = Color.FromArgb(165, 37, 37);
+            button1.Size = new Size(151, 35);
+            button1.TabIndex = 9;
+            button1.Text = "Agregar Producto";
+            button1.TextAlignment = StringAlignment.Center;
+            // 
+            // txtBoxSearchBillingTransactions
+            // 
+            txtBoxSearchBillingTransactions.BackColor = Color.Transparent;
+            txtBoxSearchBillingTransactions.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxSearchBillingTransactions.EdgeColor = Color.White;
+            txtBoxSearchBillingTransactions.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxSearchBillingTransactions.ForeColor = Color.DimGray;
+            txtBoxSearchBillingTransactions.Location = new Point(301, 12);
+            txtBoxSearchBillingTransactions.MaxLength = 32767;
+            txtBoxSearchBillingTransactions.Multiline = false;
+            txtBoxSearchBillingTransactions.Name = "txtBoxSearchBillingTransactions";
+            txtBoxSearchBillingTransactions.ReadOnly = false;
+            txtBoxSearchBillingTransactions.Size = new Size(589, 28);
+            txtBoxSearchBillingTransactions.TabIndex = 2;
+            txtBoxSearchBillingTransactions.TextAlignment = HorizontalAlignment.Left;
+            txtBoxSearchBillingTransactions.UseSystemPasswordChar = false;
+            // 
+            // tabPageBTPendingInvoices
+            // 
+            tabPageBTPendingInvoices.BackColor = Color.White;
+            tabPageBTPendingInvoices.Controls.Add(dataGridViewPendingInvoices);
+            tabPageBTPendingInvoices.Controls.Add(labelSearchPendingInvoices);
+            tabPageBTPendingInvoices.Controls.Add(button2);
+            tabPageBTPendingInvoices.Controls.Add(txtBoxSearchPendingInvoices);
+            tabPageBTPendingInvoices.Location = new Point(129, 4);
+            tabPageBTPendingInvoices.Name = "tabPageBTPendingInvoices";
+            tabPageBTPendingInvoices.Padding = new Padding(3);
+            tabPageBTPendingInvoices.Size = new Size(1080, 527);
+            tabPageBTPendingInvoices.TabIndex = 1;
+            tabPageBTPendingInvoices.Text = "Facturas Pendientes";
+            // 
+            // dataGridViewPendingInvoices
+            // 
+            dataGridViewPendingInvoices.AllowUserToResizeRows = false;
+            dataGridViewPendingInvoices.BackgroundColor = Color.FromArgb(255, 255, 255);
+            dataGridViewPendingInvoices.BorderStyle = BorderStyle.None;
+            dataGridViewPendingInvoices.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewPendingInvoices.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle16.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle16.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle16.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            dataGridViewPendingInvoices.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewPendingInvoices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle17.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle17.ForeColor = Color.FromArgb(136, 136, 136);
+            dataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle17.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.False;
+            dataGridViewPendingInvoices.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewPendingInvoices.EnableHeadersVisualStyles = false;
+            dataGridViewPendingInvoices.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewPendingInvoices.GridColor = Color.FromArgb(255, 255, 255);
+            dataGridViewPendingInvoices.Location = new Point(12, 44);
+            dataGridViewPendingInvoices.Name = "dataGridViewPendingInvoices";
+            dataGridViewPendingInvoices.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle18.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle18.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle18.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.True;
+            dataGridViewPendingInvoices.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewPendingInvoices.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewPendingInvoices.RowTemplate.Height = 25;
+            dataGridViewPendingInvoices.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewPendingInvoices.Size = new Size(1067, 432);
+            dataGridViewPendingInvoices.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
+            dataGridViewPendingInvoices.TabIndex = 12;
+            // 
+            // labelSearchPendingInvoices
+            // 
+            labelSearchPendingInvoices.AutoSize = true;
+            labelSearchPendingInvoices.BackColor = Color.Transparent;
+            labelSearchPendingInvoices.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSearchPendingInvoices.ForeColor = Color.FromArgb(76, 76, 77);
+            labelSearchPendingInvoices.Location = new Point(223, 13);
+            labelSearchPendingInvoices.Name = "labelSearchPendingInvoices";
+            labelSearchPendingInvoices.Size = new Size(72, 25);
+            labelSearchPendingInvoices.TabIndex = 11;
+            labelSearchPendingInvoices.Text = "Buscar:";
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.Transparent;
+            button2.BorderColor = Color.FromArgb(32, 34, 37);
+            button2.EnteredBorderColor = Color.FromArgb(165, 37, 37);
+            button2.EnteredColor = Color.FromArgb(32, 34, 37);
+            button2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.Image = null;
+            button2.ImageAlign = ContentAlignment.MiddleLeft;
+            button2.InactiveColor = Color.FromArgb(32, 34, 37);
+            button2.Location = new Point(12, 482);
+            button2.Name = "button2";
+            button2.PressedBorderColor = Color.FromArgb(165, 37, 37);
+            button2.PressedColor = Color.FromArgb(165, 37, 37);
+            button2.Size = new Size(151, 35);
+            button2.TabIndex = 13;
+            button2.Text = "Agregar Proveedor";
+            button2.TextAlignment = StringAlignment.Center;
+            // 
+            // txtBoxSearchPendingInvoices
+            // 
+            txtBoxSearchPendingInvoices.BackColor = Color.Transparent;
+            txtBoxSearchPendingInvoices.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxSearchPendingInvoices.EdgeColor = Color.White;
+            txtBoxSearchPendingInvoices.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxSearchPendingInvoices.ForeColor = Color.DimGray;
+            txtBoxSearchPendingInvoices.Location = new Point(298, 10);
+            txtBoxSearchPendingInvoices.MaxLength = 32767;
+            txtBoxSearchPendingInvoices.Multiline = false;
+            txtBoxSearchPendingInvoices.Name = "txtBoxSearchPendingInvoices";
+            txtBoxSearchPendingInvoices.ReadOnly = false;
+            txtBoxSearchPendingInvoices.Size = new Size(589, 28);
+            txtBoxSearchPendingInvoices.TabIndex = 10;
+            txtBoxSearchPendingInvoices.TextAlignment = HorizontalAlignment.Left;
+            txtBoxSearchPendingInvoices.UseSystemPasswordChar = false;
+            // 
+            // tabPageBTClientsBalances
+            // 
+            tabPageBTClientsBalances.BackColor = Color.White;
+            tabPageBTClientsBalances.Controls.Add(airSeparator2);
+            tabPageBTClientsBalances.Location = new Point(129, 4);
+            tabPageBTClientsBalances.Name = "tabPageBTClientsBalances";
+            tabPageBTClientsBalances.Size = new Size(1080, 527);
+            tabPageBTClientsBalances.TabIndex = 2;
+            tabPageBTClientsBalances.Text = "Deudas de Clientes";
+            // 
+            // airSeparator2
+            // 
+            airSeparator2.BackColor = Color.FromArgb(238, 238, 238);
+            airSeparator2.Customization = "";
+            airSeparator2.Font = new Font("Verdana", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            airSeparator2.Image = null;
+            airSeparator2.Location = new Point(483, 312);
+            airSeparator2.Name = "airSeparator2";
+            airSeparator2.NoRounding = false;
+            airSeparator2.Size = new Size(75, 1);
+            airSeparator2.TabIndex = 45;
+            airSeparator2.Text = "airSeparator2";
+            airSeparator2.Transparent = false;
+            // 
             // tabPageInvoices
             // 
+            tabPageInvoices.Controls.Add(buttonCreateInvoice);
+            tabPageInvoices.Controls.Add(dataGridViewInvoices);
+            tabPageInvoices.Controls.Add(labelSearchInvoices);
+            tabPageInvoices.Controls.Add(txtBoxSearchInvoices);
             tabPageInvoices.Location = new Point(0, 40);
             tabPageInvoices.Name = "tabPageInvoices";
             tabPageInvoices.Size = new Size(1213, 535);
             tabPageInvoices.TabIndex = 5;
             tabPageInvoices.Text = "Facturas";
             tabPageInvoices.UseVisualStyleBackColor = true;
+            // 
+            // buttonCreateInvoice
+            // 
+            buttonCreateInvoice.BackColor = Color.Transparent;
+            buttonCreateInvoice.BaseColor = Color.Black;
+            buttonCreateInvoice.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCreateInvoice.Location = new Point(12, 483);
+            buttonCreateInvoice.Name = "buttonCreateInvoice";
+            buttonCreateInvoice.Rounded = true;
+            buttonCreateInvoice.Size = new Size(157, 40);
+            buttonCreateInvoice.TabIndex = 33;
+            buttonCreateInvoice.Text = "Facturar Compra";
+            buttonCreateInvoice.TextColor = Color.FromArgb(243, 243, 243);
+            // 
+            // dataGridViewInvoices
+            // 
+            dataGridViewInvoices.AllowUserToResizeRows = false;
+            dataGridViewInvoices.BackgroundColor = Color.FromArgb(255, 255, 255);
+            dataGridViewInvoices.BorderStyle = BorderStyle.None;
+            dataGridViewInvoices.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewInvoices.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle19.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle19.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle19.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle19.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle19.WrapMode = DataGridViewTriState.True;
+            dataGridViewInvoices.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewInvoices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle20.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle20.ForeColor = Color.FromArgb(136, 136, 136);
+            dataGridViewCellStyle20.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle20.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle20.WrapMode = DataGridViewTriState.False;
+            dataGridViewInvoices.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewInvoices.EnableHeadersVisualStyles = false;
+            dataGridViewInvoices.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewInvoices.GridColor = Color.FromArgb(255, 255, 255);
+            dataGridViewInvoices.Location = new Point(68, 51);
+            dataGridViewInvoices.Name = "dataGridViewInvoices";
+            dataGridViewInvoices.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle21.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle21.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle21.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle21.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle21.WrapMode = DataGridViewTriState.True;
+            dataGridViewInvoices.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewInvoices.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewInvoices.RowTemplate.Height = 25;
+            dataGridViewInvoices.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewInvoices.Size = new Size(1067, 426);
+            dataGridViewInvoices.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
+            dataGridViewInvoices.TabIndex = 7;
+            // 
+            // labelSearchInvoices
+            // 
+            labelSearchInvoices.AutoSize = true;
+            labelSearchInvoices.BackColor = Color.Transparent;
+            labelSearchInvoices.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSearchInvoices.ForeColor = Color.FromArgb(76, 76, 77);
+            labelSearchInvoices.Location = new Point(276, 17);
+            labelSearchInvoices.Name = "labelSearchInvoices";
+            labelSearchInvoices.Size = new Size(72, 25);
+            labelSearchInvoices.TabIndex = 6;
+            labelSearchInvoices.Text = "Buscar:";
+            // 
+            // txtBoxSearchInvoices
+            // 
+            txtBoxSearchInvoices.BackColor = Color.Transparent;
+            txtBoxSearchInvoices.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxSearchInvoices.EdgeColor = Color.White;
+            txtBoxSearchInvoices.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxSearchInvoices.ForeColor = Color.DimGray;
+            txtBoxSearchInvoices.Location = new Point(354, 17);
+            txtBoxSearchInvoices.MaxLength = 32767;
+            txtBoxSearchInvoices.Multiline = false;
+            txtBoxSearchInvoices.Name = "txtBoxSearchInvoices";
+            txtBoxSearchInvoices.ReadOnly = false;
+            txtBoxSearchInvoices.Size = new Size(589, 28);
+            txtBoxSearchInvoices.TabIndex = 5;
+            txtBoxSearchInvoices.TextAlignment = HorizontalAlignment.Left;
+            txtBoxSearchInvoices.UseSystemPasswordChar = false;
             // 
             // tabPageReports
             // 
@@ -906,37 +1295,37 @@
             dataGridViewClients.BorderStyle = BorderStyle.None;
             dataGridViewClients.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewClients.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = Color.FromArgb(243, 119, 53);
-            dataGridViewCellStyle13.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle13.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle13.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
-            dataGridViewClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle22.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle22.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle22.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle22.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.True;
+            dataGridViewClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             dataGridViewClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle14.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle14.ForeColor = Color.FromArgb(136, 136, 136);
-            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle14.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
-            dataGridViewClients.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle23.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle23.ForeColor = Color.FromArgb(136, 136, 136);
+            dataGridViewCellStyle23.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle23.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle23.WrapMode = DataGridViewTriState.False;
+            dataGridViewClients.DefaultCellStyle = dataGridViewCellStyle23;
             dataGridViewClients.EnableHeadersVisualStyles = false;
             dataGridViewClients.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewClients.GridColor = Color.FromArgb(255, 255, 255);
             dataGridViewClients.Location = new Point(119, 52);
             dataGridViewClients.Name = "dataGridViewClients";
             dataGridViewClients.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = Color.FromArgb(243, 119, 53);
-            dataGridViewCellStyle15.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle15.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle15.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
-            dataGridViewClients.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle24.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle24.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle24.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle24.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle24.WrapMode = DataGridViewTriState.True;
+            dataGridViewClients.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
             dataGridViewClients.RowHeadersVisible = false;
             dataGridViewClients.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewClients.RowTemplate.Height = 25;
@@ -1034,37 +1423,37 @@
             dataGridViewSellers.BorderStyle = BorderStyle.None;
             dataGridViewSellers.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewSellers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = Color.FromArgb(243, 119, 53);
-            dataGridViewCellStyle16.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle16.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle16.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
-            dataGridViewSellers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle25.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle25.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle25.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle25.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle25.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle25.WrapMode = DataGridViewTriState.True;
+            dataGridViewSellers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             dataGridViewSellers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle17.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle17.ForeColor = Color.FromArgb(136, 136, 136);
-            dataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle17.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.False;
-            dataGridViewSellers.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle26.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle26.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle26.ForeColor = Color.FromArgb(136, 136, 136);
+            dataGridViewCellStyle26.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle26.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle26.WrapMode = DataGridViewTriState.False;
+            dataGridViewSellers.DefaultCellStyle = dataGridViewCellStyle26;
             dataGridViewSellers.EnableHeadersVisualStyles = false;
             dataGridViewSellers.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewSellers.GridColor = Color.FromArgb(255, 255, 255);
             dataGridViewSellers.Location = new Point(135, 53);
             dataGridViewSellers.Name = "dataGridViewSellers";
             dataGridViewSellers.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = Color.FromArgb(243, 119, 53);
-            dataGridViewCellStyle18.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle18.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle18.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.True;
-            dataGridViewSellers.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle27.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle27.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle27.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle27.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle27.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle27.WrapMode = DataGridViewTriState.True;
+            dataGridViewSellers.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
             dataGridViewSellers.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewSellers.RowTemplate.Height = 25;
             dataGridViewSellers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -1136,6 +1525,18 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewSuppliers).EndInit();
             tabPagePOrdersSupp.ResumeLayout(false);
             tabPagePOrdersSupp.PerformLayout();
+            tabPageBillingTransactions.ResumeLayout(false);
+            airTabPageBillTransactions.ResumeLayout(false);
+            tabPageBTBillTrans.ResumeLayout(false);
+            tabPageBTBillTrans.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBillingTransactions).EndInit();
+            tabPageBTPendingInvoices.ResumeLayout(false);
+            tabPageBTPendingInvoices.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPendingInvoices).EndInit();
+            tabPageBTClientsBalances.ResumeLayout(false);
+            tabPageInvoices.ResumeLayout(false);
+            tabPageInvoices.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewInvoices).EndInit();
             tabPageClients.ResumeLayout(false);
             tabPageClients.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClients).EndInit();
@@ -1201,5 +1602,22 @@
         private ReaLTaiizor.Controls.DungeonHeaderLabel labelTitleSuppProd;
         private ReaLTaiizor.Controls.AirSeparator airSeparator1;
         private ReaLTaiizor.Controls.Separator separator1;
+        private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewInvoices;
+        private ReaLTaiizor.Controls.DungeonLabel labelSearchInvoices;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxSearchInvoices;
+        private ReaLTaiizor.Controls.ForeverButton buttonCreateInvoice;
+        private ReaLTaiizor.Controls.AirTabPage airTabPageBillTransactions;
+        private TabPage tabPageBTBillTrans;
+        private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewBillingTransactions;
+        private ReaLTaiizor.Controls.DungeonLabel labelSearchBillingTransactions;
+        private ReaLTaiizor.Controls.Button button1;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxSearchBillingTransactions;
+        private TabPage tabPageBTPendingInvoices;
+        private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewPendingInvoices;
+        private ReaLTaiizor.Controls.DungeonLabel labelSearchPendingInvoices;
+        private ReaLTaiizor.Controls.Button button2;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxSearchPendingInvoices;
+        private TabPage tabPageBTClientsBalances;
+        private ReaLTaiizor.Controls.AirSeparator airSeparator2;
     }
 }
