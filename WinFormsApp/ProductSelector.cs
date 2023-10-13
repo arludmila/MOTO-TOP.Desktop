@@ -13,10 +13,11 @@ namespace WinFormsApp
             InitializeComponent();
         }
 
-        private void buttonCreateProduct_Click(object sender, EventArgs e)
+        private async void buttonCreateProduct_Click(object sender, EventArgs e)
         {
             var form = new CreateProduct();
             form.ShowDialog();
+            await LoadData();
         }
 
         private async void ProductSelector_Load(object sender, EventArgs e)

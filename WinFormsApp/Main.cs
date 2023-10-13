@@ -6,25 +6,34 @@ using Entities.Core;
 using ReaLTaiizor.Controls;
 using System.ComponentModel;
 using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace WinFormsApp
 {
     public partial class Main : Form
     {
-        List<Category> categories;
-        List<ProductViewModel> products;
-        List<Client> clients;
-        List<Supplier> suppliers;
-        List<SellerViewModel> sellers;
-        List<OrderViewModel> orders;
+        private List<Category> categories;
+        private List<ProductViewModel> products;
+        private List<Client> clients;
+        private List<Supplier> suppliers;
+        private List<SellerViewModel> sellers;
+        private List<OrderViewModel> orders;
+        private Timer refreshTimer;
         public Main()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "MOTO-TOP";
 
             InitializeComponent();
+            refreshTimer = new System.Windows.Forms.Timer();
+            refreshTimer.Interval = 5000; // 5 seconds
+            refreshTimer.Tick += new EventHandler(RefreshTimer_Tick);
+            refreshTimer.Start();
         }
-
+        private async void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            await LoadData();
+        }
         private async void btnProducts_Click(object sender, EventArgs e)
         {
 
@@ -217,16 +226,25 @@ namespace WinFormsApp
             {
                 ProductId = Convert.ToInt32(txtBoxSupplierProductProductId.Text),
                 SupplierId = Convert.ToInt32(txtBoxSupplierProductSupplierId.Text),
-                Quantity = Convert.ToInt32(txtBoxSupplierProductPrice.Text),
+                Quantity = Convert.ToInt32(txtBoxSupplierProductQuantity.Text),
                 Price = Convert.ToDouble(txtBoxSupplierProductPrice.Text),
             };
-            await ApiHelper.PostAsync("https://localhost:7215/api/supplier-products",supplierProduct);
-            txtBoxSupplierProductProductId.Text = string.Empty;
-            txtBoxSupplierProductSupplierId.Text = string.Empty;
-            txtBoxSupplierProductPrice.Text = string.Empty;
-            txtBoxSupplierProductPrice.Text = string.Empty;
-            // TODO: arreglar en api -> suppProd tendria que aumentar los stock de los prod seleccionados
-            // ademas, deberia cambiar el precio del producto al ultimo que se manda...
+            string response = await ApiHelper.PostAsync("https://localhost:7215/api/supplier-products", supplierProduct);
+            if (response.Contains("error"))
+            {
+                MessageBox.Show("Error al registrar compra", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Compra registrada!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtBoxSupplierProductProductId.Text = string.Empty;
+                txtBoxSupplierProductSupplierId.Text = string.Empty;
+                txtBoxSupplierProductPrice.Text = string.Empty;
+                txtBoxSupplierProductPrice.Text = string.Empty;
+                await LoadData();
+
+            }
+
         }
 
         private void txtBoxSupplierProductProductId_DoubleClick(object sender, EventArgs e)

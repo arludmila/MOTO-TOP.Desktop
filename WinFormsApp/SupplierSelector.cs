@@ -21,15 +21,16 @@ namespace WinFormsApp
             InitializeComponent();
         }
 
-        private void SupplierSelector_Load(object sender, EventArgs e)
+        private async void SupplierSelector_Load(object sender, EventArgs e)
         {
-            LoadData();
+            await LoadData();
         }
 
-        private void buttonCreateSupplier_Click(object sender, EventArgs e)
+        private async void buttonCreateSupplier_Click(object sender, EventArgs e)
         {
             var form = new CreateSupplier();
             form.ShowDialog();
+            await LoadData();
         }
         private async Task LoadData()
         {

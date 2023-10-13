@@ -224,7 +224,7 @@
             // buttonCancelOrder
             // 
             buttonCancelOrder.BackColor = Color.Transparent;
-            buttonCancelOrder.BaseColor = Color.IndianRed;
+            buttonCancelOrder.BaseColor = Color.DarkRed;
             buttonCancelOrder.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             buttonCancelOrder.Location = new Point(648, 398);
             buttonCancelOrder.Name = "buttonCancelOrder";
@@ -237,7 +237,7 @@
             // buttonCreateOrderInvoice
             // 
             buttonCreateOrderInvoice.BackColor = Color.Transparent;
-            buttonCreateOrderInvoice.BaseColor = Color.OliveDrab;
+            buttonCreateOrderInvoice.BaseColor = Color.DarkGreen;
             buttonCreateOrderInvoice.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             buttonCreateOrderInvoice.Location = new Point(10, 398);
             buttonCreateOrderInvoice.Name = "buttonCreateOrderInvoice";
@@ -251,7 +251,7 @@
             // buttonModifyOrder
             // 
             buttonModifyOrder.BackColor = Color.Transparent;
-            buttonModifyOrder.BaseColor = Color.Gray;
+            buttonModifyOrder.BaseColor = Color.Black;
             buttonModifyOrder.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             buttonModifyOrder.Location = new Point(346, 398);
             buttonModifyOrder.Name = "buttonModifyOrder";
