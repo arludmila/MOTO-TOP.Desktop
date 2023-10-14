@@ -35,7 +35,7 @@ namespace WinFormsApp
         {
             PaymentMethods selectedPaymentMethod = (PaymentMethods)comboBoxPaymentMethod.SelectedItem;
             _billingTransactionDto.Amount = Convert.ToDouble(txtBoxPayedAmount.Text) * -1;
-            _billingTransactionDto.DocumentNumber = Convert.ToInt32(txtBoxPayedAmount.Text);
+            _billingTransactionDto.DocumentNumber = Convert.ToInt32(txtBoxDocNumber.Text);
             _billingTransactionDto.PaymentMethod = selectedPaymentMethod;
             _billingTransactionDto.DocumentType = txtBoxDocType.Text;
             string response = await ApiHelper.PostAsync("https://localhost:7215/api/billing-transactions", _billingTransactionDto);

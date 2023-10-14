@@ -101,11 +101,13 @@ namespace WinFormsApp
         }
         private async void buttonCreateOrderInvoice_Click(object sender, EventArgs e)
         {
+            Order order = await ApiHelper.GetAsync<Order>($"https://localhost:7215/api/orders/{Convert.ToInt32(txtBoxOrderId.Text)}");
             var invoice = new InvoiceDto()
             {
                 Amount = total,
                 Date = DateTime.Now,
                 OrderId = Convert.ToInt32(txtBoxOrderId.Text),
+                ClientId = order.ClientId,
             };
             string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices", invoice);
             if (response.Contains("error"))

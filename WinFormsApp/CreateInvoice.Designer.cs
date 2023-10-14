@@ -47,6 +47,9 @@
             buttonCreateDetailedInvoice = new ReaLTaiizor.Controls.Button();
             txtBoxTotalAmount = new ReaLTaiizor.Controls.DungeonTextBox();
             labelTotal = new ReaLTaiizor.Controls.DungeonLabel();
+            buttonSelectClient = new ReaLTaiizor.Controls.ForeverButton();
+            txtBoxClientId = new ReaLTaiizor.Controls.DungeonTextBox();
+            labelClient = new ReaLTaiizor.Controls.DungeonLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDetails).BeginInit();
             SuspendLayout();
             // 
@@ -60,7 +63,7 @@
             buttonAddDetail.Image = null;
             buttonAddDetail.ImageAlign = ContentAlignment.MiddleLeft;
             buttonAddDetail.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonAddDetail.Location = new Point(338, 130);
+            buttonAddDetail.Location = new Point(338, 136);
             buttonAddDetail.Name = "buttonAddDetail";
             buttonAddDetail.PressedBorderColor = Color.FromArgb(165, 37, 37);
             buttonAddDetail.PressedColor = Color.FromArgb(165, 37, 37);
@@ -77,7 +80,7 @@
             txtBoxQuantity.EdgeColor = Color.White;
             txtBoxQuantity.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxQuantity.ForeColor = Color.DimGray;
-            txtBoxQuantity.Location = new Point(104, 96);
+            txtBoxQuantity.Location = new Point(105, 98);
             txtBoxQuantity.MaxLength = 32767;
             txtBoxQuantity.Multiline = false;
             txtBoxQuantity.Name = "txtBoxQuantity";
@@ -94,7 +97,7 @@
             txtBoxPrice.EdgeColor = Color.White;
             txtBoxPrice.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxPrice.ForeColor = Color.DimGray;
-            txtBoxPrice.Location = new Point(483, 96);
+            txtBoxPrice.Location = new Point(484, 98);
             txtBoxPrice.MaxLength = 32767;
             txtBoxPrice.Multiline = false;
             txtBoxPrice.Name = "txtBoxPrice";
@@ -110,7 +113,7 @@
             labelPrice.BackColor = Color.Transparent;
             labelPrice.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelPrice.ForeColor = Color.FromArgb(76, 76, 77);
-            labelPrice.Location = new Point(413, 96);
+            labelPrice.Location = new Point(414, 98);
             labelPrice.Name = "labelPrice";
             labelPrice.Size = new Size(64, 25);
             labelPrice.TabIndex = 14;
@@ -122,7 +125,7 @@
             labelQuantity.BackColor = Color.Transparent;
             labelQuantity.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelQuantity.ForeColor = Color.FromArgb(76, 76, 77);
-            labelQuantity.Location = new Point(6, 96);
+            labelQuantity.Location = new Point(7, 98);
             labelQuantity.Name = "labelQuantity";
             labelQuantity.Size = new Size(87, 25);
             labelQuantity.TabIndex = 13;
@@ -145,7 +148,7 @@
             buttonSelectProduct.BackColor = Color.Transparent;
             buttonSelectProduct.BaseColor = Color.DimGray;
             buttonSelectProduct.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonSelectProduct.Location = new Point(567, 62);
+            buttonSelectProduct.Location = new Point(568, 64);
             buttonSelectProduct.Name = "buttonSelectProduct";
             buttonSelectProduct.Rounded = true;
             buttonSelectProduct.Size = new Size(212, 30);
@@ -161,7 +164,7 @@
             txtBoxProductId.EdgeColor = Color.White;
             txtBoxProductId.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxProductId.ForeColor = Color.DimGray;
-            txtBoxProductId.Location = new Point(104, 62);
+            txtBoxProductId.Location = new Point(105, 64);
             txtBoxProductId.MaxLength = 32767;
             txtBoxProductId.Multiline = false;
             txtBoxProductId.Name = "txtBoxProductId";
@@ -177,7 +180,7 @@
             dungeonLabel1.BackColor = Color.Transparent;
             dungeonLabel1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             dungeonLabel1.ForeColor = Color.FromArgb(76, 76, 77);
-            dungeonLabel1.Location = new Point(4, 62);
+            dungeonLabel1.Location = new Point(5, 64);
             dungeonLabel1.Name = "dungeonLabel1";
             dungeonLabel1.Size = new Size(89, 25);
             dungeonLabel1.TabIndex = 42;
@@ -186,7 +189,7 @@
             // separator1
             // 
             separator1.LineColor = Color.Gray;
-            separator1.Location = new Point(-6, 42);
+            separator1.Location = new Point(-5, 44);
             separator1.Name = "separator1";
             separator1.Size = new Size(831, 19);
             separator1.TabIndex = 45;
@@ -195,7 +198,7 @@
             // separator2
             // 
             separator2.LineColor = Color.Gray;
-            separator2.Location = new Point(-18, 168);
+            separator2.Location = new Point(-17, 174);
             separator2.Name = "separator2";
             separator2.Size = new Size(831, 19);
             separator2.TabIndex = 46;
@@ -228,7 +231,7 @@
             dataGridViewDetails.EnableHeadersVisualStyles = false;
             dataGridViewDetails.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewDetails.GridColor = Color.FromArgb(255, 255, 255);
-            dataGridViewDetails.Location = new Point(12, 227);
+            dataGridViewDetails.Location = new Point(12, 280);
             dataGridViewDetails.Name = "dataGridViewDetails";
             dataGridViewDetails.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -252,7 +255,7 @@
             dungeonHeaderLabel2.BackColor = Color.Transparent;
             dungeonHeaderLabel2.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
             dungeonHeaderLabel2.ForeColor = Color.FromArgb(76, 76, 77);
-            dungeonHeaderLabel2.Location = new Point(275, 190);
+            dungeonHeaderLabel2.Location = new Point(280, 196);
             dungeonHeaderLabel2.Name = "dungeonHeaderLabel2";
             dungeonHeaderLabel2.Size = new Size(222, 32);
             dungeonHeaderLabel2.TabIndex = 48;
@@ -268,7 +271,7 @@
             buttonCreateDetailedInvoice.Image = null;
             buttonCreateDetailedInvoice.ImageAlign = ContentAlignment.MiddleLeft;
             buttonCreateDetailedInvoice.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonCreateDetailedInvoice.Location = new Point(338, 531);
+            buttonCreateDetailedInvoice.Location = new Point(338, 584);
             buttonCreateDetailedInvoice.Name = "buttonCreateDetailedInvoice";
             buttonCreateDetailedInvoice.PressedBorderColor = Color.FromArgb(165, 37, 37);
             buttonCreateDetailedInvoice.PressedColor = Color.FromArgb(165, 37, 37);
@@ -285,7 +288,7 @@
             txtBoxTotalAmount.EdgeColor = Color.White;
             txtBoxTotalAmount.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxTotalAmount.ForeColor = Color.DimGray;
-            txtBoxTotalAmount.Location = new Point(492, 494);
+            txtBoxTotalAmount.Location = new Point(492, 547);
             txtBoxTotalAmount.MaxLength = 32767;
             txtBoxTotalAmount.Multiline = false;
             txtBoxTotalAmount.Name = "txtBoxTotalAmount";
@@ -301,17 +304,63 @@
             labelTotal.BackColor = Color.Transparent;
             labelTotal.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelTotal.ForeColor = Color.FromArgb(76, 76, 77);
-            labelTotal.Location = new Point(433, 494);
+            labelTotal.Location = new Point(433, 547);
             labelTotal.Name = "labelTotal";
             labelTotal.Size = new Size(53, 25);
             labelTotal.TabIndex = 50;
             labelTotal.Text = "Total:";
             // 
+            // buttonSelectClient
+            // 
+            buttonSelectClient.BackColor = Color.Transparent;
+            buttonSelectClient.BaseColor = Color.DimGray;
+            buttonSelectClient.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonSelectClient.Location = new Point(577, 246);
+            buttonSelectClient.Name = "buttonSelectClient";
+            buttonSelectClient.Rounded = true;
+            buttonSelectClient.Size = new Size(212, 30);
+            buttonSelectClient.TabIndex = 54;
+            buttonSelectClient.Text = "Seleccionar Cliente";
+            buttonSelectClient.TextColor = Color.FromArgb(243, 243, 243);
+            buttonSelectClient.Click += buttonSelectClient_Click;
+            // 
+            // txtBoxClientId
+            // 
+            txtBoxClientId.BackColor = Color.Transparent;
+            txtBoxClientId.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxClientId.EdgeColor = Color.White;
+            txtBoxClientId.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxClientId.ForeColor = Color.DimGray;
+            txtBoxClientId.Location = new Point(87, 246);
+            txtBoxClientId.MaxLength = 32767;
+            txtBoxClientId.Multiline = false;
+            txtBoxClientId.Name = "txtBoxClientId";
+            txtBoxClientId.ReadOnly = false;
+            txtBoxClientId.Size = new Size(484, 28);
+            txtBoxClientId.TabIndex = 53;
+            txtBoxClientId.TextAlignment = HorizontalAlignment.Left;
+            txtBoxClientId.UseSystemPasswordChar = false;
+            // 
+            // labelClient
+            // 
+            labelClient.AutoSize = true;
+            labelClient.BackColor = Color.Transparent;
+            labelClient.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            labelClient.ForeColor = Color.FromArgb(76, 76, 77);
+            labelClient.Location = new Point(12, 246);
+            labelClient.Name = "labelClient";
+            labelClient.Size = new Size(69, 25);
+            labelClient.TabIndex = 52;
+            labelClient.Text = "Cliente:";
+            // 
             // CreateInvoice
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 583);
+            ClientSize = new Size(800, 628);
+            Controls.Add(buttonSelectClient);
+            Controls.Add(txtBoxClientId);
+            Controls.Add(labelClient);
             Controls.Add(txtBoxTotalAmount);
             Controls.Add(labelTotal);
             Controls.Add(buttonCreateDetailedInvoice);
@@ -354,5 +403,8 @@
         private ReaLTaiizor.Controls.Button buttonCreateDetailedInvoice;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxTotalAmount;
         private ReaLTaiizor.Controls.DungeonLabel labelTotal;
+        private ReaLTaiizor.Controls.ForeverButton buttonSelectClient;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxClientId;
+        private ReaLTaiizor.Controls.DungeonLabel labelClient;
     }
 }

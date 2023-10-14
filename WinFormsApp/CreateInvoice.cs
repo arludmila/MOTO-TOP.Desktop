@@ -44,7 +44,7 @@ namespace WinFormsApp
         }
         private void LoadData()
         {
-            
+
             dataGridViewDetails.DataSource = new BindingList<OrderProductDto>(_invoiceDetails); ;
         }
         private void SumTotal()
@@ -78,6 +78,7 @@ namespace WinFormsApp
                 Date = DateTime.Now,
                 Amount = _total,
                 InvoiceDetails = _invoiceDetails,
+                ClientId = Convert.ToInt32(txtBoxClientId.Text)
             };
             string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices/detailed", invoiceWithDetailsDto);
             if (response.Contains("error"))
@@ -102,6 +103,20 @@ namespace WinFormsApp
             Main.SetupDataGridView(dataGridViewDetails, detailsColumns);
             txtBoxProductId.Enabled = false;
             txtBoxTotalAmount.Enabled = false;
+            txtBoxClientId.Enabled = false;
+        }
+
+        private void buttonSelectClient_Click(object sender, EventArgs e)
+        {
+            using (ClientSelector productSelectorForm = new ClientSelector())
+            {
+                productSelectorForm.ClientSelected += HandleClientSelected;
+                productSelectorForm.ShowDialog();
+            }
+        }
+        private void HandleClientSelected(int selectedClienttId)
+        {
+            txtBoxClientId.Text = selectedClienttId.ToString();
         }
     }
 }
