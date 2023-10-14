@@ -49,7 +49,7 @@
             buttonCreateBillTransaction.Name = "buttonCreateBillTransaction";
             buttonCreateBillTransaction.Rounded = true;
             buttonCreateBillTransaction.Size = new Size(142, 40);
-            buttonCreateBillTransaction.TabIndex = 35;
+            buttonCreateBillTransaction.TabIndex = 5;
             buttonCreateBillTransaction.Text = "Registrar";
             buttonCreateBillTransaction.TextColor = Color.FromArgb(243, 243, 243);
             buttonCreateBillTransaction.Click += buttonCreateBillTransaction_Click;
@@ -91,7 +91,7 @@
             txtBoxDocNumber.Name = "txtBoxDocNumber";
             txtBoxDocNumber.ReadOnly = false;
             txtBoxDocNumber.Size = new Size(334, 28);
-            txtBoxDocNumber.TabIndex = 32;
+            txtBoxDocNumber.TabIndex = 2;
             txtBoxDocNumber.TextAlignment = HorizontalAlignment.Left;
             txtBoxDocNumber.UseSystemPasswordChar = false;
             // 
@@ -144,7 +144,7 @@
             txtBoxPayedAmount.Name = "txtBoxPayedAmount";
             txtBoxPayedAmount.ReadOnly = false;
             txtBoxPayedAmount.Size = new Size(334, 28);
-            txtBoxPayedAmount.TabIndex = 39;
+            txtBoxPayedAmount.TabIndex = 4;
             txtBoxPayedAmount.TextAlignment = HorizontalAlignment.Left;
             txtBoxPayedAmount.UseSystemPasswordChar = false;
             // 
@@ -173,7 +173,7 @@
             comboBoxPaymentMethod.Name = "comboBoxPaymentMethod";
             comboBoxPaymentMethod.Size = new Size(334, 26);
             comboBoxPaymentMethod.StartIndex = 0;
-            comboBoxPaymentMethod.TabIndex = 41;
+            comboBoxPaymentMethod.TabIndex = 3;
             // 
             // txtBoxDocType
             // 
@@ -188,7 +188,7 @@
             txtBoxDocType.Name = "txtBoxDocType";
             txtBoxDocType.ReadOnly = false;
             txtBoxDocType.Size = new Size(334, 28);
-            txtBoxDocType.TabIndex = 42;
+            txtBoxDocType.TabIndex = 1;
             txtBoxDocType.TextAlignment = HorizontalAlignment.Left;
             txtBoxDocType.UseSystemPasswordChar = false;
             // 

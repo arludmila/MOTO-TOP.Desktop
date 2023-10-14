@@ -1,5 +1,6 @@
 ﻿using Contracts.DTOs.Entities;
 using Contracts.Utils;
+using WinFormsApp.Utils;
 
 namespace WinFormsApp
 {
@@ -7,18 +8,41 @@ namespace WinFormsApp
     {
         public CreateSupplier()
         {
+            
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+            Text = "Agregar Proveedor";
         }
 
         private async void buttonCreateSupplier_Click(object sender, EventArgs e)
         {
-            var supplier = new SupplierDto()
+            string name = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxName, "Name");
+            string phoneNumber = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxPhoneNumber, "Phone Number");
+
+            if (name != null && phoneNumber != null)
             {
-                Name = txtBoxName.Text,
-                PhoneNumber = txtBoxPhoneNumber.Text,
-            };
-            await ApiHelper.PostAsync("https://localhost:7215/api/suppliers", supplier);
-            this.Close();
+                var supplier = new SupplierDto()
+                {
+                    Name = name,
+                    PhoneNumber = phoneNumber,
+                };
+
+                string response = await ApiHelper.PostAsync("https://localhost:7215/api/suppliers", supplier);
+
+                if (response.Contains("error"))
+                {
+                    MessageBoxHelper.ShowErrorMessageBox("Error al registrar proveedor");
+                }
+                else
+                {
+                    MessageBoxHelper.ShowSuccessMessageBox("Proveedor registrado!");
+                    Close();
+                }
+            }
+            else
+            {
+                MessageBoxHelper.ShowErrorMessageBox("Datos no validos. Por favor complete todos los campos requeridos.");
+            }
         }
     }
 }

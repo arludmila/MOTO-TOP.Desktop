@@ -3,6 +3,7 @@ using Contracts.Utils;
 using Contracts.ViewModels;
 using Entities.Core;
 using System.ComponentModel;
+using WinFormsApp.Utils;
 
 namespace WinFormsApp
 {
@@ -11,23 +12,27 @@ namespace WinFormsApp
         private double total = 0;
         private readonly int _orderId;
         private OrderViewModel _orderViewModel;
-        private bool allStockAvailable = true;
+        private bool _allStockAvailable = true;
         public OrderReview(int orderId)
         {
+           
+            this.StartPosition = FormStartPosition.CenterScreen;
             _orderId = orderId;
             InitializeComponent();
+            Text = "Revisión de Pedido";
         }
 
         private async void OrderReview_Load(object sender, EventArgs e)
         {
             await GetOrder(_orderId);
+            StyleWinForm();
             LoadData();
         }
         private async Task GetOrder(int id)
         {
             _orderViewModel = await ApiHelper.GetAsync<OrderViewModel>($"https://localhost:7215/api/orders/view-models/{id}");
         }
-        private void LoadData()
+        private void StyleWinForm()
         {
             // txt boxes
             txtBoxClientName.Text = _orderViewModel.ClientName;
@@ -62,6 +67,18 @@ namespace WinFormsApp
 
             dataGridViewOrderDetails.Columns.Add("ProductQuantity", "Stock Disponible");
             dataGridViewOrderDetails.Columns["ProductQuantity"].DataPropertyName = "ProductQuantity";
+            // 
+            dataGridViewOrderDetails.Columns["ProductId"].ReadOnly = true;
+            dataGridViewOrderDetails.Columns["ProductCategoryName"].ReadOnly = true;
+            dataGridViewOrderDetails.Columns["ProductName"].ReadOnly = true;
+            dataGridViewOrderDetails.Columns["Quantity"].ReadOnly = false; 
+            dataGridViewOrderDetails.Columns["Price"].ReadOnly = true;
+            dataGridViewOrderDetails.Columns["ProductQuantity"].ReadOnly = true;
+
+        }
+        private void LoadData()
+        {
+            
             dataGridViewOrderDetails.DataSource = new BindingList<OrderProductViewModel>(_orderViewModel.OrderProducts);
             foreach (DataGridViewColumn column in dataGridViewOrderDetails.Columns)
             {
@@ -79,7 +96,7 @@ namespace WinFormsApp
                 if (quantity > productQuantity)
                 {
                     row.DefaultCellStyle.BackColor = Color.LightCoral;
-
+                    _allStockAvailable = false;
                 }
                 else
                 {
@@ -101,24 +118,32 @@ namespace WinFormsApp
         }
         private async void buttonCreateOrderInvoice_Click(object sender, EventArgs e)
         {
-            Order order = await ApiHelper.GetAsync<Order>($"https://localhost:7215/api/orders/{Convert.ToInt32(txtBoxOrderId.Text)}");
-            var invoice = new InvoiceDto()
+            if (!_allStockAvailable)
             {
-                Amount = total,
-                Date = DateTime.Now,
-                OrderId = Convert.ToInt32(txtBoxOrderId.Text),
-                ClientId = order.ClientId,
-            };
-            string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices", invoice);
-            if (response.Contains("error"))
-            {
-                MessageBox.Show("Error al facturar", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxHelper.ShowErrorMessageBox("No hay suficiente stock para facturar el pedido.");
             }
             else
             {
-                MessageBox.Show("Pedido facturado!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                Order order = await ApiHelper.GetAsync<Order>($"https://localhost:7215/api/orders/{Convert.ToInt32(txtBoxOrderId.Text)}");
+                var invoice = new InvoiceDto()
+                {
+                    Amount = total,
+                    Date = DateTime.Now,
+                    OrderId = Convert.ToInt32(txtBoxOrderId.Text),
+                    ClientId = order.ClientId,
+                };
+                string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices", invoice);
+                if (response.Contains("error"))
+                {
+                    MessageBox.Show("Error al facturar", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Pedido facturado!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
+            
         }
 
         private void dataGridViewOrderDetails_SelectionChanged(object sender, EventArgs e)

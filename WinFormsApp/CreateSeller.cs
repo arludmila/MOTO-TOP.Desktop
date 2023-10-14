@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsApp.Utils;
 
 namespace WinFormsApp
 {
@@ -17,22 +18,50 @@ namespace WinFormsApp
     {
         public CreateSeller()
         {
+           
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+            Text = "Agregar Vendedor";
         }
 
         private async void buttonCreateSeller_Click(object sender, EventArgs e)
         {
+
             PasswordHasher<string> passwordHasher = new();
-            var registerDto = new SellerRegisterDto()
+
+            string firstName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxFirstName, "First Name");
+            string lastName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxLastName, "Last Name");
+            string password = txtBoxPassword.Text;
+            string email = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxEmail, "Email");
+            string zone = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxZone, "Zone");
+
+            if (firstName != null && lastName != null && email != null && zone != null)
             {
-                FirstName = txtBoxFirstName.Text,
-                LastName = txtBoxLastName.Text,
-                PasswordHash = passwordHasher.HashPassword(string.Empty, txtBoxPassword.Text),
-                Email = txtBoxEmail.Text,
-                Zone = txtBoxZone.Text,
-            };
-            await ApiHelper.PostAsync("https://localhost:7215/api/sellers/register", registerDto);
-            this.Close();
+                var registerDto = new SellerRegisterDto()
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    PasswordHash = passwordHasher.HashPassword(string.Empty, password),
+                    Email = email,
+                    Zone = zone,
+                };
+
+                string response = await ApiHelper.PostAsync("https://localhost:7215/api/sellers/register", registerDto);
+
+                if (response.Contains("error"))
+                {
+                    MessageBoxHelper.ShowErrorMessageBox("Error al registrar vendedor");
+                }
+                else
+                {
+                    MessageBoxHelper.ShowSuccessMessageBox("Vendedor registrado!");
+                    Close();
+                }
+            }
+            else
+            {
+                MessageBoxHelper.ShowErrorMessageBox("Datos no validos. Por favor complete todos los campos requeridos.");
+            }
         }
         private void CreateSeller_Load(object sender, EventArgs e)
         {

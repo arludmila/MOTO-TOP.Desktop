@@ -64,7 +64,7 @@
             txtBoxClientsSearch.Name = "txtBoxClientsSearch";
             txtBoxClientsSearch.ReadOnly = false;
             txtBoxClientsSearch.Size = new Size(589, 28);
-            txtBoxClientsSearch.TabIndex = 42;
+            txtBoxClientsSearch.TabIndex = 1;
             txtBoxClientsSearch.TextAlignment = HorizontalAlignment.Left;
             txtBoxClientsSearch.UseSystemPasswordChar = false;
             // 
@@ -77,7 +77,7 @@
             buttonCreateClient.Name = "buttonCreateClient";
             buttonCreateClient.Rounded = true;
             buttonCreateClient.Size = new Size(160, 40);
-            buttonCreateClient.TabIndex = 41;
+            buttonCreateClient.TabIndex = 2;
             buttonCreateClient.Text = "Agregar Cliente";
             buttonCreateClient.TextColor = Color.FromArgb(243, 243, 243);
             buttonCreateClient.Click += buttonCreateClient_Click;

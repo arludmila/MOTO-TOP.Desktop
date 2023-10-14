@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsApp.Utils;
 
 namespace WinFormsApp
 {
@@ -17,28 +18,42 @@ namespace WinFormsApp
     {
         public CreateTransportCompany()
         {
+            
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+            Text = "Agregar Empresa de Transporte";
         }
 
         private async void buttonCreateTransportCompany_Click(object sender, EventArgs e)
         {
-            var transportCompanyDto = new TransportCompanyDto()
-            {
-                Name = txtBoxName.Text,
-                PhoneNumber = txtBoxPhoneNumber.Text,
-            };
-            string response = await ApiHelper.PostAsync("https://localhost:7215/api/transport-companies",transportCompanyDto);
+            string name = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxName, "Name");
+            string phoneNumber = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxPhoneNumber, "Phone Number");
 
-            if (response.Contains("error"))
+            if (name != null && phoneNumber != null)
             {
-                MessageBox.Show("Error al crear empresa", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var transportCompanyDto = new TransportCompanyDto()
+                {
+                    Name = name,
+                    PhoneNumber = phoneNumber,
+                };
+
+                string response = await ApiHelper.PostAsync("https://localhost:7215/api/transport-companies", transportCompanyDto);
+
+                if (response.Contains("error"))
+                {
+                    MessageBoxHelper.ShowErrorMessageBox("Error al crear empresa");
+                }
+                else
+                {
+                    MessageBoxHelper.ShowSuccessMessageBox("Empresa registrada!");
+                    Close();
+                }
             }
             else
             {
-                MessageBox.Show("Empresa registrada!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Close();
-
+                MessageBoxHelper.ShowErrorMessageBox("Datos no validos. Por favor complete todos los campos requeridos.");
             }
+
         }
     }
 }

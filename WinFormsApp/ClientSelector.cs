@@ -19,7 +19,9 @@ namespace WinFormsApp
 
         public ClientSelector()
         {
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+            Text = "Selector de Cliente";
         }
 
         private async void ClientSelector_Load(object sender, EventArgs e)

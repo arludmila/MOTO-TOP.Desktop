@@ -1,18 +1,7 @@
 ﻿using Contracts.DTOs.Entities;
 using Contracts.Utils;
-using Entities.Core;
 using Entities.Enums;
-using Entities.Relationships;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using WinFormsApp.Utils;
 
 namespace WinFormsApp
 {
@@ -21,8 +10,11 @@ namespace WinFormsApp
         private BillingTransactionDto _billingTransactionDto;
         public CreateBillingTransaction(BillingTransactionDto billingTransactionDto)
         {
+
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             _billingTransactionDto = billingTransactionDto;
+            Text = "Registro de Pago";
         }
 
         private void CreateBillingTransaction_Load(object sender, EventArgs e)
@@ -33,22 +25,38 @@ namespace WinFormsApp
 
         private async void buttonCreateBillTransaction_Click(object sender, EventArgs e)
         {
-            PaymentMethods selectedPaymentMethod = (PaymentMethods)comboBoxPaymentMethod.SelectedItem;
-            _billingTransactionDto.Amount = Convert.ToDouble(txtBoxPayedAmount.Text) * -1;
-            _billingTransactionDto.DocumentNumber = Convert.ToInt32(txtBoxDocNumber.Text);
-            _billingTransactionDto.PaymentMethod = selectedPaymentMethod;
-            _billingTransactionDto.DocumentType = txtBoxDocType.Text;
-            string response = await ApiHelper.PostAsync("https://localhost:7215/api/billing-transactions", _billingTransactionDto);
+            double amount;
+            int documentNumber;
+            string documentType = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxDocType, "Document Type");
 
-            if (response.Contains("error"))
+            if ( documentType != null &&
+                FormInputValidator.TryConvertDungeonTextBoxToDouble(txtBoxPayedAmount, "Amount", out amount) &&
+                FormInputValidator.TryConvertDungeonTextBoxToInt(txtBoxDocNumber, "Document Number", out documentNumber))
             {
-                MessageBox.Show("Error al registrar pago", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PaymentMethods selectedPaymentMethod = (PaymentMethods)comboBoxPaymentMethod.SelectedItem;
+
+                _billingTransactionDto.Amount = amount * -1;
+                _billingTransactionDto.DocumentNumber = documentNumber;
+                _billingTransactionDto.PaymentMethod = selectedPaymentMethod;
+                _billingTransactionDto.DocumentType = documentType;
+                string response = await ApiHelper.PostAsync("https://localhost:7215/api/billing-transactions", _billingTransactionDto);
+
+                if (response.Contains("error"))
+                {
+                    MessageBoxHelper.ShowErrorMessageBox("Error al registrar pago");
+                }
+                else
+                {
+                    MessageBoxHelper.ShowSuccessMessageBox("Pago registrado!");
+                    Close();
+                }
             }
             else
             {
-                MessageBox.Show("Pago registrado!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Close();
+                MessageBoxHelper.ShowErrorMessageBox("Complete todos los campos requeridos!");
             }
+
+            
         }
     }
 }

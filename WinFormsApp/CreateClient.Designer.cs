@@ -50,12 +50,12 @@
             buttonCreateClient.Image = null;
             buttonCreateClient.ImageAlign = ContentAlignment.MiddleLeft;
             buttonCreateClient.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonCreateClient.Location = new Point(314, 298);
+            buttonCreateClient.Location = new Point(266, 290);
             buttonCreateClient.Name = "buttonCreateClient";
             buttonCreateClient.PressedBorderColor = Color.FromArgb(165, 37, 37);
             buttonCreateClient.PressedColor = Color.FromArgb(165, 37, 37);
             buttonCreateClient.Size = new Size(120, 40);
-            buttonCreateClient.TabIndex = 15;
+            buttonCreateClient.TabIndex = 5;
             buttonCreateClient.Text = "Agregar";
             buttonCreateClient.TextAlignment = StringAlignment.Center;
             buttonCreateClient.Click += buttonCreateClient_Click;
@@ -66,7 +66,7 @@
             labelCreateClient.BackColor = Color.Transparent;
             labelCreateClient.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             labelCreateClient.ForeColor = Color.FromArgb(76, 76, 77);
-            labelCreateClient.Location = new Point(296, 36);
+            labelCreateClient.Location = new Point(237, 29);
             labelCreateClient.Name = "labelCreateClient";
             labelCreateClient.Size = new Size(193, 32);
             labelCreateClient.TabIndex = 14;
@@ -78,7 +78,7 @@
             labelFirstName.BackColor = Color.Transparent;
             labelFirstName.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelFirstName.ForeColor = Color.FromArgb(76, 76, 77);
-            labelFirstName.Location = new Point(154, 98);
+            labelFirstName.Location = new Point(106, 90);
             labelFirstName.Name = "labelFirstName";
             labelFirstName.Size = new Size(82, 25);
             labelFirstName.TabIndex = 13;
@@ -91,13 +91,13 @@
             txtBoxFirstName.EdgeColor = Color.White;
             txtBoxFirstName.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxFirstName.ForeColor = Color.DimGray;
-            txtBoxFirstName.Location = new Point(242, 98);
+            txtBoxFirstName.Location = new Point(194, 90);
             txtBoxFirstName.MaxLength = 32767;
             txtBoxFirstName.Multiline = false;
             txtBoxFirstName.Name = "txtBoxFirstName";
             txtBoxFirstName.ReadOnly = false;
             txtBoxFirstName.Size = new Size(296, 28);
-            txtBoxFirstName.TabIndex = 12;
+            txtBoxFirstName.TabIndex = 1;
             txtBoxFirstName.TextAlignment = HorizontalAlignment.Left;
             txtBoxFirstName.UseSystemPasswordChar = false;
             // 
@@ -107,7 +107,7 @@
             labelLastName.BackColor = Color.Transparent;
             labelLastName.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelLastName.ForeColor = Color.FromArgb(76, 76, 77);
-            labelLastName.Location = new Point(154, 150);
+            labelLastName.Location = new Point(106, 142);
             labelLastName.Name = "labelLastName";
             labelLastName.Size = new Size(82, 25);
             labelLastName.TabIndex = 17;
@@ -120,13 +120,13 @@
             txtBoxLastName.EdgeColor = Color.White;
             txtBoxLastName.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxLastName.ForeColor = Color.DimGray;
-            txtBoxLastName.Location = new Point(242, 150);
+            txtBoxLastName.Location = new Point(194, 142);
             txtBoxLastName.MaxLength = 32767;
             txtBoxLastName.Multiline = false;
             txtBoxLastName.Name = "txtBoxLastName";
             txtBoxLastName.ReadOnly = false;
             txtBoxLastName.Size = new Size(296, 28);
-            txtBoxLastName.TabIndex = 16;
+            txtBoxLastName.TabIndex = 2;
             txtBoxLastName.TextAlignment = HorizontalAlignment.Left;
             txtBoxLastName.UseSystemPasswordChar = false;
             // 
@@ -136,7 +136,7 @@
             labelLocation.BackColor = Color.Transparent;
             labelLocation.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelLocation.ForeColor = Color.FromArgb(76, 76, 77);
-            labelLocation.Location = new Point(143, 198);
+            labelLocation.Location = new Point(95, 190);
             labelLocation.Name = "labelLocation";
             labelLocation.Size = new Size(93, 25);
             labelLocation.TabIndex = 19;
@@ -149,13 +149,13 @@
             txtBoxLocation.EdgeColor = Color.White;
             txtBoxLocation.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxLocation.ForeColor = Color.DimGray;
-            txtBoxLocation.Location = new Point(242, 198);
+            txtBoxLocation.Location = new Point(194, 190);
             txtBoxLocation.MaxLength = 32767;
             txtBoxLocation.Multiline = false;
             txtBoxLocation.Name = "txtBoxLocation";
             txtBoxLocation.ReadOnly = false;
             txtBoxLocation.Size = new Size(296, 28);
-            txtBoxLocation.TabIndex = 18;
+            txtBoxLocation.TabIndex = 3;
             txtBoxLocation.TextAlignment = HorizontalAlignment.Left;
             txtBoxLocation.UseSystemPasswordChar = false;
             // 
@@ -165,11 +165,11 @@
             labelPhoneNumber.BackColor = Color.Transparent;
             labelPhoneNumber.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelPhoneNumber.ForeColor = Color.FromArgb(76, 76, 77);
-            labelPhoneNumber.Location = new Point(58, 244);
+            labelPhoneNumber.Location = new Point(55, 236);
             labelPhoneNumber.Name = "labelPhoneNumber";
-            labelPhoneNumber.Size = new Size(178, 25);
+            labelPhoneNumber.Size = new Size(133, 25);
             labelPhoneNumber.TabIndex = 21;
-            labelPhoneNumber.Text = "Número de Telefono:";
+            labelPhoneNumber.Text = "N° de Telefono:";
             // 
             // txtBoxPhoneNumber
             // 
@@ -178,13 +178,13 @@
             txtBoxPhoneNumber.EdgeColor = Color.White;
             txtBoxPhoneNumber.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxPhoneNumber.ForeColor = Color.DimGray;
-            txtBoxPhoneNumber.Location = new Point(242, 244);
+            txtBoxPhoneNumber.Location = new Point(194, 236);
             txtBoxPhoneNumber.MaxLength = 32767;
             txtBoxPhoneNumber.Multiline = false;
             txtBoxPhoneNumber.Name = "txtBoxPhoneNumber";
             txtBoxPhoneNumber.ReadOnly = false;
             txtBoxPhoneNumber.Size = new Size(296, 28);
-            txtBoxPhoneNumber.TabIndex = 20;
+            txtBoxPhoneNumber.TabIndex = 4;
             txtBoxPhoneNumber.TextAlignment = HorizontalAlignment.Left;
             txtBoxPhoneNumber.UseSystemPasswordChar = false;
             // 
@@ -192,7 +192,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(591, 370);
             Controls.Add(labelPhoneNumber);
             Controls.Add(txtBoxPhoneNumber);
             Controls.Add(labelLocation);

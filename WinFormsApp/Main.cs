@@ -4,6 +4,7 @@ using Contracts.Utils;
 using Contracts.ViewModels;
 using Entities.Core;
 using System.ComponentModel;
+using WinFormsApp.Utils;
 using Timer = System.Windows.Forms.Timer;
 
 namespace WinFormsApp
@@ -24,13 +25,14 @@ namespace WinFormsApp
         public Main()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "MOTO-TOP";
+
 
             InitializeComponent();
             refreshTimer = new System.Windows.Forms.Timer();
             refreshTimer.Interval = 5000; // 5 seconds
             refreshTimer.Tick += new EventHandler(RefreshTimer_Tick);
             refreshTimer.Start();
+            this.Text = "MOTO-TOP";
         }
         private async void RefreshTimer_Tick(object sender, EventArgs e)
         {
@@ -44,13 +46,33 @@ namespace WinFormsApp
 
         private async void buttonCreateCategory_Click(object sender, EventArgs e)
         {
-            var category = new CategoryDto()
+            string categoryName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxCategoryName, "Category Name");
+
+            if (categoryName != null)
             {
-                Name = txtBoxCategoryName.Text,
-            };
-            await ApiHelper.PostAsync("https://localhost:7215/api/categories", category);
-            await LoadData();
-            txtBoxCategoryName.Text = string.Empty;
+                var category = new CategoryDto()
+                {
+                    Name = categoryName,
+                };
+
+                string response = await ApiHelper.PostAsync("https://localhost:7215/api/categories", category);
+
+                if (response.Contains("error"))
+                {
+                    MessageBoxHelper.ShowErrorMessageBox("Error al crear categoría");
+                }
+                else
+                {
+                    MessageBoxHelper.ShowSuccessMessageBox("Categoría registrada!");
+                    await LoadData();
+                    FormInputClearer.ClearDungeonTextBoxes(txtBoxCategoryName);
+                }
+            }
+            else
+            {
+                MessageBoxHelper.ShowErrorMessageBox("Ingrese un nombre valido.");
+            }
+
         }
 
         private async void Main_Load(object sender, EventArgs e)
@@ -325,28 +347,39 @@ namespace WinFormsApp
 
         private async void buttonCreateSupplierProduct_Click(object sender, EventArgs e)
         {
-            var supplierProduct = new SupplierProductDto()
+            if (int.TryParse(txtBoxSupplierProductProductId.Text, out int productId) &&
+            int.TryParse(txtBoxSupplierProductSupplierId.Text, out int supplierId) &&
+            int.TryParse(txtBoxSupplierProductQuantity.Text, out int quantity) &&
+            double.TryParse(txtBoxSupplierProductPrice.Text, out double price))
             {
-                ProductId = Convert.ToInt32(txtBoxSupplierProductProductId.Text),
-                SupplierId = Convert.ToInt32(txtBoxSupplierProductSupplierId.Text),
-                Quantity = Convert.ToInt32(txtBoxSupplierProductQuantity.Text),
-                Price = Convert.ToDouble(txtBoxSupplierProductPrice.Text),
-            };
-            string response = await ApiHelper.PostAsync("https://localhost:7215/api/supplier-products", supplierProduct);
-            if (response.Contains("error"))
-            {
-                MessageBox.Show("Error al registrar compra", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                var supplierProduct = new SupplierProductDto()
+                {
+                    ProductId = productId,
+                    SupplierId = supplierId,
+                    Quantity = quantity,
+                    Price = price,
+                };
+
+                string response = await ApiHelper.PostAsync("https://localhost:7215/api/supplier-products", supplierProduct);
+                if (response.Contains("error"))
+                {
+                    MessageBox.Show("Error al registrar compra", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBoxHelper.ShowSuccessMessageBox("Compra registrada!");
+                    FormInputClearer.ClearDungeonTextBoxes(txtBoxSupplierProductProductId, txtBoxSupplierProductSupplierId, txtBoxSupplierProductPrice, txtBoxSupplierProductQuantity);
+                    await LoadData();
+
+                }
             }
             else
             {
-                MessageBox.Show("Compra registrada!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtBoxSupplierProductProductId.Text = string.Empty;
-                txtBoxSupplierProductSupplierId.Text = string.Empty;
-                txtBoxSupplierProductPrice.Text = string.Empty;
-                txtBoxSupplierProductQuantity.Text = string.Empty;
-                await LoadData();
-
+                MessageBoxHelper.ShowErrorMessageBox("Complete todos los campos requeridos!");
             }
+
+
 
         }
 

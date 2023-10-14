@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsApp.Utils;
 
 namespace WinFormsApp
 {
@@ -22,23 +23,37 @@ namespace WinFormsApp
         private List<OrderProductDto> _invoiceDetails;
         public CreateInvoice()
         {
-
+           
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+            Text = "Registro de Venta";
             _invoiceDetails = new List<OrderProductDto>();
         }
 
         private void buttonAddDetail_Click(object sender, EventArgs e)
         {
-            var orderProductDto = new OrderProductDto()
+            int productId, quantity;
+            double price;
+
+            if (FormInputValidator.TryConvertDungeonTextBoxToInt(txtBoxProductId, "Product ID", out productId) &&
+                FormInputValidator.TryConvertDungeonTextBoxToInt(txtBoxQuantity, "Quantity", out quantity) &&
+                FormInputValidator.TryConvertDungeonTextBoxToDouble(txtBoxPrice, "Price", out price))
             {
-                ProductId = Convert.ToInt32(txtBoxProductId.Text),
-                Quantity = Convert.ToInt32(txtBoxQuantity.Text),
-                Price = Convert.ToDouble(txtBoxPrice.Text),
-            };
-            _invoiceDetails.Add(orderProductDto);
-            txtBoxPrice.Text = string.Empty;
-            txtBoxQuantity.Text = string.Empty;
-            txtBoxProductId.Text = string.Empty;
+                var orderProductDto = new OrderProductDto()
+                {
+                    ProductId = productId,
+                    Quantity = quantity,
+                    Price = price,
+                };
+
+                _invoiceDetails.Add(orderProductDto);
+            }
+            else
+            {
+                MessageBoxHelper.ShowErrorMessageBox("Datos no validos. Por favor complete todos los campos requeridos.");
+            }
+
+            FormInputClearer.ClearDungeonTextBoxes(txtBoxPrice, txtBoxQuantity, txtBoxProductId);
             LoadData();
             SumTotal();
         }
@@ -73,23 +88,35 @@ namespace WinFormsApp
 
         private async void buttonCreateDetailedInvoice_Click(object sender, EventArgs e)
         {
-            var invoiceWithDetailsDto = new InvoiceWithDetailsDto()
+            int clientId;
+
+            if (FormInputValidator.TryConvertDungeonTextBoxToInt(txtBoxClientId, "Client ID", out clientId))
             {
-                Date = DateTime.Now,
-                Amount = _total,
-                InvoiceDetails = _invoiceDetails,
-                ClientId = Convert.ToInt32(txtBoxClientId.Text)
-            };
-            string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices/detailed", invoiceWithDetailsDto);
-            if (response.Contains("error"))
-            {
-                MessageBox.Show("Error al registrar venta", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var invoiceWithDetailsDto = new InvoiceWithDetailsDto()
+                {
+                    Date = DateTime.Now,
+                    Amount = _total,
+                    InvoiceDetails = _invoiceDetails,
+                    ClientId = clientId
+                };
+
+                string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices/detailed", invoiceWithDetailsDto);
+
+                if (response.Contains("error"))
+                {
+                    MessageBoxHelper.ShowErrorMessageBox("Error al registrar venta");
+                }
+                else
+                {
+                    MessageBoxHelper.ShowSuccessMessageBox("Venta registrada!");
+                    Close();
+                }
             }
             else
             {
-                MessageBox.Show("Venta registrada!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Close();
+                MessageBoxHelper.ShowErrorMessageBox("Datos no validos. Por favor complete todos los campos requeridos.");
             }
+
         }
 
         private void CreateInvoice_Load(object sender, EventArgs e)

@@ -18,7 +18,10 @@ namespace WinFormsApp
         public event Action<int> SupplierSelected;
         public SupplierSelector()
         {
+           
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+            Text = "Selector de Proveedor";
         }
 
         private async void SupplierSelector_Load(object sender, EventArgs e)

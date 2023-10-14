@@ -10,7 +10,9 @@ namespace WinFormsApp
         public event Action<int> ProductSelected;
         public ProductSelector()
         {
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+            Text = "Selector de Producto";
         }
 
         private async void buttonCreateProduct_Click(object sender, EventArgs e)
@@ -63,7 +65,7 @@ namespace WinFormsApp
             foreach (DataGridViewRow row in dataGridViewProducts.Rows)
             {
                 int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
-                if (quantity == 0)
+                if (quantity < 1)
                 {
                     row.DefaultCellStyle.BackColor = Color.LightCoral;
                 }

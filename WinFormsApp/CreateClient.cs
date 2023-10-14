@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsApp.Utils;
 
 namespace WinFormsApp
 {
@@ -16,20 +17,48 @@ namespace WinFormsApp
     {
         public CreateClient()
         {
+
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+            Text = "Agregar Cliente";
         }
 
         private async void buttonCreateClient_Click(object sender, EventArgs e)
         {
-            var client = new ClientDto()
+            string firstName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxFirstName, "First Name");
+            string lastName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxLastName, "Last Name");
+            string location = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxLocation, "Location");
+            string phoneNumber = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxPhoneNumber, "Phone Number");
+
+            if (firstName != null && lastName != null && location != null && phoneNumber != null)
             {
-                FirstName = txtBoxFirstName.Text,
-                LastName = txtBoxLastName.Text,
-                Location = txtBoxLocation.Text,
-                PhoneNumber = txtBoxPhoneNumber.Text,
-            };
-            await ApiHelper.PostAsync("https://localhost:7215/api/clients",client);
-            this.Close();
+                var clientDto = new ClientDto()
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Location = location,
+                    PhoneNumber = phoneNumber,
+                };
+
+                
+                string response = await ApiHelper.PostAsync("https://localhost:7215/api/clients", clientDto);
+
+                if (response.Contains("error"))
+                {
+                    MessageBoxHelper.ShowErrorMessageBox("Error al agregar cliente");
+                }
+                else
+                {
+                    MessageBoxHelper.ShowSuccessMessageBox("Cliente agregado!");
+                    Close();
+                }
+                Close();
+            }
+            else
+            {
+                MessageBoxHelper.ShowErrorMessageBox("Complete todos los campos requeridos!");
+            }
+
         }
     }
 }
