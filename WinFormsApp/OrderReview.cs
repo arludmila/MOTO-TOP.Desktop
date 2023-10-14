@@ -94,7 +94,7 @@ namespace WinFormsApp
             foreach (DataGridViewRow row in dataGridViewOrderDetails.Rows)
             {
                 int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
-                double price = Convert.ToInt32(row.Cells["Price"].Value);
+                double price = Convert.ToDouble(row.Cells["Price"].Value);
                 total += quantity * price;
             }
             txtBoxTotalAmount.Text = $"$ {total}";

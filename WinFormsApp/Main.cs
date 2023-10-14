@@ -19,7 +19,7 @@ namespace WinFormsApp
         private List<InvoiceViewModel> invoices;
         private List<InvoiceViewModel> pendingInvoices;
         private List<BillingTransaction> billingTransactions;
-
+        private List<TransportCompany> transportCompanies;
         private Timer refreshTimer;
         public Main()
         {
@@ -170,8 +170,16 @@ namespace WinFormsApp
             dataGridViewPendingInvoices.Columns.Add(buttonColumnInvoices);
             // PENDING INVOICES
             SetupDataGridView(dataGridViewInvoices, invoicesColumns);
+            // TRANSPORT COMPANIES
+            Dictionary<string, string> transportCompaniesColumns = new Dictionary<string, string>
+            {
+                { "Id", "Id" },
+                { "Name", "Nombre" },
+                { "PhoneNumber", "N° de Telefono" },
+            };
+            SetupDataGridView(dataGridViewTransportCompanies, transportCompaniesColumns);
         }
-        public void SetupDataGridView(DataGridView dataGridView, Dictionary<string, string> columnDictionary)
+        public static void SetupDataGridView(DataGridView dataGridView, Dictionary<string, string> columnDictionary)
         {
             // Disable auto-generate columns
             dataGridView.AutoGenerateColumns = false;
@@ -242,6 +250,12 @@ namespace WinFormsApp
             if (pendingInvoices != null)
             {
                 dataGridViewPendingInvoices.DataSource = new BindingList<InvoiceViewModel>(pendingInvoices);
+            }
+            transportCompanies = await ApiHelper.GetListAsync<TransportCompany>("https://localhost:7215/api/transport-companies");
+
+            if (transportCompanies != null)
+            {
+                dataGridViewTransportCompanies.DataSource = new BindingList<TransportCompany>(transportCompanies);
             }
         }
         private List<InvoiceViewModel> GetPendingInvoices()
@@ -386,6 +400,20 @@ namespace WinFormsApp
                 form.ShowDialog();
                 await LoadData();
             }
+        }
+
+        private async void buttonCreateTransportCompany_Click(object sender, EventArgs e)
+        {
+            var form = new CreateTransportCompany();
+            form.ShowDialog();
+            await LoadData();
+        }
+
+        private async void buttonCreateInvoice_Click(object sender, EventArgs e)
+        {
+            var form = new CreateInvoice();
+            form.ShowDialog();
+            await LoadData();
         }
     }
 }
