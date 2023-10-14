@@ -51,7 +51,7 @@ namespace WinFormsApp
                 comboBoxCategories.DisplayMember = "Name";
                 comboBoxCategories.ValueMember = "Id";
             }
-            
+
         }
     }
 }

@@ -3,9 +3,7 @@ using Contracts.DTOs.Relationships;
 using Contracts.Utils;
 using Contracts.ViewModels;
 using Entities.Core;
-using ReaLTaiizor.Controls;
 using System.ComponentModel;
-using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
 
 namespace WinFormsApp
@@ -18,7 +16,8 @@ namespace WinFormsApp
         private List<Supplier> suppliers;
         private List<SellerViewModel> sellers;
         private List<OrderViewModel> orders;
-        private List<Invoice> invoices;
+        private List<InvoiceViewModel> invoices;
+        private List<InvoiceViewModel> pendingInvoices;
         private List<BillingTransaction> billingTransactions;
 
         private Timer refreshTimer;
@@ -56,92 +55,144 @@ namespace WinFormsApp
 
         private async void Main_Load(object sender, EventArgs e)
         {
-
-            await LoadData();
             StyleDataGrids();
+            await LoadData();
+
             txtBoxSupplierProductSupplierId.Enabled = false;
             txtBoxSupplierProductProductId.Enabled = false;
         }
         private void StyleDataGrids()
         {
             // CATEGORIES
-            dataGridViewCategories.Columns["Id"].DisplayIndex = 0;
-            dataGridViewCategories.Columns["Name"].DisplayIndex = 1;
-            dataGridViewCategories.Columns["Name"].HeaderText = "Nombre";
-            dataGridViewCategories.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCategories.RowHeadersVisible = false;
-            dataGridViewCategories.AllowUserToAddRows = false;
+
+            Dictionary<string, string> categoriesColumns = new Dictionary<string, string>
+            {
+                { "Id", "Id" },
+                { "Name", "Nombre" },
+            };
+            SetupDataGridView(dataGridViewCategories, categoriesColumns);
             // PRODUCTS
-            dataGridViewProducts.Columns["CategoryName"].HeaderText = "Rubro";
-            dataGridViewProducts.Columns["Name"].HeaderText = "Nombre";
-            dataGridViewProducts.Columns["Price"].HeaderText = "Precio";
-            dataGridViewProducts.Columns["Description"].HeaderText = "Descripción";
-            dataGridViewProducts.Columns["Quantity"].HeaderText = "Stock";
-            dataGridViewProducts.RowHeadersVisible = false;
-            dataGridViewProducts.AllowUserToAddRows = false;
-            foreach (DataGridViewColumn column in dataGridViewProducts.Columns)
+            Dictionary<string, string> productsColumns = new Dictionary<string, string>
             {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
+                { "Id", "Id" },
+                { "CategoryName", "Rubro" },
+                { "Name", "Nombre" },
+                { "Price", "Precio" },
+                { "Description", "Descripción" },
+                { "Quantity", "Stock" }
+            };
+
+            SetupDataGridView(dataGridViewProducts, productsColumns);
             // CLIENTS
-            dataGridViewClients.Columns["Id"].DisplayIndex = 0;
-            dataGridViewClients.Columns["FirstName"].HeaderText = "Nombre";
-            dataGridViewClients.Columns["LastName"].HeaderText = "Apellido";
-            dataGridViewClients.Columns["Location"].HeaderText = "Ubicación";
-            dataGridViewClients.Columns["PhoneNumber"].HeaderText = "Número de Telefono";
-            dataGridViewClients.RowHeadersVisible = false;
-            dataGridViewClients.AllowUserToAddRows = false;
-            foreach (DataGridViewColumn column in dataGridViewClients.Columns)
+            Dictionary<string, string> clientsColumns = new Dictionary<string, string>
             {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
+                { "Id", "Id" },
+                { "FirstName", "Nombre" },
+                { "LastName", "Apellido" },
+                { "Location", "Ubicación" },
+                { "PhoneNumber", "Número de Telefono" }
+            };
+
+            SetupDataGridView(dataGridViewClients, clientsColumns);
+
             // SUPPLIERS
-            dataGridViewSuppliers.Columns["Id"].DisplayIndex = 0;
-            dataGridViewSuppliers.Columns["Name"].HeaderText = "Nombre";
-            dataGridViewSuppliers.Columns["PhoneNumber"].HeaderText = "Número de Telefono";
-            dataGridViewSuppliers.RowHeadersVisible = false;
-            dataGridViewSuppliers.AllowUserToAddRows = false;
-            foreach (DataGridViewColumn column in dataGridViewSuppliers.Columns)
+            Dictionary<string, string> suppliersColumns = new Dictionary<string, string>
             {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
+                { "Id", "Id" },
+                { "Name", "Nombre" },
+                { "PhoneNumber", "Número de Telefono" }
+            };
+
+            SetupDataGridView(dataGridViewSuppliers, suppliersColumns);
             // SELLERS
-            dataGridViewSellers.Columns["FirstName"].HeaderText = "Nombre";
-            dataGridViewSellers.Columns["LastName"].HeaderText = "Apellido";
-            dataGridViewSellers.Columns["Zone"].HeaderText = "Zona Asignada";
-            dataGridViewSellers.RowHeadersVisible = false;
-            dataGridViewSellers.AllowUserToAddRows = false;
-
-            foreach (DataGridViewColumn column in dataGridViewSellers.Columns)
+            Dictionary<string, string> sellersColumns = new Dictionary<string, string>
             {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
+                { "Id", "Id" },
+                { "FirstName", "Nombre" },
+                { "LastName", "Apellido" },
+                { "Zone", "Zona Asignada" }
+            };
+
+            SetupDataGridView(dataGridViewSellers, sellersColumns);
+
             // ORDERS
+            Dictionary<string, string> ordersColumns = new Dictionary<string, string>
+            {
+                { "Id", "Id" },
+                { "ShipmentStatus", "Estado" },
+                { "ClientName", "Cliente" },
+                { "SellerName", "Vendedor" },
+                { "TransportCompanyName", "Transporte" },
+                { "DateSent", "Fecha de Envio" },
+                { "DateReceived", "Fecha de Recepción" },
+            };
+            SetupDataGridView(dataGridViewOrders, ordersColumns);
+            DataGridViewCheckBoxColumn checkBoxColumnOrders = new DataGridViewCheckBoxColumn();
+            checkBoxColumnOrders.HeaderText = "Facturado";
+            checkBoxColumnOrders.Name = "HasInvoice";
+            checkBoxColumnOrders.DataPropertyName = "HasInvoice";
+            checkBoxColumnOrders.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewOrders.Columns.Add(checkBoxColumnOrders);
+            DataGridViewButtonColumn buttonColumnOrders = new DataGridViewButtonColumn();
+            buttonColumnOrders.Name = "ReviewButton";
+            buttonColumnOrders.HeaderText = "Revisar";
+            buttonColumnOrders.Text = "Revisar";
+            buttonColumnOrders.UseColumnTextForButtonValue = true;
+            dataGridViewOrders.Columns.Add(buttonColumnOrders);
+            // BILLING TRANSACTIONS
+            Dictionary<string, string> billingTransactionsColumns = new Dictionary<string, string>
+            {
+                { "Id", "Id" },
+                { "PaymentMethod", "Metodo de Pago" },
+                { "ClientId", "N° Cliente" },
+                { "DocumentType", "Tipo de Documento" },
+                { "DocumentNumber", "N° Documento" },
+                { "Amount", "Total" },
+            };
+            SetupDataGridView(dataGridViewBillingTransactions, billingTransactionsColumns);
+            // PENDING INVOICES
+            Dictionary<string, string> invoicesColumns = new Dictionary<string, string>
+            {
+                { "Id", "Id" },
+                { "OrderId", "N° de Pedido" },
+                { "ClientId", "N° de Cliente" },
+                { "Date", "Fecha" },
+                { "TotalAmount", "Total" },
+                { "DebtAmount", "Deuda Total" },
+            };
+            SetupDataGridView(dataGridViewPendingInvoices, invoicesColumns);
+            // TODO: arreglar el auto size aca, xq si agrego columnas despues del SetupDataGridView quedan muy chicas!!!
+            DataGridViewButtonColumn buttonColumnInvoices = new DataGridViewButtonColumn();
+            buttonColumnInvoices.Name = "CreateBillTransactionButton";
+            buttonColumnInvoices.HeaderText = "Registrar Pago";
+            buttonColumnInvoices.Text = "Registrar Pago";
+            buttonColumnInvoices.UseColumnTextForButtonValue = true;
+            dataGridViewPendingInvoices.Columns.Add(buttonColumnInvoices);
+            // PENDING INVOICES
+            SetupDataGridView(dataGridViewInvoices, invoicesColumns);
+        }
+        public void SetupDataGridView(DataGridView dataGridView, Dictionary<string, string> columnDictionary)
+        {
+            // Disable auto-generate columns
+            dataGridView.AutoGenerateColumns = false;
 
-            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.Name = "ReviewButton";
-            buttonColumn.HeaderText = "Revisar";
-            buttonColumn.Text = "Revisar";
-            buttonColumn.UseColumnTextForButtonValue = true;
-            dataGridViewOrders.Columns.Add(buttonColumn);
+            // Customize the columns based on the dictionary
+            foreach (var entry in columnDictionary)
+            {
+                dataGridView.Columns.Add(entry.Key, entry.Value);
+                dataGridView.Columns[entry.Key].DataPropertyName = entry.Key;
+            }
 
-            dataGridViewOrders.Columns["ShipmentStatus"].HeaderText = "Estado";
-            dataGridViewOrders.Columns["ClientName"].HeaderText = "Cliente";
-            dataGridViewOrders.Columns["SellerName"].HeaderText = "Vendedor";
-            dataGridViewOrders.Columns["TransportCompanyName"].HeaderText = "Transporte";
-            dataGridViewOrders.Columns["DateSent"].HeaderText = "Fecha de Envio";
-            dataGridViewOrders.Columns["DateReceived"].HeaderText = "Fecha de Recepción";
-            dataGridViewOrders.Columns["HasInvoice"].HeaderText = "Facturado";
-            dataGridViewOrders.RowHeadersVisible = false;
-            dataGridViewOrders.AllowUserToAddRows = false;
+            // Set up additional properties for all DataGridViews
+            dataGridView.RowHeadersVisible = false;
+            dataGridView.AllowUserToAddRows = false;
 
-            foreach (DataGridViewColumn column in dataGridViewOrders.Columns)
+            foreach (DataGridViewColumn column in dataGridView.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-
-
         }
+
         private async Task LoadData()
         {
             categories = await ApiHelper.GetListAsync<Category>("https://localhost:7215/api/categories");
@@ -174,11 +225,11 @@ namespace WinFormsApp
             {
                 dataGridViewOrders.DataSource = new BindingList<OrderViewModel>(orders);
             }
-            invoices = await ApiHelper.GetListAsync<Invoice>("https://localhost:7215/api/invoices");
+            invoices = await ApiHelper.GetListAsync<InvoiceViewModel>("https://localhost:7215/api/invoices/view-models");
 
             if (invoices != null)
             {
-                dataGridViewInvoices.DataSource = new BindingList<Invoice>(invoices);
+                dataGridViewInvoices.DataSource = new BindingList<InvoiceViewModel>(invoices);
             }
             billingTransactions = await ApiHelper.GetListAsync<BillingTransaction>("https://localhost:7215/api/billing-transactions");
 
@@ -186,8 +237,25 @@ namespace WinFormsApp
             {
                 dataGridViewBillingTransactions.DataSource = new BindingList<BillingTransaction>(billingTransactions);
             }
+            // pending invoices...
+            pendingInvoices = GetPendingInvoices();
+            if (pendingInvoices != null)
+            {
+                dataGridViewPendingInvoices.DataSource = new BindingList<InvoiceViewModel>(pendingInvoices);
+            }
         }
-
+        private List<InvoiceViewModel> GetPendingInvoices()
+        {
+            var result = new List<InvoiceViewModel>();
+            foreach (var invoice in invoices)
+            {
+                if (invoice.DebtAmount != 0)
+                {
+                    result.Add(invoice);
+                }
+            }
+            return result;
+        }
         private async void buttonCreateProduct_Click(object sender, EventArgs e)
         {
             var form = new CreateProduct();
@@ -301,6 +369,23 @@ namespace WinFormsApp
         private void HandleSupplierSelected(int selectedSupplierId)
         {
             txtBoxSupplierProductSupplierId.Text = selectedSupplierId.ToString();
+        }
+
+        private async void dataGridViewPendingInvoices_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridViewPendingInvoices.Columns["CreateBillTransactionButton"].Index && e.RowIndex >= 0)
+            {
+                int invoiceId = (int)dataGridViewPendingInvoices.Rows[e.RowIndex].Cells["Id"].Value;
+                int clientId = (int)dataGridViewPendingInvoices.Rows[e.RowIndex].Cells["ClientId"].Value;
+                var billTransaction = new BillingTransactionDto()
+                {
+                    InvoiceId = invoiceId,
+                    ClientId = clientId
+                };
+                var form = new CreateBillingTransaction(billTransaction);
+                form.ShowDialog();
+                await LoadData();
+            }
         }
     }
 }
