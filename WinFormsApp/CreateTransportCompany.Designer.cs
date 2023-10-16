@@ -34,6 +34,8 @@
             txtBoxName = new ReaLTaiizor.Controls.DungeonTextBox();
             dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxPhoneNumber = new ReaLTaiizor.Controls.DungeonTextBox();
+            labelEmail = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxEmail = new ReaLTaiizor.Controls.DungeonTextBox();
             SuspendLayout();
             // 
             // buttonCreateTransportCompany
@@ -46,7 +48,7 @@
             buttonCreateTransportCompany.Image = null;
             buttonCreateTransportCompany.ImageAlign = ContentAlignment.MiddleLeft;
             buttonCreateTransportCompany.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonCreateTransportCompany.Location = new Point(165, 226);
+            buttonCreateTransportCompany.Location = new Point(174, 243);
             buttonCreateTransportCompany.Name = "buttonCreateTransportCompany";
             buttonCreateTransportCompany.PressedBorderColor = Color.FromArgb(165, 37, 37);
             buttonCreateTransportCompany.PressedColor = Color.FromArgb(165, 37, 37);
@@ -126,11 +128,42 @@
             txtBoxPhoneNumber.TextAlignment = HorizontalAlignment.Left;
             txtBoxPhoneNumber.UseSystemPasswordChar = false;
             // 
+            // labelEmail
+            // 
+            labelEmail.AutoSize = true;
+            labelEmail.BackColor = Color.Transparent;
+            labelEmail.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            labelEmail.ForeColor = Color.FromArgb(76, 76, 77);
+            labelEmail.Location = new Point(62, 183);
+            labelEmail.Name = "labelEmail";
+            labelEmail.Size = new Size(58, 25);
+            labelEmail.TabIndex = 19;
+            labelEmail.Text = "Email:";
+            // 
+            // txtBoxEmail
+            // 
+            txtBoxEmail.BackColor = Color.Transparent;
+            txtBoxEmail.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxEmail.EdgeColor = Color.White;
+            txtBoxEmail.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxEmail.ForeColor = Color.DimGray;
+            txtBoxEmail.Location = new Point(126, 183);
+            txtBoxEmail.MaxLength = 32767;
+            txtBoxEmail.Multiline = false;
+            txtBoxEmail.Name = "txtBoxEmail";
+            txtBoxEmail.ReadOnly = false;
+            txtBoxEmail.Size = new Size(350, 28);
+            txtBoxEmail.TabIndex = 18;
+            txtBoxEmail.TextAlignment = HorizontalAlignment.Left;
+            txtBoxEmail.UseSystemPasswordChar = false;
+            // 
             // CreateTransportCompany
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(488, 309);
+            Controls.Add(labelEmail);
+            Controls.Add(txtBoxEmail);
             Controls.Add(dungeonLabel1);
             Controls.Add(txtBoxPhoneNumber);
             Controls.Add(buttonCreateTransportCompany);
@@ -151,5 +184,7 @@
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxName;
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxPhoneNumber;
+        private ReaLTaiizor.Controls.DungeonLabel labelEmail;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxEmail;
     }
 }

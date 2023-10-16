@@ -20,6 +20,7 @@ namespace WinFormsApp
             var form = new CreateProduct();
             form.ShowDialog();
             await LoadData();
+            CheckStock();
         }
 
         private async void ProductSelector_Load(object sender, EventArgs e)
@@ -47,7 +48,8 @@ namespace WinFormsApp
             dataGridViewProducts.AutoGenerateColumns = false;
             dataGridViewProducts.Columns["CategoryName"].HeaderText = "Rubro";
             dataGridViewProducts.Columns["Name"].HeaderText = "Nombre";
-            dataGridViewProducts.Columns["Price"].HeaderText = "Precio";
+            dataGridViewProducts.Columns["PurchasePrice"].HeaderText = "Precio de Compra";
+            dataGridViewProducts.Columns["SellingPrice"].HeaderText = "Precio de Venta";
             dataGridViewProducts.Columns["Description"].HeaderText = "Descripción";
             dataGridViewProducts.Columns["Quantity"].HeaderText = "Stock";
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn

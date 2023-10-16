@@ -8,7 +8,7 @@ namespace WinFormsApp
     {
         public CreateSupplier()
         {
-            
+
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             Text = "Agregar Proveedor";
@@ -16,15 +16,16 @@ namespace WinFormsApp
 
         private async void buttonCreateSupplier_Click(object sender, EventArgs e)
         {
-            string name = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxName, "Name");
-            string phoneNumber = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxPhoneNumber, "Phone Number");
-
-            if (name != null && phoneNumber != null)
+            string name = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxName, "Name")!;
+            string phoneNumber = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxPhoneNumber, "Phone Number")!;
+            string email = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxEmail, "Email")!;
+            if (name != null && phoneNumber != null && email != null)
             {
                 var supplier = new SupplierDto()
                 {
                     Name = name,
                     PhoneNumber = phoneNumber,
+                    Email = email,
                 };
 
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/suppliers", supplier);

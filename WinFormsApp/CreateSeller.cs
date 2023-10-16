@@ -1,5 +1,6 @@
 ﻿using Contracts.DTOs.Entities;
 using Contracts.Utils;
+using Entities.Enums;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace WinFormsApp
     {
         public CreateSeller()
         {
-           
+
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             Text = "Agregar Vendedor";
@@ -29,14 +30,15 @@ namespace WinFormsApp
 
             PasswordHasher<string> passwordHasher = new();
 
-            string firstName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxFirstName, "First Name");
-            string lastName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxLastName, "Last Name");
-            string password = txtBoxPassword.Text;
-            string email = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxEmail, "Email");
-            string zone = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxZone, "Zone");
-
-            if (firstName != null && lastName != null && email != null && zone != null)
+            string firstName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxFirstName, "First Name")!;
+            string lastName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxLastName, "Last Name")!;
+            string password = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxPassword, "Password")!;
+            string email = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxEmail, "Email")!;
+            string zone = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxZone, "Zone")!;
+            string docNumber = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxDocNumber, "Document Number")!;
+            if (firstName != null && lastName != null && email != null && zone != null && docNumber != null)
             {
+                PersonDocType selectedDocType = (PersonDocType)comboBoxDocType.SelectedItem;
                 var registerDto = new SellerRegisterDto()
                 {
                     FirstName = firstName,
@@ -44,6 +46,8 @@ namespace WinFormsApp
                     PasswordHash = passwordHasher.HashPassword(string.Empty, password),
                     Email = email,
                     Zone = zone,
+                    DocumentNumber = docNumber,
+                    DocumentType = selectedDocType,
                 };
 
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/sellers/register", registerDto);
@@ -66,6 +70,7 @@ namespace WinFormsApp
         private void CreateSeller_Load(object sender, EventArgs e)
         {
             txtBoxPassword.UseSystemPasswordChar = true;
+            comboBoxDocType.DataSource = Enum.GetValues(typeof(PersonDocType));
         }
     }
 }

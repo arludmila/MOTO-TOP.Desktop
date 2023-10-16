@@ -1,15 +1,5 @@
 ﻿using Contracts.DTOs.Entities;
 using Contracts.Utils;
-using Entities.Relationships;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using WinFormsApp.Utils;
 
 namespace WinFormsApp
@@ -18,7 +8,7 @@ namespace WinFormsApp
     {
         public CreateTransportCompany()
         {
-            
+
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             Text = "Agregar Empresa de Transporte";
@@ -26,15 +16,16 @@ namespace WinFormsApp
 
         private async void buttonCreateTransportCompany_Click(object sender, EventArgs e)
         {
-            string name = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxName, "Name");
-            string phoneNumber = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxPhoneNumber, "Phone Number");
-
-            if (name != null && phoneNumber != null)
+            string name = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxName, "Name")!;
+            string phoneNumber = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxPhoneNumber, "Phone Number")!;
+            string email = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxEmail, "Email")!;
+            if (name != null && phoneNumber != null && email != null)
             {
                 var transportCompanyDto = new TransportCompanyDto()
                 {
                     Name = name,
                     PhoneNumber = phoneNumber,
+                    Email = email
                 };
 
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/transport-companies", transportCompanyDto);

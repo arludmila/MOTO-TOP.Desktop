@@ -99,7 +99,8 @@ namespace WinFormsApp
                 { "Id", "Id" },
                 { "CategoryName", "Rubro" },
                 { "Name", "Nombre" },
-                { "Price", "Precio" },
+                { "SellingPrice", "Precio de Venta" },
+                { "PurchasePrice", "Precio de Compra" },
                 { "Description", "Descripción" },
                 { "Quantity", "Stock" }
             };
@@ -125,6 +126,7 @@ namespace WinFormsApp
             {
                 { "Id", "Id" },
                 { "Name", "Nombre" },
+                { "Email", "Email" },
                 { "PhoneNumber", "Número de Telefono" }
             };
 
@@ -133,9 +135,12 @@ namespace WinFormsApp
             Dictionary<string, string> sellersColumns = new Dictionary<string, string>
             {
                 { "Id", "Id" },
+                { "Zone", "Zona Asignada" },
                 { "FirstName", "Nombre" },
                 { "LastName", "Apellido" },
-                { "Zone", "Zona Asignada" }
+                 { "Email", "Email" },
+                { "DocumentType", "Tipo de Documento" },
+                { "DocumentNumber", "N° de Documento" },
             };
 
             SetupDataGridView(dataGridViewSellers, sellersColumns);
@@ -200,6 +205,7 @@ namespace WinFormsApp
             {
                 { "Id", "Id" },
                 { "Name", "Nombre" },
+                { "Email", "Email" },
                 { "PhoneNumber", "N° de Telefono" },
             };
             SetupDataGridView(dataGridViewTransportCompanies, transportCompaniesColumns);

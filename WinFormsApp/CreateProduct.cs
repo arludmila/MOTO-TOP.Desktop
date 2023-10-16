@@ -16,9 +16,11 @@ namespace WinFormsApp
 {
     public partial class CreateProduct : Form
     {
+        private double _profitMarginPercentage;
+        private double _purchasePrice;
         public CreateProduct()
         {
-            
+
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             Text = "Agregar Producto";
@@ -26,24 +28,6 @@ namespace WinFormsApp
 
         private async void buttonCreateProduct_Click(object sender, EventArgs e)
         {
-            //Category selectedCategory = (Category)comboBoxCategories.SelectedItem;
-            //int categoryId = 0;
-            //if (selectedCategory != null)
-            //{
-            //    // Access the Id property of the selected Category
-            //    categoryId = selectedCategory.Id;
-
-            //}
-            //var product = new ProductDto()
-            //{
-            //    Name = txtBoxName.Text,
-            //    Description = txtBoxDescription.Text,
-            //    Price = Convert.ToDouble(txtBoxPrice.Text),
-            //    Quantity = Convert.ToInt32(txtBoxQuantity.Text),
-            //    CategoryId = categoryId,
-            //};
-            //await ApiHelper.PostAsync("https://localhost:7215/api/products", product);
-            //this.Close();
             Category selectedCategory = (Category)comboBoxCategories.SelectedItem;
             int categoryId = 0;
             if (selectedCategory != null)
@@ -51,19 +35,21 @@ namespace WinFormsApp
                 categoryId = selectedCategory.Id;
             }
 
-            double price;
+            double sellingPrice;
             int quantity;
-
-            if (FormInputValidator.TryConvertDungeonTextBoxToDouble(txtBoxPrice, "Price", out price) &&
+            string name = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxName, "Name")!;
+            string description = FormInputValidator.ValidateAndGetDungeonRichTextBoxText(txtBoxDescription, "Description")!;
+            if (FormInputValidator.TryConvertDungeonTextBoxToDouble(txtBoxSellingPrice, "SellingPrice", out sellingPrice) &&
                 FormInputValidator.TryConvertDungeonTextBoxToInt(txtBoxQuantity, "Quantity", out quantity))
             {
                 var product = new ProductDto()
                 {
-                    Name = txtBoxName.Text,
-                    Description = txtBoxDescription.Text,
-                    Price = price,
+                    Name = name,
+                    Description = description,
+                    SellingPrice = sellingPrice,
                     Quantity = quantity,
                     CategoryId = categoryId,
+                    PurchasePrice = _purchasePrice,
                 };
 
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/products", product);
@@ -96,6 +82,27 @@ namespace WinFormsApp
                 comboBoxCategories.ValueMember = "Id";
             }
 
+        }
+
+        private void txtBoxProfitMargin_TextChanged(object sender, EventArgs e)
+        {
+            if (FormInputValidator.TryConvertDungeonTextBoxToDouble(txtBoxProfitMargin, "ProfitMargin", out _profitMarginPercentage))
+            {
+                UpdateSellingPrice();
+            }
+        }
+
+        private void txtBoxPurchasePrice_TextChanged(object sender, EventArgs e)
+        {
+            if (FormInputValidator.TryConvertDungeonTextBoxToDouble(txtBoxPurchasePrice, "PurchasePrice", out _purchasePrice))
+            {
+                UpdateSellingPrice();
+            }
+        }
+        private void UpdateSellingPrice()
+        {
+            double sellingPrice = _purchasePrice + (_purchasePrice * (_profitMarginPercentage / 100));
+            txtBoxSellingPrice.Text = sellingPrice.ToString();
         }
     }
 }

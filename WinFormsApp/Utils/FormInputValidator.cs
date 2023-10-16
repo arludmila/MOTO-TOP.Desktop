@@ -9,6 +9,16 @@ namespace WinFormsApp.Utils
 {
     public static class FormInputValidator
     {
+        public static bool ValidateDungeonRichTextBoxNotEmpty(DungeonRichTextBox textBox, string fieldName)
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                MessageBoxHelper.ShowErrorMessageBox($"{fieldName} no puede estar vacio.");
+                textBox.Focus();
+                return false;
+            }
+            return true;
+        }
         public static bool ValidateDungeonTextBoxNotEmpty(DungeonTextBox textBox, string fieldName)
         {
             if (string.IsNullOrWhiteSpace(textBox.Text))
@@ -45,6 +55,14 @@ namespace WinFormsApp.Utils
                 textBox.Focus();
                 return false;
             }
+        }
+        public static string? ValidateAndGetDungeonRichTextBoxText(DungeonRichTextBox textBox, string fieldName)
+        {
+            if (ValidateDungeonRichTextBoxNotEmpty(textBox, fieldName))
+            {
+                return textBox.Text;
+            }
+            return null; // Return null if validation fails.
         }
         public static string? ValidateAndGetDungeonTextBoxText(DungeonTextBox textBox, string fieldName)
         {
