@@ -30,7 +30,7 @@ namespace WinFormsApp
 
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/transport-companies", transportCompanyDto);
 
-                if (response.Contains("error"))
+                if (response.Contains("error") || response.Contains("failed"))
                 {
                     MessageBoxHelper.ShowErrorMessageBox("Error al crear empresa");
                 }

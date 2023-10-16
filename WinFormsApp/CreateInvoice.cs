@@ -81,9 +81,10 @@ namespace WinFormsApp
                 productSelectorForm.ShowDialog();
             }
         }
-        private void HandleProductSelected(int selectedProductId)
+        private void HandleProductSelected(ProductViewModel selectedProduct)
         {
-            txtBoxProductId.Text = selectedProductId.ToString();
+            txtBoxProductId.Text = selectedProduct.Id.ToString();
+            txtBoxPrice.Text = selectedProduct.SellingPrice.ToString();
         }
 
         private async void buttonCreateDetailedInvoice_Click(object sender, EventArgs e)
@@ -102,7 +103,7 @@ namespace WinFormsApp
 
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices/detailed", invoiceWithDetailsDto);
 
-                if (response.Contains("error"))
+                if (response.Contains("error") || response.Contains("failed"))
                 {
                     MessageBoxHelper.ShowErrorMessageBox("Error al registrar venta");
                 }
@@ -131,6 +132,7 @@ namespace WinFormsApp
             txtBoxProductId.Enabled = false;
             txtBoxTotalAmount.Enabled = false;
             txtBoxClientId.Enabled = false;
+            txtBoxPrice.Enabled = false;
         }
 
         private void buttonSelectClient_Click(object sender, EventArgs e)

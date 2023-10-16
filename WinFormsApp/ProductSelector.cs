@@ -7,7 +7,7 @@ namespace WinFormsApp
     public partial class ProductSelector : Form
     {
         List<ProductViewModel> products;
-        public event Action<int> ProductSelected;
+        public event Action<ProductViewModel> ProductSelected;
         public ProductSelector()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -88,14 +88,11 @@ namespace WinFormsApp
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridViewProducts.Columns["SelectButton"].Index)
             {
-                // Get the selected product's ID from the DataGridView
-                int selectedProductId = (int)dataGridViewProducts.Rows[e.RowIndex].Cells["Id"].Value;
-
-                // Raise the event and send the selected product's ID to the main form
-                ProductSelected?.Invoke(selectedProductId);
-
-                // Close the ProductSelector form
-                this.Close();
+                if (dataGridViewProducts.Rows[e.RowIndex].DataBoundItem is ProductViewModel selectedProduct)
+                {
+                    ProductSelected?.Invoke(selectedProduct);
+                }
+                Close();
             }
         }
     }

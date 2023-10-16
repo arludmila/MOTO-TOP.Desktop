@@ -15,7 +15,7 @@ namespace WinFormsApp
         private bool _allStockAvailable = true;
         public OrderReview(int orderId)
         {
-           
+
             this.StartPosition = FormStartPosition.CenterScreen;
             _orderId = orderId;
             InitializeComponent();
@@ -71,14 +71,14 @@ namespace WinFormsApp
             dataGridViewOrderDetails.Columns["ProductId"].ReadOnly = true;
             dataGridViewOrderDetails.Columns["ProductCategoryName"].ReadOnly = true;
             dataGridViewOrderDetails.Columns["ProductName"].ReadOnly = true;
-            dataGridViewOrderDetails.Columns["Quantity"].ReadOnly = false; 
+            dataGridViewOrderDetails.Columns["Quantity"].ReadOnly = false;
             dataGridViewOrderDetails.Columns["Price"].ReadOnly = true;
             dataGridViewOrderDetails.Columns["ProductQuantity"].ReadOnly = true;
 
         }
         private void LoadData()
         {
-            
+
             dataGridViewOrderDetails.DataSource = new BindingList<OrderProductViewModel>(_orderViewModel.OrderProducts);
             foreach (DataGridViewColumn column in dataGridViewOrderDetails.Columns)
             {
@@ -133,7 +133,7 @@ namespace WinFormsApp
                     ClientId = order.ClientId,
                 };
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices", invoice);
-                if (response.Contains("error"))
+                if (response.Contains("error") || response.Contains("failed"))
                 {
                     MessageBox.Show("Error al facturar", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -143,7 +143,7 @@ namespace WinFormsApp
                     this.Close();
                 }
             }
-            
+
         }
 
         private void dataGridViewOrderDetails_SelectionChanged(object sender, EventArgs e)
@@ -154,7 +154,7 @@ namespace WinFormsApp
         private async void buttonCancelOrder_Click(object sender, EventArgs e)
         {
             var response = await ApiHelper.DeleteAsync($"https://localhost:7215/api/orders/{_orderId}");
-            if (response.Contains("error"))
+            if (response.Contains("error") || response.Contains("failed"))
             {
                 MessageBox.Show("Error al borrar pedido", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

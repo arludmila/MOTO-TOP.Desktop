@@ -41,7 +41,7 @@ namespace WinFormsApp
                 _billingTransactionDto.DocumentType = documentType;
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/billing-transactions", _billingTransactionDto);
 
-                if (response.Contains("error"))
+                if (response.Contains("error") || response.Contains("failed"))
                 {
                     MessageBoxHelper.ShowErrorMessageBox("Error al registrar pago");
                 }

@@ -84,7 +84,12 @@
             buttonCreateSupplier = new ReaLTaiizor.Controls.Button();
             txtBoxSearchSuppliers = new ReaLTaiizor.Controls.DungeonTextBox();
             tabPagePOrdersSupp = new TabPage();
-            airSeparator1 = new ReaLTaiizor.Controls.AirSeparator();
+            txtBoxSupplierProductSellingPrice = new ReaLTaiizor.Controls.DungeonTextBox();
+            labelSuppProdSellingPrice = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxSupplierProductProfitMargin = new ReaLTaiizor.Controls.DungeonTextBox();
+            labelSuppProdProfitMargin = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxSupplierProductPurchasePrice = new ReaLTaiizor.Controls.DungeonTextBox();
+            labelSuppProdPrice = new ReaLTaiizor.Controls.DungeonLabel();
             separator1 = new ReaLTaiizor.Controls.Separator();
             labelTitleSuppProd = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             buttonSelectSupplier = new ReaLTaiizor.Controls.ForeverButton();
@@ -95,8 +100,6 @@
             dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
             labelQuantity = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxSupplierProductQuantity = new ReaLTaiizor.Controls.DungeonTextBox();
-            labelPrice = new ReaLTaiizor.Controls.DungeonLabel();
-            txtBoxSupplierProductPrice = new ReaLTaiizor.Controls.DungeonTextBox();
             buttonCreateSupplierProduct = new ReaLTaiizor.Controls.ForeverButton();
             tabPageBillingTransactions = new TabPage();
             airTabPageBillTransactions = new ReaLTaiizor.Controls.AirTabPage();
@@ -695,7 +698,12 @@
             // tabPagePOrdersSupp
             // 
             tabPagePOrdersSupp.BackColor = Color.White;
-            tabPagePOrdersSupp.Controls.Add(airSeparator1);
+            tabPagePOrdersSupp.Controls.Add(txtBoxSupplierProductSellingPrice);
+            tabPagePOrdersSupp.Controls.Add(labelSuppProdSellingPrice);
+            tabPagePOrdersSupp.Controls.Add(txtBoxSupplierProductProfitMargin);
+            tabPagePOrdersSupp.Controls.Add(labelSuppProdProfitMargin);
+            tabPagePOrdersSupp.Controls.Add(txtBoxSupplierProductPurchasePrice);
+            tabPagePOrdersSupp.Controls.Add(labelSuppProdPrice);
             tabPagePOrdersSupp.Controls.Add(separator1);
             tabPagePOrdersSupp.Controls.Add(labelTitleSuppProd);
             tabPagePOrdersSupp.Controls.Add(buttonSelectSupplier);
@@ -706,8 +714,6 @@
             tabPagePOrdersSupp.Controls.Add(dungeonLabel1);
             tabPagePOrdersSupp.Controls.Add(labelQuantity);
             tabPagePOrdersSupp.Controls.Add(txtBoxSupplierProductQuantity);
-            tabPagePOrdersSupp.Controls.Add(labelPrice);
-            tabPagePOrdersSupp.Controls.Add(txtBoxSupplierProductPrice);
             tabPagePOrdersSupp.Controls.Add(buttonCreateSupplierProduct);
             tabPagePOrdersSupp.Location = new Point(129, 4);
             tabPagePOrdersSupp.Name = "tabPagePOrdersSupp";
@@ -715,24 +721,99 @@
             tabPagePOrdersSupp.TabIndex = 2;
             tabPagePOrdersSupp.Text = "Compras";
             // 
-            // airSeparator1
+            // txtBoxSupplierProductSellingPrice
             // 
-            airSeparator1.BackColor = Color.FromArgb(238, 238, 238);
-            airSeparator1.Customization = "";
-            airSeparator1.Font = new Font("Verdana", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            airSeparator1.Image = null;
-            airSeparator1.Location = new Point(483, 312);
-            airSeparator1.Name = "airSeparator1";
-            airSeparator1.NoRounding = false;
-            airSeparator1.Size = new Size(75, 1);
-            airSeparator1.TabIndex = 45;
-            airSeparator1.Text = "airSeparator1";
-            airSeparator1.Transparent = false;
+            txtBoxSupplierProductSellingPrice.BackColor = Color.Transparent;
+            txtBoxSupplierProductSellingPrice.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxSupplierProductSellingPrice.EdgeColor = Color.White;
+            txtBoxSupplierProductSellingPrice.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxSupplierProductSellingPrice.ForeColor = Color.DimGray;
+            txtBoxSupplierProductSellingPrice.Location = new Point(358, 251);
+            txtBoxSupplierProductSellingPrice.MaxLength = 32767;
+            txtBoxSupplierProductSellingPrice.Multiline = false;
+            txtBoxSupplierProductSellingPrice.Name = "txtBoxSupplierProductSellingPrice";
+            txtBoxSupplierProductSellingPrice.ReadOnly = false;
+            txtBoxSupplierProductSellingPrice.Size = new Size(296, 28);
+            txtBoxSupplierProductSellingPrice.TabIndex = 50;
+            txtBoxSupplierProductSellingPrice.TextAlignment = HorizontalAlignment.Left;
+            txtBoxSupplierProductSellingPrice.UseSystemPasswordChar = false;
+            // 
+            // labelSuppProdSellingPrice
+            // 
+            labelSuppProdSellingPrice.AutoSize = true;
+            labelSuppProdSellingPrice.BackColor = Color.Transparent;
+            labelSuppProdSellingPrice.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSuppProdSellingPrice.ForeColor = Color.FromArgb(76, 76, 77);
+            labelSuppProdSellingPrice.Location = new Point(164, 251);
+            labelSuppProdSellingPrice.Name = "labelSuppProdSellingPrice";
+            labelSuppProdSellingPrice.Size = new Size(183, 25);
+            labelSuppProdSellingPrice.TabIndex = 49;
+            labelSuppProdSellingPrice.Text = "Precio de Compra ($):";
+            // 
+            // txtBoxSupplierProductProfitMargin
+            // 
+            txtBoxSupplierProductProfitMargin.BackColor = Color.Transparent;
+            txtBoxSupplierProductProfitMargin.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxSupplierProductProfitMargin.EdgeColor = Color.White;
+            txtBoxSupplierProductProfitMargin.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxSupplierProductProfitMargin.ForeColor = Color.DimGray;
+            txtBoxSupplierProductProfitMargin.Location = new Point(358, 206);
+            txtBoxSupplierProductProfitMargin.MaxLength = 32767;
+            txtBoxSupplierProductProfitMargin.Multiline = false;
+            txtBoxSupplierProductProfitMargin.Name = "txtBoxSupplierProductProfitMargin";
+            txtBoxSupplierProductProfitMargin.ReadOnly = false;
+            txtBoxSupplierProductProfitMargin.Size = new Size(80, 28);
+            txtBoxSupplierProductProfitMargin.TabIndex = 48;
+            txtBoxSupplierProductProfitMargin.TextAlignment = HorizontalAlignment.Left;
+            txtBoxSupplierProductProfitMargin.UseSystemPasswordChar = false;
+            txtBoxSupplierProductProfitMargin.TextChanged += txtBoxSupplierProductProfitMargin_TextChanged;
+            // 
+            // labelSuppProdProfitMargin
+            // 
+            labelSuppProdProfitMargin.AutoSize = true;
+            labelSuppProdProfitMargin.BackColor = Color.Transparent;
+            labelSuppProdProfitMargin.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSuppProdProfitMargin.ForeColor = Color.FromArgb(76, 76, 77);
+            labelSuppProdProfitMargin.Location = new Point(119, 209);
+            labelSuppProdProfitMargin.Name = "labelSuppProdProfitMargin";
+            labelSuppProdProfitMargin.Size = new Size(228, 25);
+            labelSuppProdProfitMargin.TabIndex = 47;
+            labelSuppProdProfitMargin.Text = "Porcentaje de Ganancia (%):";
+            // 
+            // txtBoxSupplierProductPurchasePrice
+            // 
+            txtBoxSupplierProductPurchasePrice.BackColor = Color.Transparent;
+            txtBoxSupplierProductPurchasePrice.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxSupplierProductPurchasePrice.EdgeColor = Color.White;
+            txtBoxSupplierProductPurchasePrice.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxSupplierProductPurchasePrice.ForeColor = Color.DimGray;
+            txtBoxSupplierProductPurchasePrice.Location = new Point(358, 162);
+            txtBoxSupplierProductPurchasePrice.MaxLength = 32767;
+            txtBoxSupplierProductPurchasePrice.Multiline = false;
+            txtBoxSupplierProductPurchasePrice.Name = "txtBoxSupplierProductPurchasePrice";
+            txtBoxSupplierProductPurchasePrice.ReadOnly = false;
+            txtBoxSupplierProductPurchasePrice.Size = new Size(296, 28);
+            txtBoxSupplierProductPurchasePrice.TabIndex = 46;
+            txtBoxSupplierProductPurchasePrice.TextAlignment = HorizontalAlignment.Left;
+            txtBoxSupplierProductPurchasePrice.UseSystemPasswordChar = false;
+            txtBoxSupplierProductPurchasePrice.TextChanged += txtBoxSupplierProductPurchasePrice_TextChanged;
+            // 
+            // labelSuppProdPrice
+            // 
+            labelSuppProdPrice.AutoSize = true;
+            labelSuppProdPrice.BackColor = Color.Transparent;
+            labelSuppProdPrice.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSuppProdPrice.ForeColor = Color.FromArgb(76, 76, 77);
+            labelSuppProdPrice.Location = new Point(164, 162);
+            labelSuppProdPrice.Name = "labelSuppProdPrice";
+            labelSuppProdPrice.Size = new Size(183, 25);
+            labelSuppProdPrice.TabIndex = 45;
+            labelSuppProdPrice.Text = "Precio de Compra ($):";
             // 
             // separator1
             // 
             separator1.LineColor = Color.Gray;
-            separator1.Location = new Point(-3, 247);
+            separator1.Location = new Point(-2, 348);
             separator1.Name = "separator1";
             separator1.Size = new Size(1093, 10);
             separator1.TabIndex = 44;
@@ -844,7 +925,7 @@
             labelQuantity.BackColor = Color.Transparent;
             labelQuantity.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelQuantity.ForeColor = Color.FromArgb(76, 76, 77);
-            labelQuantity.Location = new Point(260, 167);
+            labelQuantity.Location = new Point(260, 128);
             labelQuantity.Name = "labelQuantity";
             labelQuantity.Size = new Size(87, 25);
             labelQuantity.TabIndex = 36;
@@ -857,7 +938,7 @@
             txtBoxSupplierProductQuantity.EdgeColor = Color.White;
             txtBoxSupplierProductQuantity.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxSupplierProductQuantity.ForeColor = Color.DimGray;
-            txtBoxSupplierProductQuantity.Location = new Point(358, 167);
+            txtBoxSupplierProductQuantity.Location = new Point(358, 128);
             txtBoxSupplierProductQuantity.MaxLength = 32767;
             txtBoxSupplierProductQuantity.Multiline = false;
             txtBoxSupplierProductQuantity.Name = "txtBoxSupplierProductQuantity";
@@ -867,41 +948,12 @@
             txtBoxSupplierProductQuantity.TextAlignment = HorizontalAlignment.Left;
             txtBoxSupplierProductQuantity.UseSystemPasswordChar = false;
             // 
-            // labelPrice
-            // 
-            labelPrice.AutoSize = true;
-            labelPrice.BackColor = Color.Transparent;
-            labelPrice.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            labelPrice.ForeColor = Color.FromArgb(76, 76, 77);
-            labelPrice.Location = new Point(283, 133);
-            labelPrice.Name = "labelPrice";
-            labelPrice.Size = new Size(64, 25);
-            labelPrice.TabIndex = 34;
-            labelPrice.Text = "Precio:";
-            // 
-            // txtBoxSupplierProductPrice
-            // 
-            txtBoxSupplierProductPrice.BackColor = Color.Transparent;
-            txtBoxSupplierProductPrice.BorderColor = Color.FromArgb(180, 180, 180);
-            txtBoxSupplierProductPrice.EdgeColor = Color.White;
-            txtBoxSupplierProductPrice.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBoxSupplierProductPrice.ForeColor = Color.DimGray;
-            txtBoxSupplierProductPrice.Location = new Point(358, 133);
-            txtBoxSupplierProductPrice.MaxLength = 32767;
-            txtBoxSupplierProductPrice.Multiline = false;
-            txtBoxSupplierProductPrice.Name = "txtBoxSupplierProductPrice";
-            txtBoxSupplierProductPrice.ReadOnly = false;
-            txtBoxSupplierProductPrice.Size = new Size(296, 28);
-            txtBoxSupplierProductPrice.TabIndex = 33;
-            txtBoxSupplierProductPrice.TextAlignment = HorizontalAlignment.Left;
-            txtBoxSupplierProductPrice.UseSystemPasswordChar = false;
-            // 
             // buttonCreateSupplierProduct
             // 
             buttonCreateSupplierProduct.BackColor = Color.Transparent;
             buttonCreateSupplierProduct.BaseColor = Color.Black;
             buttonCreateSupplierProduct.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonCreateSupplierProduct.Location = new Point(422, 201);
+            buttonCreateSupplierProduct.Location = new Point(423, 302);
             buttonCreateSupplierProduct.Name = "buttonCreateSupplierProduct";
             buttonCreateSupplierProduct.Rounded = true;
             buttonCreateSupplierProduct.Size = new Size(157, 40);
@@ -1752,8 +1804,6 @@
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxSearchSuppliers;
         private TabPage tabPagePOrdersSupp;
         private ReaLTaiizor.Controls.ForeverButton buttonCreateSupplierProduct;
-        private ReaLTaiizor.Controls.DungeonLabel labelPrice;
-        private ReaLTaiizor.Controls.DungeonTextBox txtBoxSupplierProductPrice;
         private ReaLTaiizor.Controls.DungeonLabel labelQuantity;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxSupplierProductQuantity;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxSupplierProductProductId;
@@ -1763,7 +1813,6 @@
         private ReaLTaiizor.Controls.ForeverButton buttonSelectSupplier;
         private ReaLTaiizor.Controls.ForeverButton buttonSelectProduct;
         private ReaLTaiizor.Controls.DungeonHeaderLabel labelTitleSuppProd;
-        private ReaLTaiizor.Controls.AirSeparator airSeparator1;
         private ReaLTaiizor.Controls.Separator separator1;
         private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewInvoices;
         private ReaLTaiizor.Controls.DungeonLabel labelSearchInvoices;
@@ -1790,5 +1839,11 @@
         private ReaLTaiizor.Controls.DungeonLabel labelSearchTransportCompanies;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxSearchTransportCompanies;
         private ReaLTaiizor.Controls.ForeverButton buttonCreateTransportCompany;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxSupplierProductSellingPrice;
+        private ReaLTaiizor.Controls.DungeonLabel labelSuppProdSellingPrice;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxSupplierProductProfitMargin;
+        private ReaLTaiizor.Controls.DungeonLabel labelSuppProdProfitMargin;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxSupplierProductPurchasePrice;
+        private ReaLTaiizor.Controls.DungeonLabel labelSuppProdPrice;
     }
 }

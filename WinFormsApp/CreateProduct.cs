@@ -55,7 +55,7 @@ namespace WinFormsApp
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/products", product);
 
 
-                if (response.Contains("error"))
+                if (response.Contains("error") || response.Contains("failed")) 
                 {
                     MessageBoxHelper.ShowErrorMessageBox("Error al agregar producto");
                 }

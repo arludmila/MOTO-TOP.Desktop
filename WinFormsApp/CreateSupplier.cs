@@ -30,7 +30,7 @@ namespace WinFormsApp
 
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/suppliers", supplier);
 
-                if (response.Contains("error"))
+                if (response.Contains("error") || response.Contains("failed"))
                 {
                     MessageBoxHelper.ShowErrorMessageBox("Error al registrar proveedor");
                 }

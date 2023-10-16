@@ -22,6 +22,9 @@ namespace WinFormsApp
         private List<BillingTransaction> billingTransactions;
         private List<TransportCompany> transportCompanies;
         private Timer refreshTimer;
+        private double _purchasePrice;
+        private double _profitMarginPercentage;
+
         public Main()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -57,7 +60,7 @@ namespace WinFormsApp
 
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/categories", category);
 
-                if (response.Contains("error"))
+                if (response.Contains("error") || response.Contains("failed"))
                 {
                     MessageBoxHelper.ShowErrorMessageBox("Error al crear categoría");
                 }
@@ -356,10 +359,12 @@ namespace WinFormsApp
 
         private async void buttonCreateSupplierProduct_Click(object sender, EventArgs e)
         {
+
             if (int.TryParse(txtBoxSupplierProductProductId.Text, out int productId) &&
             int.TryParse(txtBoxSupplierProductSupplierId.Text, out int supplierId) &&
             int.TryParse(txtBoxSupplierProductQuantity.Text, out int quantity) &&
-            double.TryParse(txtBoxSupplierProductPrice.Text, out double price))
+            double.TryParse(txtBoxSupplierProductPurchasePrice.Text, out double purchasePrice) &&
+            double.TryParse(txtBoxSupplierProductSellingPrice.Text, out double sellingPrice))
             {
 
                 var supplierProduct = new SupplierProductDto()
@@ -367,18 +372,19 @@ namespace WinFormsApp
                     ProductId = productId,
                     SupplierId = supplierId,
                     Quantity = quantity,
-                    Price = price,
+                    PurchasePrice = purchasePrice,
+                    SellingPrice = sellingPrice,
                 };
 
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/supplier-products", supplierProduct);
-                if (response.Contains("error"))
+                if (response.Contains("error") || response.Contains("failed"))
                 {
                     MessageBox.Show("Error al registrar compra", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
                     MessageBoxHelper.ShowSuccessMessageBox("Compra registrada!");
-                    FormInputClearer.ClearDungeonTextBoxes(txtBoxSupplierProductProductId, txtBoxSupplierProductSupplierId, txtBoxSupplierProductPrice, txtBoxSupplierProductQuantity);
+                    FormInputClearer.ClearDungeonTextBoxes(txtBoxSupplierProductProductId, txtBoxSupplierProductSupplierId, txtBoxSupplierProductSellingPrice, txtBoxSupplierProductQuantity, txtBoxSupplierProductProfitMargin, txtBoxSupplierProductPurchasePrice);
                     await LoadData();
 
                 }
@@ -409,9 +415,9 @@ namespace WinFormsApp
                 productSelectorForm.ShowDialog();
             }
         }
-        private void HandleProductSelected(int selectedProductId)
+        private void HandleProductSelected(ProductViewModel selectedProduct)
         {
-            txtBoxSupplierProductProductId.Text = selectedProductId.ToString();
+            txtBoxSupplierProductProductId.Text = selectedProduct.Id.ToString();
         }
 
         private void buttonSelectSupplier_Click(object sender, EventArgs e)
@@ -462,5 +468,27 @@ namespace WinFormsApp
         {
 
         }
+        // actulizacion de precio de venta para registro de compra
+        private void UpdateSellingPrice()
+        {
+            double sellingPrice = _purchasePrice + (_purchasePrice * (_profitMarginPercentage / 100));
+            txtBoxSupplierProductSellingPrice.Text = sellingPrice.ToString();
+        }
+
+        private void txtBoxSupplierProductPurchasePrice_TextChanged(object sender, EventArgs e)
+        {
+            double.TryParse(txtBoxSupplierProductPurchasePrice.Text, out _purchasePrice);
+            UpdateSellingPrice();
+
+        }
+
+        private void txtBoxSupplierProductProfitMargin_TextChanged(object sender, EventArgs e)
+        {
+            double.TryParse(txtBoxSupplierProductProfitMargin.Text, out _profitMarginPercentage);
+            UpdateSellingPrice();
+        }
+        // -----------------------------------------------------------
+
+
     }
 }

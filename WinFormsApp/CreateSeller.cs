@@ -52,7 +52,7 @@ namespace WinFormsApp
 
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/sellers/register", registerDto);
 
-                if (response.Contains("error"))
+                if (response.Contains("error") || response.Contains("failed"))
                 {
                     MessageBoxHelper.ShowErrorMessageBox("Error al registrar vendedor");
                 }
