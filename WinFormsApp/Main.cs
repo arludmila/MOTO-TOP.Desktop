@@ -111,6 +111,9 @@ namespace WinFormsApp
                 { "Id", "Id" },
                 { "FirstName", "Nombre" },
                 { "LastName", "Apellido" },
+                { "DocumentType", "Tipo de Documento" },
+                { "DocumentNumber", "N° de Documento" },
+                { "Email", "Email" },
                 { "Location", "Ubicación" },
                 { "PhoneNumber", "Número de Telefono" }
             };

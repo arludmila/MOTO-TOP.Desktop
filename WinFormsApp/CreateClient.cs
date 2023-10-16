@@ -1,5 +1,6 @@
 ﻿using Contracts.DTOs.Entities;
 using Contracts.Utils;
+using Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,22 +26,27 @@ namespace WinFormsApp
 
         private async void buttonCreateClient_Click(object sender, EventArgs e)
         {
-            string firstName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxFirstName, "First Name");
-            string lastName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxLastName, "Last Name");
-            string location = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxLocation, "Location");
-            string phoneNumber = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxPhoneNumber, "Phone Number");
-
-            if (firstName != null && lastName != null && location != null && phoneNumber != null)
+            string firstName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxFirstName, "First Name")!;
+            string lastName = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxLastName, "Last Name")!;
+            string location = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxLocation, "Location")!;
+            string phoneNumber = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxPhoneNumber, "Phone Number")!;
+            string docNumber = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxDocNumber, "Document Type")!;
+            string email = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxEmail, "Email")!;
+            if (firstName != null && lastName != null && location != null && phoneNumber != null && docNumber!= null && email != null)
             {
+                PersonDocType selectedDocType = (PersonDocType)comboBoxDocType.SelectedItem;
                 var clientDto = new ClientDto()
                 {
                     FirstName = firstName,
                     LastName = lastName,
                     Location = location,
                     PhoneNumber = phoneNumber,
+                    DocumentType = selectedDocType,
+                    DocumentNumber = docNumber,
+                    Email = email
                 };
 
-                
+
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/clients", clientDto);
 
                 if (response.Contains("error"))
@@ -59,6 +65,11 @@ namespace WinFormsApp
                 MessageBoxHelper.ShowErrorMessageBox("Complete todos los campos requeridos!");
             }
 
+        }
+
+        private void CreateClient_Load(object sender, EventArgs e)
+        {
+            comboBoxDocType.DataSource = Enum.GetValues(typeof(PersonDocType));
         }
     }
 }

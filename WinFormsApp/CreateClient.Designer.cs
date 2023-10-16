@@ -38,6 +38,12 @@
             txtBoxLocation = new ReaLTaiizor.Controls.DungeonTextBox();
             labelPhoneNumber = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxPhoneNumber = new ReaLTaiizor.Controls.DungeonTextBox();
+            labelEmail = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxEmail = new ReaLTaiizor.Controls.DungeonTextBox();
+            labelDocNum = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxDocNumber = new ReaLTaiizor.Controls.DungeonTextBox();
+            labelDocType = new ReaLTaiizor.Controls.DungeonLabel();
+            comboBoxDocType = new ReaLTaiizor.Controls.DungeonComboBox();
             SuspendLayout();
             // 
             // buttonCreateClient
@@ -50,7 +56,7 @@
             buttonCreateClient.Image = null;
             buttonCreateClient.ImageAlign = ContentAlignment.MiddleLeft;
             buttonCreateClient.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonCreateClient.Location = new Point(266, 290);
+            buttonCreateClient.Location = new Point(267, 432);
             buttonCreateClient.Name = "buttonCreateClient";
             buttonCreateClient.PressedBorderColor = Color.FromArgb(165, 37, 37);
             buttonCreateClient.PressedColor = Color.FromArgb(165, 37, 37);
@@ -188,11 +194,114 @@
             txtBoxPhoneNumber.TextAlignment = HorizontalAlignment.Left;
             txtBoxPhoneNumber.UseSystemPasswordChar = false;
             // 
+            // labelEmail
+            // 
+            labelEmail.AutoSize = true;
+            labelEmail.BackColor = Color.Transparent;
+            labelEmail.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            labelEmail.ForeColor = Color.FromArgb(76, 76, 77);
+            labelEmail.Location = new Point(130, 279);
+            labelEmail.Name = "labelEmail";
+            labelEmail.Size = new Size(58, 25);
+            labelEmail.TabIndex = 23;
+            labelEmail.Text = "Email:";
+            // 
+            // txtBoxEmail
+            // 
+            txtBoxEmail.BackColor = Color.Transparent;
+            txtBoxEmail.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxEmail.EdgeColor = Color.White;
+            txtBoxEmail.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxEmail.ForeColor = Color.DimGray;
+            txtBoxEmail.Location = new Point(194, 279);
+            txtBoxEmail.MaxLength = 32767;
+            txtBoxEmail.Multiline = false;
+            txtBoxEmail.Name = "txtBoxEmail";
+            txtBoxEmail.ReadOnly = false;
+            txtBoxEmail.Size = new Size(296, 28);
+            txtBoxEmail.TabIndex = 22;
+            txtBoxEmail.TextAlignment = HorizontalAlignment.Left;
+            txtBoxEmail.UseSystemPasswordChar = false;
+            // 
+            // labelDocNum
+            // 
+            labelDocNum.AutoSize = true;
+            labelDocNum.BackColor = Color.Transparent;
+            labelDocNum.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            labelDocNum.ForeColor = Color.FromArgb(76, 76, 77);
+            labelDocNum.Location = new Point(28, 364);
+            labelDocNum.Name = "labelDocNum";
+            labelDocNum.Size = new Size(160, 25);
+            labelDocNum.TabIndex = 25;
+            labelDocNum.Text = "N° de Documento:";
+            // 
+            // txtBoxDocNumber
+            // 
+            txtBoxDocNumber.BackColor = Color.Transparent;
+            txtBoxDocNumber.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxDocNumber.EdgeColor = Color.White;
+            txtBoxDocNumber.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxDocNumber.ForeColor = Color.DimGray;
+            txtBoxDocNumber.Location = new Point(194, 364);
+            txtBoxDocNumber.MaxLength = 32767;
+            txtBoxDocNumber.Multiline = false;
+            txtBoxDocNumber.Name = "txtBoxDocNumber";
+            txtBoxDocNumber.ReadOnly = false;
+            txtBoxDocNumber.Size = new Size(296, 28);
+            txtBoxDocNumber.TabIndex = 24;
+            txtBoxDocNumber.TextAlignment = HorizontalAlignment.Left;
+            txtBoxDocNumber.UseSystemPasswordChar = false;
+            // 
+            // labelDocType
+            // 
+            labelDocType.AutoSize = true;
+            labelDocType.BackColor = Color.Transparent;
+            labelDocType.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            labelDocType.ForeColor = Color.FromArgb(76, 76, 77);
+            labelDocType.Location = new Point(13, 323);
+            labelDocType.Name = "labelDocType";
+            labelDocType.Size = new Size(175, 25);
+            labelDocType.TabIndex = 26;
+            labelDocType.Text = "Tipo de Documento:";
+            // 
+            // comboBoxDocType
+            // 
+            comboBoxDocType.BackColor = Color.FromArgb(246, 246, 246);
+            comboBoxDocType.ColorA = Color.FromArgb(246, 132, 85);
+            comboBoxDocType.ColorB = Color.FromArgb(231, 108, 57);
+            comboBoxDocType.ColorC = Color.FromArgb(242, 241, 240);
+            comboBoxDocType.ColorD = Color.FromArgb(253, 252, 252);
+            comboBoxDocType.ColorE = Color.FromArgb(239, 237, 236);
+            comboBoxDocType.ColorF = Color.FromArgb(180, 180, 180);
+            comboBoxDocType.ColorG = Color.FromArgb(119, 119, 118);
+            comboBoxDocType.ColorH = Color.FromArgb(224, 222, 220);
+            comboBoxDocType.ColorI = Color.FromArgb(250, 249, 249);
+            comboBoxDocType.DrawMode = DrawMode.OwnerDrawFixed;
+            comboBoxDocType.DropDownHeight = 100;
+            comboBoxDocType.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxDocType.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxDocType.ForeColor = Color.FromArgb(76, 76, 97);
+            comboBoxDocType.FormattingEnabled = true;
+            comboBoxDocType.HoverSelectionColor = Color.Empty;
+            comboBoxDocType.IntegralHeight = false;
+            comboBoxDocType.ItemHeight = 20;
+            comboBoxDocType.Location = new Point(194, 324);
+            comboBoxDocType.Name = "comboBoxDocType";
+            comboBoxDocType.Size = new Size(296, 26);
+            comboBoxDocType.StartIndex = 0;
+            comboBoxDocType.TabIndex = 27;
+            // 
             // CreateClient
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(591, 370);
+            ClientSize = new Size(591, 484);
+            Controls.Add(comboBoxDocType);
+            Controls.Add(labelDocType);
+            Controls.Add(labelDocNum);
+            Controls.Add(txtBoxDocNumber);
+            Controls.Add(labelEmail);
+            Controls.Add(txtBoxEmail);
             Controls.Add(labelPhoneNumber);
             Controls.Add(txtBoxPhoneNumber);
             Controls.Add(labelLocation);
@@ -205,6 +314,7 @@
             Controls.Add(txtBoxFirstName);
             Name = "CreateClient";
             Text = "CreateClient";
+            Load += CreateClient_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -221,5 +331,11 @@
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxLocation;
         private ReaLTaiizor.Controls.DungeonLabel labelPhoneNumber;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxPhoneNumber;
+        private ReaLTaiizor.Controls.DungeonLabel labelEmail;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxEmail;
+        private ReaLTaiizor.Controls.DungeonLabel labelDocNum;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxDocNumber;
+        private ReaLTaiizor.Controls.DungeonLabel labelDocType;
+        private ReaLTaiizor.Controls.DungeonComboBox comboBoxDocType;
     }
 }
