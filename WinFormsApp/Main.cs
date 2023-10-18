@@ -272,6 +272,12 @@ namespace WinFormsApp
             if (invoices != null)
             {
                 dataGridViewInvoices.DataSource = new BindingList<InvoiceViewModel>(invoices);
+                // pending invoices...
+                pendingInvoices = GetPendingInvoices();
+                if (pendingInvoices != null)
+                {
+                    dataGridViewPendingInvoices.DataSource = new BindingList<InvoiceViewModel>(pendingInvoices);
+                }
             }
             billingTransactions = await ApiHelper.GetListAsync<BillingTransaction>("https://localhost:7215/api/billing-transactions");
 
@@ -279,12 +285,8 @@ namespace WinFormsApp
             {
                 dataGridViewBillingTransactions.DataSource = new BindingList<BillingTransaction>(billingTransactions);
             }
-            // pending invoices...
-            pendingInvoices = GetPendingInvoices();
-            if (pendingInvoices != null)
-            {
-                dataGridViewPendingInvoices.DataSource = new BindingList<InvoiceViewModel>(pendingInvoices);
-            }
+           
+            
             transportCompanies = await ApiHelper.GetListAsync<TransportCompany>("https://localhost:7215/api/transport-companies");
 
             if (transportCompanies != null)
@@ -339,7 +341,7 @@ namespace WinFormsApp
                 bool hasInvoice = (bool)dataGridViewOrders.Rows[e.RowIndex].Cells["HasInvoice"].Value;
                 if (!hasInvoice)
                 {
-                    int orderId = (int)dataGridViewOrders.Rows[e.RowIndex].Cells["Id"].Value;
+                    Guid orderId = (Guid)dataGridViewOrders.Rows[e.RowIndex].Cells["Id"].Value;
                     var form = new OrderReview(orderId);
                     form.ShowDialog();
                     await LoadData();
@@ -488,6 +490,13 @@ namespace WinFormsApp
             UpdateSellingPrice();
         }
         // -----------------------------------------------------------
+        private async void buttonCreateOfficeWorker_Click(object sender, EventArgs e)
+        {
+            var form = new CreateOfficeWorker();
+            form.ShowDialog();
+            await LoadData();
+        }
+
 
 
     }

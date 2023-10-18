@@ -7,6 +7,7 @@ namespace WinFormsApp
 {
     public partial class CreateBillingTransaction : Form
     {
+        private Dictionary<PaymentMethods, string> _paymentMethodNames;
         private BillingTransactionDto _billingTransactionDto;
         public CreateBillingTransaction(BillingTransactionDto billingTransactionDto)
         {
@@ -19,21 +20,33 @@ namespace WinFormsApp
 
         private void CreateBillingTransaction_Load(object sender, EventArgs e)
         {
+            _paymentMethodNames = new Dictionary<PaymentMethods, string>
+            {
+                { PaymentMethods.None, "Ninguno" },
+                { PaymentMethods.Cash, "Efectivo" },
+                { PaymentMethods.CreditCard, "Tarjeta de Crédito" },
+                { PaymentMethods.DebitCard, "Tarjeta de Débito" },
+                { PaymentMethods.BankTransfer, "Transferencia Bancaria" },
+                { PaymentMethods.Check, "Cheque" }
+            };
+            comboBoxPaymentMethod.DataSource = _paymentMethodNames.Values.ToList();
 
-            comboBoxPaymentMethod.DataSource = Enum.GetValues(typeof(PaymentMethods));
         }
 
-        private async void buttonCreateBillTransaction_Click(object sender, EventArgs e)
+    private async void buttonCreateBillTransaction_Click(object sender, EventArgs e)
         {
             double amount;
             int documentNumber;
-            string documentType = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxDocType, "Document Type");
+            string documentType = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxDocType, "Document Type")!;
 
             if ( documentType != null &&
                 FormInputValidator.TryConvertDungeonTextBoxToDouble(txtBoxPayedAmount, "Amount", out amount) &&
                 FormInputValidator.TryConvertDungeonTextBoxToInt(txtBoxDocNumber, "Document Number", out documentNumber))
             {
-                PaymentMethods selectedPaymentMethod = (PaymentMethods)comboBoxPaymentMethod.SelectedItem;
+                string selectedPaymentMethodName = comboBoxPaymentMethod.SelectedItem.ToString()!;
+
+                // Now, you can find the PaymentMethod enum based on the selected payment method name.
+                PaymentMethods selectedPaymentMethod = _paymentMethodNames.FirstOrDefault(x => x.Value == selectedPaymentMethodName).Key;
 
                 _billingTransactionDto.Amount = amount * -1;
                 _billingTransactionDto.DocumentNumber = documentNumber;

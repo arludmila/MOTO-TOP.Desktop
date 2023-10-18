@@ -10,10 +10,10 @@ namespace WinFormsApp
     public partial class OrderReview : Form
     {
         private double total = 0;
-        private readonly int _orderId;
+        private readonly Guid _orderId;
         private OrderViewModel _orderViewModel;
         private bool _allStockAvailable = true;
-        public OrderReview(int orderId)
+        public OrderReview(Guid orderId)
         {
 
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -28,7 +28,7 @@ namespace WinFormsApp
             StyleWinForm();
             LoadData();
         }
-        private async Task GetOrder(int id)
+        private async Task GetOrder(Guid id)
         {
             _orderViewModel = await ApiHelper.GetAsync<OrderViewModel>($"https://localhost:7215/api/orders/view-models/{id}");
         }
@@ -107,7 +107,7 @@ namespace WinFormsApp
         }
         private void SumTotal()
         {
-
+            total = 0;
             foreach (DataGridViewRow row in dataGridViewOrderDetails.Rows)
             {
                 int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
@@ -124,12 +124,14 @@ namespace WinFormsApp
             }
             else
             {
-                Order order = await ApiHelper.GetAsync<Order>($"https://localhost:7215/api/orders/{Convert.ToInt32(txtBoxOrderId.Text)}");
+                Guid.TryParse(txtBoxOrderId.Text, out Guid orderId);
+                Order order = await ApiHelper.GetAsync<Order>($"https://localhost:7215/api/orders/{orderId}");
+                
                 var invoice = new InvoiceDto()
                 {
                     Amount = total,
                     Date = DateTime.Now,
-                    OrderId = Convert.ToInt32(txtBoxOrderId.Text),
+                    OrderId = orderId,
                     ClientId = order.ClientId,
                 };
                 string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices", invoice);
@@ -162,6 +164,28 @@ namespace WinFormsApp
             {
                 MessageBox.Show("Pedido borrado!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
+            }
+        }
+
+        private void dataGridViewOrderDetails_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridViewOrderDetails.Columns["Quantity"].Index)
+            {
+                int newQuantity = Convert.ToInt32(dataGridViewOrderDetails.Rows[e.RowIndex].Cells["Quantity"].Value);
+                if (newQuantity <= 0)
+                {
+                    // Remove the row with a quantity of 0 or less
+                    dataGridViewOrderDetails.Rows.RemoveAt(e.RowIndex);
+                }
+                else
+                {
+                    // Update the underlying data source
+                    _orderViewModel.OrderProducts[e.RowIndex].Quantity = newQuantity;
+                }
+
+                // Recalculate total and check stock
+                SumTotal();
+                CheckStock();
             }
         }
     }

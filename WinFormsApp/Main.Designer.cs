@@ -58,6 +58,9 @@
             DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle31 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle32 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle33 = new DataGridViewCellStyle();
             hopeTabPage = new ReaLTaiizor.Controls.HopeTabPage();
             tabPageOrders = new TabPage();
             dataGridViewOrders = new ReaLTaiizor.Controls.PoisonDataGridView();
@@ -132,9 +135,11 @@
             labelSearchSellers = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxSearchSellers = new ReaLTaiizor.Controls.DungeonTextBox();
             tabPageUsersOffWorkers = new TabPage();
+            dataGridViewOfficeWorkers = new ReaLTaiizor.Controls.PoisonDataGridView();
+            buttonCreateOfficeWorker = new ReaLTaiizor.Controls.Button();
+            labelSearchOffWorkers = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxSearchOfficeWorkers = new ReaLTaiizor.Controls.DungeonTextBox();
             airSeparator3 = new ReaLTaiizor.Controls.AirSeparator();
-            foreverButton1 = new ReaLTaiizor.Controls.ForeverButton();
-            foreverButton2 = new ReaLTaiizor.Controls.ForeverButton();
             tabPageTransportCompanies = new TabPage();
             dataGridViewTransportCompanies = new ReaLTaiizor.Controls.PoisonDataGridView();
             labelSearchTransportCompanies = new ReaLTaiizor.Controls.DungeonLabel();
@@ -168,6 +173,7 @@
             tabPageUsersSellers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewSellers).BeginInit();
             tabPageUsersOffWorkers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewOfficeWorkers).BeginInit();
             tabPageTransportCompanies.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTransportCompanies).BeginInit();
             SuspendLayout();
@@ -1557,14 +1563,110 @@
             // tabPageUsersOffWorkers
             // 
             tabPageUsersOffWorkers.BackColor = Color.White;
+            tabPageUsersOffWorkers.Controls.Add(dataGridViewOfficeWorkers);
+            tabPageUsersOffWorkers.Controls.Add(buttonCreateOfficeWorker);
+            tabPageUsersOffWorkers.Controls.Add(labelSearchOffWorkers);
+            tabPageUsersOffWorkers.Controls.Add(txtBoxSearchOfficeWorkers);
             tabPageUsersOffWorkers.Controls.Add(airSeparator3);
-            tabPageUsersOffWorkers.Controls.Add(foreverButton1);
-            tabPageUsersOffWorkers.Controls.Add(foreverButton2);
             tabPageUsersOffWorkers.Location = new Point(129, 4);
             tabPageUsersOffWorkers.Name = "tabPageUsersOffWorkers";
             tabPageUsersOffWorkers.Size = new Size(1080, 527);
             tabPageUsersOffWorkers.TabIndex = 2;
             tabPageUsersOffWorkers.Text = "Central";
+            // 
+            // dataGridViewOfficeWorkers
+            // 
+            dataGridViewOfficeWorkers.AllowUserToResizeRows = false;
+            dataGridViewOfficeWorkers.BackgroundColor = Color.FromArgb(255, 255, 255);
+            dataGridViewOfficeWorkers.BorderStyle = BorderStyle.None;
+            dataGridViewOfficeWorkers.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewOfficeWorkers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle28.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle28.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle28.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle28.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle28.WrapMode = DataGridViewTriState.True;
+            dataGridViewOfficeWorkers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewOfficeWorkers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle29.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle29.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle29.ForeColor = Color.FromArgb(136, 136, 136);
+            dataGridViewCellStyle29.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle29.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle29.WrapMode = DataGridViewTriState.False;
+            dataGridViewOfficeWorkers.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewOfficeWorkers.EnableHeadersVisualStyles = false;
+            dataGridViewOfficeWorkers.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewOfficeWorkers.GridColor = Color.FromArgb(255, 255, 255);
+            dataGridViewOfficeWorkers.Location = new Point(9, 50);
+            dataGridViewOfficeWorkers.Name = "dataGridViewOfficeWorkers";
+            dataGridViewOfficeWorkers.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle30.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle30.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle30.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle30.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle30.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle30.WrapMode = DataGridViewTriState.True;
+            dataGridViewOfficeWorkers.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewOfficeWorkers.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewOfficeWorkers.RowTemplate.Height = 25;
+            dataGridViewOfficeWorkers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewOfficeWorkers.Size = new Size(1066, 425);
+            dataGridViewOfficeWorkers.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
+            dataGridViewOfficeWorkers.TabIndex = 48;
+            // 
+            // buttonCreateOfficeWorker
+            // 
+            buttonCreateOfficeWorker.BackColor = Color.Transparent;
+            buttonCreateOfficeWorker.BorderColor = Color.FromArgb(32, 34, 37);
+            buttonCreateOfficeWorker.EnteredBorderColor = Color.FromArgb(165, 37, 37);
+            buttonCreateOfficeWorker.EnteredColor = Color.FromArgb(32, 34, 37);
+            buttonCreateOfficeWorker.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCreateOfficeWorker.Image = null;
+            buttonCreateOfficeWorker.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonCreateOfficeWorker.InactiveColor = Color.FromArgb(32, 34, 37);
+            buttonCreateOfficeWorker.Location = new Point(6, 481);
+            buttonCreateOfficeWorker.Name = "buttonCreateOfficeWorker";
+            buttonCreateOfficeWorker.PressedBorderColor = Color.FromArgb(165, 37, 37);
+            buttonCreateOfficeWorker.PressedColor = Color.FromArgb(165, 37, 37);
+            buttonCreateOfficeWorker.Size = new Size(151, 35);
+            buttonCreateOfficeWorker.TabIndex = 49;
+            buttonCreateOfficeWorker.Text = "Agregar Vendedor";
+            buttonCreateOfficeWorker.TextAlignment = StringAlignment.Center;
+            buttonCreateOfficeWorker.Click += buttonCreateOfficeWorker_Click;
+            // 
+            // labelSearchOffWorkers
+            // 
+            labelSearchOffWorkers.AutoSize = true;
+            labelSearchOffWorkers.BackColor = Color.Transparent;
+            labelSearchOffWorkers.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSearchOffWorkers.ForeColor = Color.FromArgb(76, 76, 77);
+            labelSearchOffWorkers.Location = new Point(190, 10);
+            labelSearchOffWorkers.Name = "labelSearchOffWorkers";
+            labelSearchOffWorkers.Size = new Size(72, 25);
+            labelSearchOffWorkers.TabIndex = 47;
+            labelSearchOffWorkers.Text = "Buscar:";
+            // 
+            // txtBoxSearchOfficeWorkers
+            // 
+            txtBoxSearchOfficeWorkers.BackColor = Color.Transparent;
+            txtBoxSearchOfficeWorkers.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxSearchOfficeWorkers.EdgeColor = Color.White;
+            txtBoxSearchOfficeWorkers.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxSearchOfficeWorkers.ForeColor = Color.DimGray;
+            txtBoxSearchOfficeWorkers.Location = new Point(268, 10);
+            txtBoxSearchOfficeWorkers.MaxLength = 32767;
+            txtBoxSearchOfficeWorkers.Multiline = false;
+            txtBoxSearchOfficeWorkers.Name = "txtBoxSearchOfficeWorkers";
+            txtBoxSearchOfficeWorkers.ReadOnly = false;
+            txtBoxSearchOfficeWorkers.Size = new Size(589, 28);
+            txtBoxSearchOfficeWorkers.TabIndex = 46;
+            txtBoxSearchOfficeWorkers.TextAlignment = HorizontalAlignment.Left;
+            txtBoxSearchOfficeWorkers.UseSystemPasswordChar = false;
             // 
             // airSeparator3
             // 
@@ -1579,32 +1681,6 @@
             airSeparator3.TabIndex = 45;
             airSeparator3.Text = "airSeparator3";
             airSeparator3.Transparent = false;
-            // 
-            // foreverButton1
-            // 
-            foreverButton1.BackColor = Color.Transparent;
-            foreverButton1.BaseColor = Color.DimGray;
-            foreverButton1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            foreverButton1.Location = new Point(676, 96);
-            foreverButton1.Name = "foreverButton1";
-            foreverButton1.Rounded = true;
-            foreverButton1.Size = new Size(212, 30);
-            foreverButton1.TabIndex = 42;
-            foreverButton1.Text = "Seleccionar Proveedor";
-            foreverButton1.TextColor = Color.FromArgb(243, 243, 243);
-            // 
-            // foreverButton2
-            // 
-            foreverButton2.BackColor = Color.Transparent;
-            foreverButton2.BaseColor = Color.DimGray;
-            foreverButton2.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            foreverButton2.Location = new Point(676, 60);
-            foreverButton2.Name = "foreverButton2";
-            foreverButton2.Rounded = true;
-            foreverButton2.Size = new Size(212, 30);
-            foreverButton2.TabIndex = 41;
-            foreverButton2.Text = "Seleccionar Producto";
-            foreverButton2.TextColor = Color.FromArgb(243, 243, 243);
             // 
             // tabPageTransportCompanies
             // 
@@ -1626,37 +1702,37 @@
             dataGridViewTransportCompanies.BorderStyle = BorderStyle.None;
             dataGridViewTransportCompanies.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewTransportCompanies.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = Color.FromArgb(243, 119, 53);
-            dataGridViewCellStyle28.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle28.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle28.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle28.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle28.WrapMode = DataGridViewTriState.True;
-            dataGridViewTransportCompanies.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle31.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle31.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle31.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle31.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle31.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle31.WrapMode = DataGridViewTriState.True;
+            dataGridViewTransportCompanies.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             dataGridViewTransportCompanies.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle29.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle29.BackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle29.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle29.ForeColor = Color.FromArgb(136, 136, 136);
-            dataGridViewCellStyle29.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle29.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle29.WrapMode = DataGridViewTriState.False;
-            dataGridViewTransportCompanies.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle32.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle32.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle32.ForeColor = Color.FromArgb(136, 136, 136);
+            dataGridViewCellStyle32.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle32.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle32.WrapMode = DataGridViewTriState.False;
+            dataGridViewTransportCompanies.DefaultCellStyle = dataGridViewCellStyle32;
             dataGridViewTransportCompanies.EnableHeadersVisualStyles = false;
             dataGridViewTransportCompanies.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewTransportCompanies.GridColor = Color.FromArgb(255, 255, 255);
             dataGridViewTransportCompanies.Location = new Point(113, 46);
             dataGridViewTransportCompanies.Name = "dataGridViewTransportCompanies";
             dataGridViewTransportCompanies.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle30.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle30.BackColor = Color.FromArgb(243, 119, 53);
-            dataGridViewCellStyle30.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle30.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle30.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle30.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle30.WrapMode = DataGridViewTriState.True;
-            dataGridViewTransportCompanies.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle33.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle33.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle33.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle33.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle33.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle33.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle33.WrapMode = DataGridViewTriState.True;
+            dataGridViewTransportCompanies.RowHeadersDefaultCellStyle = dataGridViewCellStyle33;
             dataGridViewTransportCompanies.RowHeadersVisible = false;
             dataGridViewTransportCompanies.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewTransportCompanies.RowTemplate.Height = 25;
@@ -1755,6 +1831,8 @@
             tabPageUsersSellers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewSellers).EndInit();
             tabPageUsersOffWorkers.ResumeLayout(false);
+            tabPageUsersOffWorkers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewOfficeWorkers).EndInit();
             tabPageTransportCompanies.ResumeLayout(false);
             tabPageTransportCompanies.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTransportCompanies).EndInit();
@@ -1833,8 +1911,6 @@
         private TabPage tabPageUsersSellers;
         private TabPage tabPageUsersOffWorkers;
         private ReaLTaiizor.Controls.AirSeparator airSeparator3;
-        private ReaLTaiizor.Controls.ForeverButton foreverButton1;
-        private ReaLTaiizor.Controls.ForeverButton foreverButton2;
         private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewTransportCompanies;
         private ReaLTaiizor.Controls.DungeonLabel labelSearchTransportCompanies;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxSearchTransportCompanies;
@@ -1845,5 +1921,9 @@
         private ReaLTaiizor.Controls.DungeonLabel labelSuppProdProfitMargin;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxSupplierProductPurchasePrice;
         private ReaLTaiizor.Controls.DungeonLabel labelSuppProdPrice;
+        private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewOfficeWorkers;
+        private ReaLTaiizor.Controls.Button buttonCreateOfficeWorker;
+        private ReaLTaiizor.Controls.DungeonLabel labelSearchOffWorkers;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxSearchOfficeWorkers;
     }
 }
