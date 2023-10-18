@@ -89,6 +89,7 @@ namespace WinFormsApp
         }
         private void CheckStock()
         {
+            _allStockAvailable = true;
             foreach (DataGridViewRow row in dataGridViewOrderDetails.Rows)
             {
                 int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
@@ -126,7 +127,7 @@ namespace WinFormsApp
             {
                 Guid.TryParse(txtBoxOrderId.Text, out Guid orderId);
                 Order order = await ApiHelper.GetAsync<Order>($"https://localhost:7215/api/orders/{orderId}");
-                
+
                 var invoice = new InvoiceDto()
                 {
                     Amount = total,
@@ -187,6 +188,11 @@ namespace WinFormsApp
                 SumTotal();
                 CheckStock();
             }
+        }
+
+        private void buttonModifyOrder_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

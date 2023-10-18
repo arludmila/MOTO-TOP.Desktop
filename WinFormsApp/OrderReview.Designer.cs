@@ -264,6 +264,7 @@
             buttonModifyOrder.TabIndex = 31;
             buttonModifyOrder.Text = "Modificar Pedido";
             buttonModifyOrder.TextColor = Color.FromArgb(243, 243, 243);
+            buttonModifyOrder.Click += buttonModifyOrder_Click;
             // 
             // labelTotal
             // 

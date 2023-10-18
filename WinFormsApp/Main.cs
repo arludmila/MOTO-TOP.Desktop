@@ -21,6 +21,7 @@ namespace WinFormsApp
         private List<InvoiceViewModel> pendingInvoices;
         private List<BillingTransaction> billingTransactions;
         private List<TransportCompany> transportCompanies;
+        private List<OfficeWorkerViewModel> officeWorkers;
         private Timer refreshTimer;
         private double _purchasePrice;
         private double _profitMarginPercentage;
@@ -212,6 +213,18 @@ namespace WinFormsApp
                 { "PhoneNumber", "N° de Telefono" },
             };
             SetupDataGridView(dataGridViewTransportCompanies, transportCompaniesColumns);
+            // OFFICE WORKERS
+            Dictionary<string, string> offWorkersColumns = new Dictionary<string, string>
+            {
+                { "Id", "Id" },
+                { "FirstName", "Nombre" },
+                { "LastName", "Apellido" },
+                { "Email", "Email" },
+                { "DocumentType", "Tipo de Documento" },
+                { "DocumentNumber", "N° de Documento" },
+            };
+
+            SetupDataGridView(dataGridViewOfficeWorkers, offWorkersColumns);
         }
         public static void SetupDataGridView(DataGridView dataGridView, Dictionary<string, string> columnDictionary)
         {
@@ -292,6 +305,13 @@ namespace WinFormsApp
             if (transportCompanies != null)
             {
                 dataGridViewTransportCompanies.DataSource = new BindingList<TransportCompany>(transportCompanies);
+            }
+
+            officeWorkers = await ApiHelper.GetListAsync<OfficeWorkerViewModel>("https://localhost:7215/api/office-workers/view-models");
+
+            if (officeWorkers != null)
+            {
+                dataGridViewOfficeWorkers.DataSource = new BindingList<OfficeWorkerViewModel>(officeWorkers);
             }
         }
         private List<InvoiceViewModel> GetPendingInvoices()
