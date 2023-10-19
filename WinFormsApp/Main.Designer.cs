@@ -198,10 +198,13 @@
             hopeTabPage.ItemSize = new Size(120, 40);
             hopeTabPage.Location = new Point(0, 0);
             hopeTabPage.Name = "hopeTabPage";
+            hopeTabPage.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             hopeTabPage.SelectedIndex = 0;
             hopeTabPage.Size = new Size(1213, 575);
             hopeTabPage.SizeMode = TabSizeMode.Fixed;
+            hopeTabPage.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             hopeTabPage.TabIndex = 0;
+            hopeTabPage.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             hopeTabPage.ThemeColorA = Color.FromArgb(64, 158, 255);
             hopeTabPage.ThemeColorB = Color.FromArgb(150, 64, 158, 255);
             hopeTabPage.TitleTextState = ReaLTaiizor.Controls.HopeTabPage.TextState.Normal;

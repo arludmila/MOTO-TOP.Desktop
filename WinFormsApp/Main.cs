@@ -298,8 +298,8 @@ namespace WinFormsApp
             {
                 dataGridViewBillingTransactions.DataSource = new BindingList<BillingTransaction>(billingTransactions);
             }
-           
-            
+
+
             transportCompanies = await ApiHelper.GetListAsync<TransportCompany>("https://localhost:7215/api/transport-companies");
 
             if (transportCompanies != null)

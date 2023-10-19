@@ -37,11 +37,7 @@ namespace WinFormsApp
         }
         private async Task LoadData()
         {
-            _clients = await ApiHelper.GetListAsync<Client>("https://localhost:7215/api/clients");
-            if (_clients != null)
-            {
-                dataGridViewClients.DataSource = new BindingList<Client>(_clients);
-            }
+
             Dictionary<string, string> clientsColumns = new Dictionary<string, string>
             {
                 { "Id", "Id" },
@@ -52,6 +48,11 @@ namespace WinFormsApp
             };
 
             Main.SetupDataGridView(dataGridViewClients, clientsColumns);
+            _clients = await ApiHelper.GetListAsync<Client>("https://localhost:7215/api/clients");
+            if (_clients != null)
+            {
+                dataGridViewClients.DataSource = new BindingList<Client>(_clients);
+            }
             // boton
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn
             {
