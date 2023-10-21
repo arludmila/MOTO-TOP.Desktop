@@ -59,10 +59,7 @@ namespace WinFormsApp
                     Close();
                 }
             }
-            else
-            {
-                MessageBoxHelper.ShowErrorMessageBox("Datos no validos. Por favor complete todos los campos requeridos.");
-            }
+            
         }
 
         private void CreateOfficeWorker_Load(object sender, EventArgs e)

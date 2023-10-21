@@ -143,7 +143,7 @@
             txtBoxTransportCompany.Multiline = false;
             txtBoxTransportCompany.Name = "txtBoxTransportCompany";
             txtBoxTransportCompany.ReadOnly = false;
-            txtBoxTransportCompany.Size = new Size(373, 28);
+            txtBoxTransportCompany.Size = new Size(327, 28);
             txtBoxTransportCompany.TabIndex = 19;
             txtBoxTransportCompany.TextAlignment = HorizontalAlignment.Left;
             txtBoxTransportCompany.UseSystemPasswordChar = false;
@@ -154,7 +154,7 @@
             labelOrderId.BackColor = Color.Transparent;
             labelOrderId.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelOrderId.ForeColor = Color.FromArgb(76, 76, 77);
-            labelOrderId.Location = new Point(494, 114);
+            labelOrderId.Location = new Point(448, 114);
             labelOrderId.Name = "labelOrderId";
             labelOrderId.Size = new Size(32, 25);
             labelOrderId.TabIndex = 25;
@@ -167,12 +167,12 @@
             txtBoxOrderId.EdgeColor = Color.White;
             txtBoxOrderId.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxOrderId.ForeColor = Color.DimGray;
-            txtBoxOrderId.Location = new Point(532, 114);
+            txtBoxOrderId.Location = new Point(486, 114);
             txtBoxOrderId.MaxLength = 32767;
             txtBoxOrderId.Multiline = false;
             txtBoxOrderId.Name = "txtBoxOrderId";
             txtBoxOrderId.ReadOnly = false;
-            txtBoxOrderId.Size = new Size(250, 28);
+            txtBoxOrderId.Size = new Size(296, 28);
             txtBoxOrderId.TabIndex = 24;
             txtBoxOrderId.TextAlignment = HorizontalAlignment.Left;
             txtBoxOrderId.UseSystemPasswordChar = false;

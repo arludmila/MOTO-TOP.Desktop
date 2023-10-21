@@ -72,10 +72,7 @@ namespace WinFormsApp
                     FormInputClearer.ClearDungeonTextBoxes(txtBoxCategoryName);
                 }
             }
-            else
-            {
-                MessageBoxHelper.ShowErrorMessageBox("Ingrese un nombre valido.");
-            }
+            
 
         }
 
@@ -192,7 +189,7 @@ namespace WinFormsApp
                 { "ClientId", "N° de Cliente" },
                 { "Date", "Fecha" },
                 { "TotalAmount", "Total" },
-                { "DebtAmount", "Deuda Total" },
+                { "DebtAmount", "Deuda Pendiente" },
             };
             SetupDataGridView(dataGridViewPendingInvoices, invoicesColumns);
             // TODO: arreglar el auto size aca, xq si agrego columnas despues del SetupDataGridView quedan muy chicas!!!

@@ -60,10 +60,7 @@ namespace WinFormsApp
                 }
                 Close();
             }
-            else
-            {
-                MessageBoxHelper.ShowErrorMessageBox("Complete todos los campos requeridos!");
-            }
+           
 
         }
 

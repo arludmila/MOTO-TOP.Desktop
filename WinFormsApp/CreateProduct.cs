@@ -66,10 +66,7 @@ namespace WinFormsApp
                 }
                 Close();
             }
-            else
-            {
-                MessageBoxHelper.ShowErrorMessageBox("Datos no validos. Por favor complete todos los campos requeridos.");
-            }
+            
         }
 
         private async void CreateProduct_Load(object sender, EventArgs e)
