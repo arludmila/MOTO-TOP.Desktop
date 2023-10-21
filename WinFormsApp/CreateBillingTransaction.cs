@@ -22,12 +22,12 @@ namespace WinFormsApp
         {
             _paymentMethodNames = new Dictionary<PaymentMethods, string>
             {
-                { PaymentMethods.None, "Ninguno" },
-                { PaymentMethods.Cash, "Efectivo" },
-                { PaymentMethods.CreditCard, "Tarjeta de Crédito" },
-                { PaymentMethods.DebitCard, "Tarjeta de Débito" },
-                { PaymentMethods.BankTransfer, "Transferencia Bancaria" },
-                { PaymentMethods.Check, "Cheque" }
+                { PaymentMethods.Ninguno, "Ninguno" },
+                { PaymentMethods.Efectivo, "Efectivo" },
+                { PaymentMethods.TarjetaDeCredito, "Tarjeta de Crédito" },
+                { PaymentMethods.TarjetaDeDebito, "Tarjeta de Débito" },
+                { PaymentMethods.TransferenciaBancaria, "Transferencia Bancaria" },
+                { PaymentMethods.Cheque, "Cheque" }
             };
             comboBoxPaymentMethod.DataSource = _paymentMethodNames.Values.ToList();
 

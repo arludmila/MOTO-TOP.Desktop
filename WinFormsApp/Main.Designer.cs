@@ -1607,9 +1607,9 @@
             buttonCreateOfficeWorker.Name = "buttonCreateOfficeWorker";
             buttonCreateOfficeWorker.PressedBorderColor = Color.FromArgb(165, 37, 37);
             buttonCreateOfficeWorker.PressedColor = Color.FromArgb(165, 37, 37);
-            buttonCreateOfficeWorker.Size = new Size(151, 35);
+            buttonCreateOfficeWorker.Size = new Size(225, 35);
             buttonCreateOfficeWorker.TabIndex = 49;
-            buttonCreateOfficeWorker.Text = "Agregar Vendedor";
+            buttonCreateOfficeWorker.Text = "Agregar Empleado de Central";
             buttonCreateOfficeWorker.TextAlignment = StringAlignment.Center;
             buttonCreateOfficeWorker.Click += buttonCreateOfficeWorker_Click;
             // 
