@@ -516,8 +516,5 @@ namespace WinFormsApp
             form.ShowDialog();
             await LoadData();
         }
-
-
-
     }
 }
