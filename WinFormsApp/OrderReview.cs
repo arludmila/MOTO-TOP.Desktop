@@ -2,6 +2,7 @@
 using Contracts.Utils;
 using Contracts.ViewModels;
 using Entities.Core;
+using Entities.Relationships;
 using System.ComponentModel;
 using WinFormsApp.Utils;
 
@@ -168,8 +169,9 @@ namespace WinFormsApp
             }
         }
 
-        private void dataGridViewOrderDetails_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private async void dataGridViewOrderDetails_CellValueChangedAsync(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridViewOrderDetails.Columns["Quantity"].Index)
             {
                 int newQuantity = Convert.ToInt32(dataGridViewOrderDetails.Rows[e.RowIndex].Cells["Quantity"].Value);
@@ -183,7 +185,30 @@ namespace WinFormsApp
                     // Update the underlying data source
                     _orderViewModel.OrderProducts[e.RowIndex].Quantity = newQuantity;
                 }
+                var row = dataGridViewOrderDetails.Rows[e.RowIndex];
+                OrderProductViewModel orderProductVM = (OrderProductViewModel)row.DataBoundItem;
 
+                OrderProduct orderProduct = new OrderProduct
+                {
+                    ProductId = orderProductVM.ProductId,
+                    Id = orderProductVM.Id,
+                    Quantity = orderProductVM.Quantity,
+                    Price = orderProductVM.Price,
+                    OrderId = orderProductVM.OrderId,
+                    InvoiceId = orderProductVM.InvoiceId,
+
+                };
+                
+                var response = await ApiHelper.UpdateAsync($"https://localhost:7215/api/order-products/{orderProduct.Id}", orderProduct);
+                if (response.Contains("error") || response.Contains("failed"))
+                {
+                    MessageBox.Show("Error al Actualizar datos del pedido", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Pedido Actualizado!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
                 // Recalculate total and check stock
                 SumTotal();
                 CheckStock();

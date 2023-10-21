@@ -221,7 +221,7 @@
             dataGridViewOrderDetails.Size = new Size(778, 244);
             dataGridViewOrderDetails.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Silver;
             dataGridViewOrderDetails.TabIndex = 26;
-            dataGridViewOrderDetails.CellValueChanged += dataGridViewOrderDetails_CellValueChanged;
+            dataGridViewOrderDetails.CellValueChanged += dataGridViewOrderDetails_CellValueChangedAsync;
             dataGridViewOrderDetails.SelectionChanged += dataGridViewOrderDetails_SelectionChanged;
             // 
             // buttonCancelOrder
