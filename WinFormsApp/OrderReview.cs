@@ -120,6 +120,11 @@ namespace WinFormsApp
         }
         private async void buttonCreateOrderInvoice_Click(object sender, EventArgs e)
         {
+            if (dataGridViewOrderDetails.RowCount == 0)
+            {
+                MessageBoxHelper.ShowErrorMessageBox("No hay detalles en este pedido!");
+                return;
+            }
             if (!_allStockAvailable)
             {
                 MessageBoxHelper.ShowErrorMessageBox("No hay suficiente stock para facturar el pedido.");
@@ -174,7 +179,10 @@ namespace WinFormsApp
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridViewOrderDetails.Columns["Quantity"].Index)
             {
+                
                 int newQuantity = Convert.ToInt32(dataGridViewOrderDetails.Rows[e.RowIndex].Cells["Quantity"].Value);
+                var row = dataGridViewOrderDetails.Rows[e.RowIndex];
+                OrderProductViewModel orderProductVM = (OrderProductViewModel)row.DataBoundItem;
                 if (newQuantity <= 0)
                 {
                     // Remove the row with a quantity of 0 or less
@@ -185,29 +193,35 @@ namespace WinFormsApp
                     // Update the underlying data source
                     _orderViewModel.OrderProducts[e.RowIndex].Quantity = newQuantity;
                 }
-                var row = dataGridViewOrderDetails.Rows[e.RowIndex];
-                OrderProductViewModel orderProductVM = (OrderProductViewModel)row.DataBoundItem;
-
-                OrderProduct orderProduct = new OrderProduct
+                if (dataGridViewOrderDetails.RowCount != 0)
                 {
-                    ProductId = orderProductVM.ProductId,
-                    Id = orderProductVM.Id,
-                    Quantity = orderProductVM.Quantity,
-                    Price = orderProductVM.Price,
-                    OrderId = orderProductVM.OrderId,
-                    InvoiceId = orderProductVM.InvoiceId,
+                    
 
-                };
-                
-                var response = await ApiHelper.UpdateAsync($"https://localhost:7215/api/order-products/{orderProduct.Id}", orderProduct);
-                if (response.Contains("error") || response.Contains("failed"))
-                {
-                    MessageBox.Show("Error al Actualizar datos del pedido", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    OrderProduct orderProduct = new OrderProduct
+                    {
+
+                        ProductId = orderProductVM.ProductId,
+                        Id = orderProductVM.Id,
+                        Quantity = orderProductVM.Quantity,
+                        Price = orderProductVM.Price,
+                        OrderId = orderProductVM.OrderId,
+                        InvoiceId = orderProductVM.InvoiceId,
+
+                    };
+
+                    var response = await ApiHelper.UpdateAsync($"https://localhost:7215/api/order-products/{orderProduct.Id}", orderProduct);
+                    if (response.Contains("error") || response.Contains("failed"))
+                    {
+                        MessageBox.Show("Error al actualizar datos del pedido", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Pedido Actualizado!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    var response = await ApiHelper.DeleteAsync($"https://localhost:7215/api/order-products/{orderProductVM.Id}");
+                    if (response.Contains("error") || response.Contains("failed"))
+                    {
+                        MessageBox.Show("Error al actualizar datos del pedido", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 // Recalculate total and check stock
                 SumTotal();

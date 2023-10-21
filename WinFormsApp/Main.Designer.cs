@@ -222,6 +222,7 @@
             // dataGridViewOrders
             // 
             dataGridViewOrders.AllowUserToResizeRows = false;
+            dataGridViewOrders.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewOrders.BackgroundColor = Color.FromArgb(255, 255, 255);
             dataGridViewOrders.BorderStyle = BorderStyle.None;
             dataGridViewOrders.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -749,11 +750,11 @@
             labelSuppProdSellingPrice.BackColor = Color.Transparent;
             labelSuppProdSellingPrice.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelSuppProdSellingPrice.ForeColor = Color.FromArgb(76, 76, 77);
-            labelSuppProdSellingPrice.Location = new Point(164, 251);
+            labelSuppProdSellingPrice.Location = new Point(184, 251);
             labelSuppProdSellingPrice.Name = "labelSuppProdSellingPrice";
-            labelSuppProdSellingPrice.Size = new Size(183, 25);
+            labelSuppProdSellingPrice.Size = new Size(163, 25);
             labelSuppProdSellingPrice.TabIndex = 49;
-            labelSuppProdSellingPrice.Text = "Precio de Compra ($):";
+            labelSuppProdSellingPrice.Text = "Precio de Venta ($):";
             // 
             // txtBoxSupplierProductProfitMargin
             // 

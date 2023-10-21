@@ -53,7 +53,7 @@
             txtBoxName.EdgeColor = Color.White;
             txtBoxName.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxName.ForeColor = Color.DimGray;
-            txtBoxName.Location = new Point(223, 105);
+            txtBoxName.Location = new Point(240, 104);
             txtBoxName.MaxLength = 32767;
             txtBoxName.Multiline = false;
             txtBoxName.Name = "txtBoxName";
@@ -71,7 +71,7 @@
             txtBoxDescription.EdgeColor = Color.White;
             txtBoxDescription.Font = new Font("Tahoma", 10F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxDescription.ForeColor = Color.FromArgb(76, 76, 76);
-            txtBoxDescription.Location = new Point(223, 144);
+            txtBoxDescription.Location = new Point(240, 143);
             txtBoxDescription.Name = "txtBoxDescription";
             txtBoxDescription.ReadOnly = false;
             txtBoxDescription.Size = new Size(296, 60);
@@ -85,7 +85,7 @@
             labelName.BackColor = Color.Transparent;
             labelName.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelName.ForeColor = Color.FromArgb(76, 76, 77);
-            labelName.Location = new Point(135, 105);
+            labelName.Location = new Point(152, 104);
             labelName.Name = "labelName";
             labelName.Size = new Size(82, 25);
             labelName.TabIndex = 2;
@@ -109,7 +109,7 @@
             labelDescription.BackColor = Color.Transparent;
             labelDescription.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelDescription.ForeColor = Color.FromArgb(76, 76, 77);
-            labelDescription.Location = new Point(109, 144);
+            labelDescription.Location = new Point(126, 143);
             labelDescription.Name = "labelDescription";
             labelDescription.Size = new Size(108, 25);
             labelDescription.TabIndex = 4;
@@ -121,7 +121,7 @@
             labelQuantity.BackColor = Color.Transparent;
             labelQuantity.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelQuantity.ForeColor = Color.FromArgb(76, 76, 77);
-            labelQuantity.Location = new Point(130, 346);
+            labelQuantity.Location = new Point(147, 345);
             labelQuantity.Name = "labelQuantity";
             labelQuantity.Size = new Size(87, 25);
             labelQuantity.TabIndex = 5;
@@ -133,11 +133,11 @@
             labelPrice.BackColor = Color.Transparent;
             labelPrice.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelPrice.ForeColor = Color.FromArgb(76, 76, 77);
-            labelPrice.Location = new Point(59, 215);
+            labelPrice.Location = new Point(51, 214);
             labelPrice.Name = "labelPrice";
-            labelPrice.Size = new Size(158, 25);
+            labelPrice.Size = new Size(183, 25);
             labelPrice.TabIndex = 6;
-            labelPrice.Text = "Precio de Compra:";
+            labelPrice.Text = "Precio de Compra ($):";
             // 
             // txtBoxPurchasePrice
             // 
@@ -146,7 +146,7 @@
             txtBoxPurchasePrice.EdgeColor = Color.White;
             txtBoxPurchasePrice.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxPurchasePrice.ForeColor = Color.DimGray;
-            txtBoxPurchasePrice.Location = new Point(223, 215);
+            txtBoxPurchasePrice.Location = new Point(240, 214);
             txtBoxPurchasePrice.MaxLength = 32767;
             txtBoxPurchasePrice.Multiline = false;
             txtBoxPurchasePrice.Name = "txtBoxPurchasePrice";
@@ -164,7 +164,7 @@
             txtBoxQuantity.EdgeColor = Color.White;
             txtBoxQuantity.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxQuantity.ForeColor = Color.DimGray;
-            txtBoxQuantity.Location = new Point(223, 346);
+            txtBoxQuantity.Location = new Point(240, 345);
             txtBoxQuantity.MaxLength = 32767;
             txtBoxQuantity.Multiline = false;
             txtBoxQuantity.Name = "txtBoxQuantity";
@@ -195,7 +195,7 @@
             comboBoxCategories.HoverSelectionColor = Color.Empty;
             comboBoxCategories.IntegralHeight = false;
             comboBoxCategories.ItemHeight = 20;
-            comboBoxCategories.Location = new Point(223, 71);
+            comboBoxCategories.Location = new Point(240, 70);
             comboBoxCategories.Name = "comboBoxCategories";
             comboBoxCategories.Size = new Size(296, 26);
             comboBoxCategories.StartIndex = 0;
@@ -207,7 +207,7 @@
             labelCategory.BackColor = Color.Transparent;
             labelCategory.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelCategory.ForeColor = Color.FromArgb(76, 76, 77);
-            labelCategory.Location = new Point(152, 72);
+            labelCategory.Location = new Point(169, 71);
             labelCategory.Name = "labelCategory";
             labelCategory.Size = new Size(65, 25);
             labelCategory.TabIndex = 10;
@@ -223,7 +223,7 @@
             buttonCreateProduct.Image = null;
             buttonCreateProduct.ImageAlign = ContentAlignment.MiddleLeft;
             buttonCreateProduct.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonCreateProduct.Location = new Point(237, 398);
+            buttonCreateProduct.Location = new Point(254, 397);
             buttonCreateProduct.Name = "buttonCreateProduct";
             buttonCreateProduct.PressedBorderColor = Color.FromArgb(165, 37, 37);
             buttonCreateProduct.PressedColor = Color.FromArgb(165, 37, 37);
@@ -240,7 +240,7 @@
             txtBoxProfitMargin.EdgeColor = Color.White;
             txtBoxProfitMargin.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxProfitMargin.ForeColor = Color.DimGray;
-            txtBoxProfitMargin.Location = new Point(223, 259);
+            txtBoxProfitMargin.Location = new Point(240, 258);
             txtBoxProfitMargin.MaxLength = 32767;
             txtBoxProfitMargin.Multiline = false;
             txtBoxProfitMargin.Name = "txtBoxProfitMargin";
@@ -257,11 +257,11 @@
             labelProfitMargin.BackColor = Color.Transparent;
             labelProfitMargin.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelProfitMargin.ForeColor = Color.FromArgb(76, 76, 77);
-            labelProfitMargin.Location = new Point(19, 259);
+            labelProfitMargin.Location = new Point(6, 258);
             labelProfitMargin.Name = "labelProfitMargin";
-            labelProfitMargin.Size = new Size(198, 25);
+            labelProfitMargin.Size = new Size(228, 25);
             labelProfitMargin.TabIndex = 12;
-            labelProfitMargin.Text = "Porcentaje de Ganancia:";
+            labelProfitMargin.Text = "Porcentaje de Ganancia (%):";
             // 
             // txtBoxSellingPrice
             // 
@@ -270,7 +270,7 @@
             txtBoxSellingPrice.EdgeColor = Color.White;
             txtBoxSellingPrice.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxSellingPrice.ForeColor = Color.DimGray;
-            txtBoxSellingPrice.Location = new Point(223, 304);
+            txtBoxSellingPrice.Location = new Point(240, 303);
             txtBoxSellingPrice.MaxLength = 32767;
             txtBoxSellingPrice.Multiline = false;
             txtBoxSellingPrice.Name = "txtBoxSellingPrice";
@@ -286,11 +286,11 @@
             labelSellingPrice.BackColor = Color.Transparent;
             labelSellingPrice.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             labelSellingPrice.ForeColor = Color.FromArgb(76, 76, 77);
-            labelSellingPrice.Location = new Point(59, 304);
+            labelSellingPrice.Location = new Point(71, 303);
             labelSellingPrice.Name = "labelSellingPrice";
-            labelSellingPrice.Size = new Size(158, 25);
+            labelSellingPrice.Size = new Size(163, 25);
             labelSellingPrice.TabIndex = 14;
-            labelSellingPrice.Text = "Precio de Compra:";
+            labelSellingPrice.Text = "Precio de Venta ($):";
             // 
             // CreateProduct
             // 

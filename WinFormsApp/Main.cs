@@ -4,6 +4,7 @@ using Contracts.Utils;
 using Contracts.ViewModels;
 using Entities.Core;
 using System.ComponentModel;
+using System.Windows.Forms;
 using WinFormsApp.Utils;
 using Timer = System.Windows.Forms.Timer;
 
@@ -72,7 +73,7 @@ namespace WinFormsApp
                     FormInputClearer.ClearDungeonTextBoxes(txtBoxCategoryName);
                 }
             }
-            
+
 
         }
 
@@ -164,6 +165,7 @@ namespace WinFormsApp
             checkBoxColumnOrders.DataPropertyName = "HasInvoice";
             checkBoxColumnOrders.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewOrders.Columns.Add(checkBoxColumnOrders);
+            dataGridViewOrders.Columns["HasInvoice"].ReadOnly = true;
             DataGridViewButtonColumn buttonColumnOrders = new DataGridViewButtonColumn();
             buttonColumnOrders.Name = "ReviewButton";
             buttonColumnOrders.HeaderText = "Revisar";
@@ -233,6 +235,7 @@ namespace WinFormsApp
             {
                 dataGridView.Columns.Add(entry.Key, entry.Value);
                 dataGridView.Columns[entry.Key].DataPropertyName = entry.Key;
+                dataGridView.Columns[entry.Key].ReadOnly = true;
             }
 
             // Set up additional properties for all DataGridViews
