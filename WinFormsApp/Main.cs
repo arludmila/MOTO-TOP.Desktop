@@ -3,6 +3,7 @@ using Contracts.DTOs.Relationships;
 using Contracts.Utils;
 using Contracts.ViewModels;
 using Entities.Core;
+using ReaLTaiizor.Controls;
 using System.ComponentModel;
 using System.Windows.Forms;
 using WinFormsApp.Utils;
@@ -34,10 +35,11 @@ namespace WinFormsApp
 
             InitializeComponent();
             refreshTimer = new System.Windows.Forms.Timer();
-            refreshTimer.Interval = 5000; // 5 seconds
+            refreshTimer.Interval = 15000; // 15 seconds
             refreshTimer.Tick += new EventHandler(RefreshTimer_Tick);
             refreshTimer.Start();
             this.Text = "MOTO-TOP";
+
         }
         private async void RefreshTimer_Tick(object sender, EventArgs e)
         {
@@ -94,7 +96,18 @@ namespace WinFormsApp
                 { "Id", "Id" },
                 { "Name", "Nombre" },
             };
+
             SetupDataGridView(dataGridViewCategories, categoriesColumns);
+            // Create a DataGridViewComboBoxColumn
+            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+            comboBoxColumn.HeaderText = "Acciones"; // Header text
+
+            // Add the options 'borrar' and 'editar'
+            comboBoxColumn.Items.AddRange("Borrar", "Editar");
+
+            // Add the column to the DataGridView
+            dataGridViewCategories.Columns.Add(comboBoxColumn);
+
             // PRODUCTS
             Dictionary<string, string> productsColumns = new Dictionary<string, string>
             {
@@ -227,6 +240,13 @@ namespace WinFormsApp
         }
         public static void SetupDataGridView(DataGridView dataGridView, Dictionary<string, string> columnDictionary)
         {
+            // estilo de todos los datagrids...
+            dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.LightSteelBlue;
+            dataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightSteelBlue;
+            dataGridView.DefaultCellStyle.SelectionBackColor = Color.White;
+            dataGridView.DefaultCellStyle.SelectionForeColor = Color.Black;
+
             // Disable auto-generate columns
             dataGridView.AutoGenerateColumns = false;
 
@@ -515,6 +535,11 @@ namespace WinFormsApp
             var form = new CreateOfficeWorker();
             form.ShowDialog();
             await LoadData();
+        }
+
+        private void hopeTabPage_Resize(object sender, EventArgs e)
+        {
+
         }
     }
 }
