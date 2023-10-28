@@ -1,8 +1,12 @@
 using Contracts.DTOs.Entities;
 using Contracts.DTOs.Relationships;
+using Contracts.DTOs.Reports;
 using Contracts.Utils;
 using Contracts.ViewModels;
+using Contracts.ViewModels.Reports;
 using Entities.Core;
+using Entities.Relationships;
+using Newtonsoft.Json;
 using ReaLTaiizor.Controls;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -237,6 +241,42 @@ namespace WinFormsApp
             };
 
             SetupDataGridView(dataGridViewOfficeWorkers, offWorkersColumns);
+            // SELLERS SALES
+            Dictionary<string, string> sellersSalesColumns = new Dictionary<string, string>
+            {
+                { "SellerId", "N° Vendedor" },
+                { "FirstName", "Nombre" },
+                { "LastName", "Apellido" },
+                { "Zone", "Zona" },
+                { "TotalSales", "Cantidad de Ventas" },
+            };
+
+            SetupDataGridView(dataGridViewSellersSales, sellersSalesColumns);
+            // ORDERS PENDING SHIPMENT
+            Dictionary<string, string> ordersPendShipColumns = new Dictionary<string, string>
+            {
+                { "Id", "Id" },
+                { "ShipmentStatus", "Estado" },
+                { "ClientName", "Cliente" },
+                { "SellerName", "Vendedor" },
+                { "TransportCompanyName", "Transporte" },
+            };
+            SetupDataGridView(dataGridViewOrdersPendingShipment, ordersPendShipColumns);
+            // CLIENTS BALANCES
+            Dictionary<string, string> clientsBalancesColumns = new Dictionary<string, string>
+            {
+                { "Id", "Id" },
+                { "FirstName", "Nombre" },
+                { "LastName", "Apellido" },
+                { "DocumentType", "Tipo de Documento" },
+                { "DocumentNumber", "N° de Documento" },
+                { "Email", "Email" },
+                { "Location", "Ubicación" },
+                { "PhoneNumber", "Número de Telefono" },
+                { "TotalBalance", "Saldo Total" }
+            };
+
+            SetupDataGridView(dataGridViewClientsBalances, clientsBalancesColumns);
         }
         public static void SetupDataGridView(DataGridView dataGridView, Dictionary<string, string> columnDictionary)
         {
@@ -247,10 +287,10 @@ namespace WinFormsApp
             dataGridView.DefaultCellStyle.SelectionBackColor = Color.White;
             dataGridView.DefaultCellStyle.SelectionForeColor = Color.Black;
 
-            // Disable auto-generate columns
+            // no auto generar columnas!
             dataGridView.AutoGenerateColumns = false;
 
-            // Customize the columns based on the dictionary
+            // columnas --> segun diccionario
             foreach (var entry in columnDictionary)
             {
                 dataGridView.Columns.Add(entry.Key, entry.Value);
@@ -258,10 +298,10 @@ namespace WinFormsApp
                 dataGridView.Columns[entry.Key].ReadOnly = true;
             }
 
-            // Set up additional properties for all DataGridViews
+            // propiedades
             dataGridView.RowHeadersVisible = false;
             dataGridView.AllowUserToAddRows = false;
-
+            // tamaño de c/columna --> fill (todas iguales)
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -540,6 +580,69 @@ namespace WinFormsApp
         private void hopeTabPage_Resize(object sender, EventArgs e)
         {
 
+        }
+
+        private async void buttonGenerateSellersSalesReport_Click(object sender, EventArgs e)
+        {
+            DateTime dateFrom = dateTimeSellersSalesFrom.Value;
+            DateTime dateTo = dateTimeSellersSalesTo.Value;
+            var sellersSalesDto = new SellersSalesDto()
+            {
+                From = dateFrom,
+                To = dateTo,
+            };
+            string response = await ApiHelper.PostAsync("https://localhost:7215/api/reports/sellers-sales", sellersSalesDto);
+            if (response.Contains("error") || response.Contains("failed"))
+            {
+                MessageBox.Show("Error al generar reporte", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                var sellerSalesVM = JsonConvert.DeserializeObject<List<SellersSalesViewModel>>(response);
+                dataGridViewSellersSales.DataSource = new BindingList<SellersSalesViewModel>(sellerSalesVM);
+            }
+
+        }
+
+        private void buttonExportSalesReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void buttonGenerateReportOrdersPendingShipment_Click(object sender, EventArgs e)
+        {
+            var response = await ApiHelper.GetListAsync<OrderViewModel>("https://localhost:7215/api/reports/orders-pending-shipment");
+            if (response == null)
+            {
+                MessageBoxHelper.ShowInfoMessageBox("No hay pedidos pendientes de envio.");
+            }
+            else
+            {
+                dataGridViewOrdersPendingShipment.DataSource = new BindingList<OrderViewModel>(response);
+            }
+        }
+
+        private void buttonExportReportOrdersPendingShipment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonExportClientsBalances_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void buttonGenerateClientsBalances_Click(object sender, EventArgs e)
+        {
+            var response = await ApiHelper.GetListAsync<ClientsBalanceViewModel>("https://localhost:7215/api/reports/clients-balances");
+            if (response == null)
+            {
+                MessageBoxHelper.ShowErrorMessageBox("Error al generar reporte.");
+            }
+            else
+            {
+                dataGridViewClientsBalances.DataSource = new BindingList<ClientsBalanceViewModel>(response);
+            }
         }
     }
 }
