@@ -55,6 +55,9 @@
             DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle31 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle32 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle33 = new DataGridViewCellStyle();
@@ -67,9 +70,6 @@
             DataGridViewCellStyle dataGridViewCellStyle40 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle41 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle42 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
             hopeTabPage = new ReaLTaiizor.Controls.HopeTabPage();
             tabPageOrders = new TabPage();
             dataGridViewOrders = new ReaLTaiizor.Controls.PoisonDataGridView();
@@ -131,7 +131,7 @@
             airTabPageReports = new ReaLTaiizor.Controls.AirTabPage();
             tabPage1 = new TabPage();
             buttonGenerateSellersSalesReport = new ReaLTaiizor.Controls.ForeverButton();
-            buttonExportSalesReport = new ReaLTaiizor.Controls.ForeverButton();
+            buttonExportSellersSalesReport = new ReaLTaiizor.Controls.ForeverButton();
             dataGridViewSellersSales = new ReaLTaiizor.Controls.PoisonDataGridView();
             dungeonHeaderLabel1 = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             dungeonLabel5 = new ReaLTaiizor.Controls.DungeonLabel();
@@ -144,6 +144,10 @@
             dataGridViewOrdersPendingShipment = new ReaLTaiizor.Controls.PoisonDataGridView();
             dungeonHeaderLabel2 = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             tabPage3 = new TabPage();
+            buttonGenerateClientsBalances = new ReaLTaiizor.Controls.ForeverButton();
+            buttonExportClientsBalances = new ReaLTaiizor.Controls.ForeverButton();
+            dataGridViewClientsBalances = new ReaLTaiizor.Controls.PoisonDataGridView();
+            dungeonHeaderLabel3 = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             tabPage4 = new TabPage();
             tabPage5 = new TabPage();
             tabPageClients = new TabPage();
@@ -169,10 +173,6 @@
             labelSearchTransportCompanies = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxSearchTransportCompanies = new ReaLTaiizor.Controls.DungeonTextBox();
             buttonCreateTransportCompany = new ReaLTaiizor.Controls.ForeverButton();
-            buttonGenerateClientsBalances = new ReaLTaiizor.Controls.ForeverButton();
-            buttonExportClientsBalances = new ReaLTaiizor.Controls.ForeverButton();
-            dataGridViewClientsBalances = new ReaLTaiizor.Controls.PoisonDataGridView();
-            dungeonHeaderLabel3 = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             hopeTabPage.SuspendLayout();
             tabPageOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrders).BeginInit();
@@ -201,6 +201,7 @@
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrdersPendingShipment).BeginInit();
             tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClientsBalances).BeginInit();
             tabPageClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClients).BeginInit();
             tabPageUsers.SuspendLayout();
@@ -211,7 +212,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewOfficeWorkers).BeginInit();
             tabPageTransportCompanies.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTransportCompanies).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewClientsBalances).BeginInit();
             SuspendLayout();
             // 
             // hopeTabPage
@@ -1387,7 +1387,7 @@
             // 
             tabPage1.BackColor = Color.White;
             tabPage1.Controls.Add(buttonGenerateSellersSalesReport);
-            tabPage1.Controls.Add(buttonExportSalesReport);
+            tabPage1.Controls.Add(buttonExportSellersSalesReport);
             tabPage1.Controls.Add(dataGridViewSellersSales);
             tabPage1.Controls.Add(dungeonHeaderLabel1);
             tabPage1.Controls.Add(dungeonLabel5);
@@ -1415,20 +1415,20 @@
             buttonGenerateSellersSalesReport.TextColor = Color.FromArgb(243, 243, 243);
             buttonGenerateSellersSalesReport.Click += buttonGenerateSellersSalesReport_Click;
             // 
-            // buttonExportSalesReport
+            // buttonExportSellersSalesReport
             // 
-            buttonExportSalesReport.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonExportSalesReport.BackColor = Color.Transparent;
-            buttonExportSalesReport.BaseColor = Color.Black;
-            buttonExportSalesReport.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonExportSalesReport.Location = new Point(6, 482);
-            buttonExportSalesReport.Name = "buttonExportSalesReport";
-            buttonExportSalesReport.Rounded = true;
-            buttonExportSalesReport.Size = new Size(177, 40);
-            buttonExportSalesReport.TabIndex = 46;
-            buttonExportSalesReport.Text = "Exportar Informe";
-            buttonExportSalesReport.TextColor = Color.FromArgb(243, 243, 243);
-            buttonExportSalesReport.Click += buttonExportSalesReport_Click;
+            buttonExportSellersSalesReport.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonExportSellersSalesReport.BackColor = Color.Transparent;
+            buttonExportSellersSalesReport.BaseColor = Color.Black;
+            buttonExportSellersSalesReport.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonExportSellersSalesReport.Location = new Point(6, 482);
+            buttonExportSellersSalesReport.Name = "buttonExportSellersSalesReport";
+            buttonExportSellersSalesReport.Rounded = true;
+            buttonExportSellersSalesReport.Size = new Size(177, 40);
+            buttonExportSellersSalesReport.TabIndex = 46;
+            buttonExportSellersSalesReport.Text = "Exportar Informe";
+            buttonExportSellersSalesReport.TextColor = Color.FromArgb(243, 243, 243);
+            buttonExportSellersSalesReport.Click += buttonExportSellersSalesReport_Click;
             // 
             // dataGridViewSellersSales
             // 
@@ -1647,6 +1647,94 @@
             tabPage3.Size = new Size(1080, 530);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Saldo de Clientes";
+            // 
+            // buttonGenerateClientsBalances
+            // 
+            buttonGenerateClientsBalances.BackColor = Color.Transparent;
+            buttonGenerateClientsBalances.BaseColor = Color.Black;
+            buttonGenerateClientsBalances.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonGenerateClientsBalances.Location = new Point(7, 42);
+            buttonGenerateClientsBalances.Name = "buttonGenerateClientsBalances";
+            buttonGenerateClientsBalances.Rounded = true;
+            buttonGenerateClientsBalances.Size = new Size(177, 32);
+            buttonGenerateClientsBalances.TabIndex = 55;
+            buttonGenerateClientsBalances.Text = "Generar Informe";
+            buttonGenerateClientsBalances.TextColor = Color.FromArgb(243, 243, 243);
+            buttonGenerateClientsBalances.Click += buttonGenerateClientsBalances_Click;
+            // 
+            // buttonExportClientsBalances
+            // 
+            buttonExportClientsBalances.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonExportClientsBalances.BackColor = Color.Transparent;
+            buttonExportClientsBalances.BaseColor = Color.Black;
+            buttonExportClientsBalances.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonExportClientsBalances.Location = new Point(7, 482);
+            buttonExportClientsBalances.Name = "buttonExportClientsBalances";
+            buttonExportClientsBalances.Rounded = true;
+            buttonExportClientsBalances.Size = new Size(177, 40);
+            buttonExportClientsBalances.TabIndex = 54;
+            buttonExportClientsBalances.Text = "Exportar Informe";
+            buttonExportClientsBalances.TextColor = Color.FromArgb(243, 243, 243);
+            buttonExportClientsBalances.Click += buttonExportClientsBalances_Click;
+            // 
+            // dataGridViewClientsBalances
+            // 
+            dataGridViewClientsBalances.AllowUserToResizeRows = false;
+            dataGridViewClientsBalances.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewClientsBalances.BackgroundColor = Color.FromArgb(255, 255, 255);
+            dataGridViewClientsBalances.BorderStyle = BorderStyle.None;
+            dataGridViewClientsBalances.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewClientsBalances.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle28.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle28.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle28.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle28.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle28.WrapMode = DataGridViewTriState.True;
+            dataGridViewClientsBalances.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewClientsBalances.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle29.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle29.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle29.ForeColor = Color.FromArgb(136, 136, 136);
+            dataGridViewCellStyle29.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle29.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle29.WrapMode = DataGridViewTriState.False;
+            dataGridViewClientsBalances.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewClientsBalances.EnableHeadersVisualStyles = false;
+            dataGridViewClientsBalances.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewClientsBalances.GridColor = Color.FromArgb(255, 255, 255);
+            dataGridViewClientsBalances.Location = new Point(7, 80);
+            dataGridViewClientsBalances.Name = "dataGridViewClientsBalances";
+            dataGridViewClientsBalances.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle30.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = Color.FromArgb(243, 119, 53);
+            dataGridViewCellStyle30.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dataGridViewCellStyle30.ForeColor = Color.FromArgb(255, 255, 255);
+            dataGridViewCellStyle30.SelectionBackColor = Color.FromArgb(244, 133, 72);
+            dataGridViewCellStyle30.SelectionForeColor = Color.FromArgb(17, 17, 17);
+            dataGridViewCellStyle30.WrapMode = DataGridViewTriState.True;
+            dataGridViewClientsBalances.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewClientsBalances.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewClientsBalances.RowTemplate.Height = 25;
+            dataGridViewClientsBalances.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewClientsBalances.Size = new Size(1066, 396);
+            dataGridViewClientsBalances.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
+            dataGridViewClientsBalances.TabIndex = 53;
+            // 
+            // dungeonHeaderLabel3
+            // 
+            dungeonHeaderLabel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dungeonHeaderLabel3.AutoSize = true;
+            dungeonHeaderLabel3.BackColor = Color.Transparent;
+            dungeonHeaderLabel3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            dungeonHeaderLabel3.ForeColor = Color.FromArgb(76, 76, 77);
+            dungeonHeaderLabel3.Location = new Point(204, 8);
+            dungeonHeaderLabel3.Name = "dungeonHeaderLabel3";
+            dungeonHeaderLabel3.Size = new Size(413, 32);
+            dungeonHeaderLabel3.TabIndex = 52;
+            dungeonHeaderLabel3.Text = "Generar Informe: Saldo de Clientes";
             // 
             // tabPage4
             // 
@@ -2156,94 +2244,6 @@
             buttonCreateTransportCompany.TextColor = Color.FromArgb(243, 243, 243);
             buttonCreateTransportCompany.Click += buttonCreateTransportCompany_Click;
             // 
-            // buttonGenerateClientsBalances
-            // 
-            buttonGenerateClientsBalances.BackColor = Color.Transparent;
-            buttonGenerateClientsBalances.BaseColor = Color.Black;
-            buttonGenerateClientsBalances.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonGenerateClientsBalances.Location = new Point(7, 42);
-            buttonGenerateClientsBalances.Name = "buttonGenerateClientsBalances";
-            buttonGenerateClientsBalances.Rounded = true;
-            buttonGenerateClientsBalances.Size = new Size(177, 32);
-            buttonGenerateClientsBalances.TabIndex = 55;
-            buttonGenerateClientsBalances.Text = "Generar Informe";
-            buttonGenerateClientsBalances.TextColor = Color.FromArgb(243, 243, 243);
-            buttonGenerateClientsBalances.Click += buttonGenerateClientsBalances_Click;
-            // 
-            // buttonExportClientsBalances
-            // 
-            buttonExportClientsBalances.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonExportClientsBalances.BackColor = Color.Transparent;
-            buttonExportClientsBalances.BaseColor = Color.Black;
-            buttonExportClientsBalances.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonExportClientsBalances.Location = new Point(7, 482);
-            buttonExportClientsBalances.Name = "buttonExportClientsBalances";
-            buttonExportClientsBalances.Rounded = true;
-            buttonExportClientsBalances.Size = new Size(177, 40);
-            buttonExportClientsBalances.TabIndex = 54;
-            buttonExportClientsBalances.Text = "Exportar Informe";
-            buttonExportClientsBalances.TextColor = Color.FromArgb(243, 243, 243);
-            buttonExportClientsBalances.Click += buttonExportClientsBalances_Click;
-            // 
-            // dataGridViewClientsBalances
-            // 
-            dataGridViewClientsBalances.AllowUserToResizeRows = false;
-            dataGridViewClientsBalances.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewClientsBalances.BackgroundColor = Color.FromArgb(255, 255, 255);
-            dataGridViewClientsBalances.BorderStyle = BorderStyle.None;
-            dataGridViewClientsBalances.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridViewClientsBalances.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = Color.FromArgb(243, 119, 53);
-            dataGridViewCellStyle28.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle28.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle28.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle28.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle28.WrapMode = DataGridViewTriState.True;
-            dataGridViewClientsBalances.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
-            dataGridViewClientsBalances.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle29.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle29.BackColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle29.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle29.ForeColor = Color.FromArgb(136, 136, 136);
-            dataGridViewCellStyle29.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle29.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle29.WrapMode = DataGridViewTriState.False;
-            dataGridViewClientsBalances.DefaultCellStyle = dataGridViewCellStyle29;
-            dataGridViewClientsBalances.EnableHeadersVisualStyles = false;
-            dataGridViewClientsBalances.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewClientsBalances.GridColor = Color.FromArgb(255, 255, 255);
-            dataGridViewClientsBalances.Location = new Point(7, 80);
-            dataGridViewClientsBalances.Name = "dataGridViewClientsBalances";
-            dataGridViewClientsBalances.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle30.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle30.BackColor = Color.FromArgb(243, 119, 53);
-            dataGridViewCellStyle30.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-            dataGridViewCellStyle30.ForeColor = Color.FromArgb(255, 255, 255);
-            dataGridViewCellStyle30.SelectionBackColor = Color.FromArgb(244, 133, 72);
-            dataGridViewCellStyle30.SelectionForeColor = Color.FromArgb(17, 17, 17);
-            dataGridViewCellStyle30.WrapMode = DataGridViewTriState.True;
-            dataGridViewClientsBalances.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
-            dataGridViewClientsBalances.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewClientsBalances.RowTemplate.Height = 25;
-            dataGridViewClientsBalances.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewClientsBalances.Size = new Size(1066, 396);
-            dataGridViewClientsBalances.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
-            dataGridViewClientsBalances.TabIndex = 53;
-            // 
-            // dungeonHeaderLabel3
-            // 
-            dungeonHeaderLabel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dungeonHeaderLabel3.AutoSize = true;
-            dungeonHeaderLabel3.BackColor = Color.Transparent;
-            dungeonHeaderLabel3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            dungeonHeaderLabel3.ForeColor = Color.FromArgb(76, 76, 77);
-            dungeonHeaderLabel3.Location = new Point(204, 8);
-            dungeonHeaderLabel3.Name = "dungeonHeaderLabel3";
-            dungeonHeaderLabel3.Size = new Size(413, 32);
-            dungeonHeaderLabel3.TabIndex = 52;
-            dungeonHeaderLabel3.Text = "Generar Informe: Saldo de Clientes";
-            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -2292,6 +2292,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrdersPendingShipment).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClientsBalances).EndInit();
             tabPageClients.ResumeLayout(false);
             tabPageClients.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClients).EndInit();
@@ -2306,7 +2307,6 @@
             tabPageTransportCompanies.ResumeLayout(false);
             tabPageTransportCompanies.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTransportCompanies).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewClientsBalances).EndInit();
             ResumeLayout(false);
         }
 
@@ -2399,7 +2399,7 @@
         private ReaLTaiizor.Controls.PoisonDateTime dateTimeSellersSalesFrom;
         private TabPage tabPage3;
         private TabPage tabPage4;
-        private ReaLTaiizor.Controls.ForeverButton buttonExportSalesReport;
+        private ReaLTaiizor.Controls.ForeverButton buttonExportSellersSalesReport;
         private ReaLTaiizor.Controls.PoisonDataGridView dataGridViewSellersSales;
         private ReaLTaiizor.Controls.DungeonHeaderLabel dungeonHeaderLabel1;
         private ReaLTaiizor.Controls.DungeonLabel dungeonLabel5;

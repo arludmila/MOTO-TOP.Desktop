@@ -7,11 +7,14 @@ using Contracts.ViewModels.Reports;
 using Entities.Core;
 using Entities.Relationships;
 using Newtonsoft.Json;
+using OfficeOpenXml.Style;
+using OfficeOpenXml;
 using ReaLTaiizor.Controls;
 using System.ComponentModel;
 using System.Windows.Forms;
 using WinFormsApp.Utils;
 using Timer = System.Windows.Forms.Timer;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WinFormsApp
 {
@@ -603,11 +606,62 @@ namespace WinFormsApp
             }
 
         }
-
-        private void buttonExportSalesReport_Click(object sender, EventArgs e)
+        private void buttonExportSellersSalesReport_Click(object sender, EventArgs e)
         {
-
+            var dateFrom = dateTimeSellersSalesFrom.Value;
+            var dateTo = dateTimeSellersSalesTo.Value;
+            var sellersSales = ((BindingList<SellersSalesViewModel>)dataGridViewSellersSales.DataSource).ToList();
+            ExportSellerSalesToExcel(sellersSales, dateFrom, dateTo);
         }
+        public void ExportSellerSalesToExcel(List<SellersSalesViewModel> sellersSales, DateTime dateFrom, DateTime dateTo)
+        {
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Ventas por Vendedor");
+
+                // TITULO
+                worksheet.Cells["A1"].Value = "Cantidad de Ventas por Vendedor";
+                worksheet.Cells["A1:F1"].Merge = true;
+                worksheet.Cells["A1:F1"].Style.Font.Size = 16;
+                worksheet.Cells["A1:F1"].Style.Font.Bold = true;
+                worksheet.Cells["A1:F1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                // FECHAS
+                worksheet.Cells["A3"].Value = "Periodo:";
+                worksheet.Cells["B3"].Value = dateFrom.ToString("dd/MM/yyyy");
+                worksheet.Cells["C3"].Value = " - ";
+                worksheet.Cells["C3"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                worksheet.Cells["D3"].Value = dateTo.ToString("dd/MM/yyyy");
+
+                // HEADERS PARA TABLA
+                worksheet.Cells["A5"].LoadFromCollection(sellersSales, true, OfficeOpenXml.Table.TableStyles.Light1);
+                worksheet.Cells["A5"].Value = "N° Vendedor";
+                worksheet.Cells["B5"].Value = "Nombre";
+                worksheet.Cells["C5"].Value = "Apellido";
+                worksheet.Cells["D5"].Value = "Zona";
+                worksheet.Cells["E5"].Value = "Cantidad de Ventas";
+
+                // Auto-fit COLUMNAS
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // GUARDAR ARCHIVO
+                var fileName = $"VentasXVendedor_{dateFrom:yyyyMMdd}-{dateTo:yyyyMMdd}.xlsx";
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel Files|*.xlsx",
+                    FileName = fileName
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var fileInfo = new FileInfo(saveFileDialog.FileName);
+                    package.SaveAs(fileInfo);
+                    MessageBox.Show("El archivo se ha exportado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
 
         private async void buttonGenerateReportOrdersPendingShipment_Click(object sender, EventArgs e)
         {
@@ -624,14 +678,105 @@ namespace WinFormsApp
 
         private void buttonExportReportOrdersPendingShipment_Click(object sender, EventArgs e)
         {
-
+            var sellersSales = ((BindingList<OrderViewModel>)dataGridViewOrdersPendingShipment.DataSource).ToList();
+            ExportOrdersPendingShipmentToExcel(sellersSales);
         }
+        public void ExportOrdersPendingShipmentToExcel(List<OrderViewModel> ordersVM)
+        {
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Pedidos Pendientes de Envio");
 
+                // TITULO
+                worksheet.Cells["A1"].Value = "Pedidos Pendientes de Envio";
+                worksheet.Cells["A1:F1"].Merge = true;
+                worksheet.Cells["A1:F1"].Style.Font.Size = 16;
+                worksheet.Cells["A1:F1"].Style.Font.Bold = true;
+                worksheet.Cells["A1:F1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                // HEADERS PARA TABLA
+                worksheet.Cells["A5"].LoadFromCollection(ordersVM, true, OfficeOpenXml.Table.TableStyles.Light1);
+                worksheet.Cells["A5"].Value = "Id";
+                worksheet.Cells["B5"].Value = "Fecha";
+                worksheet.Cells["C5"].Value = "Estado";
+
+                worksheet.Cells["D5"].Value = "Cliente";
+
+                worksheet.Cells["E5"].Value = "Vendedor";
+                worksheet.Cells["F5"].Value = "Transporte";
+                // TODO: aca no deberia mostrar algunas de las cosas que muestra al final de la tabla (columnas)!!!
+
+                // Auto-fit COLUMNAS
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // GUARDAR ARCHIVO
+                var fileName = $"PedidosPendientesDeEnvio_{DateTime.Now:yyyyMMdd}.xlsx";
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel Files|*.xlsx",
+                    FileName = fileName
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var fileInfo = new FileInfo(saveFileDialog.FileName);
+                    package.SaveAs(fileInfo);
+                    MessageBox.Show("El archivo se ha exportado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
         private void buttonExportClientsBalances_Click(object sender, EventArgs e)
         {
-
+            var clientBalances = ((BindingList<ClientsBalanceViewModel>)dataGridViewClientsBalances.DataSource).ToList();
+            ExportClientBalancesToExcel(clientBalances);
         }
+        public void ExportClientBalancesToExcel(List<ClientsBalanceViewModel> clientsBalanceVM)
+        {
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Saldo de Clientes");
 
+                // TITULO
+                worksheet.Cells["A1"].Value = "Saldo de Clientes";
+                worksheet.Cells["A1:F1"].Merge = true;
+                worksheet.Cells["A1:F1"].Style.Font.Size = 16;
+                worksheet.Cells["A1:F1"].Style.Font.Bold = true;
+                worksheet.Cells["A1:F1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                // HEADERS PARA TABLA
+                worksheet.Cells["A5"].LoadFromCollection(clientsBalanceVM, true, OfficeOpenXml.Table.TableStyles.Light1);
+                worksheet.Cells["A5"].Value = "N° Cliente";
+                worksheet.Cells["B5"].Value = "Nombre";
+                worksheet.Cells["C5"].Value = "Apellido";
+
+                worksheet.Cells["D5"].Value = "Dirección";
+
+                worksheet.Cells["E5"].Value = "N° Telefono";
+                worksheet.Cells["F5"].Value = "Tipo de Documento";
+                worksheet.Cells["G5"].Value = "N° de Documento";
+                worksheet.Cells["H5"].Value = "Email";
+                worksheet.Cells["I5"].Value = "Saldo Total";
+                // Auto-fit COLUMNAS
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // GUARDAR ARCHIVO
+                var fileName = $"SaldoDeClientes_{DateTime.Now:yyyyMMdd}.xlsx";
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel Files|*.xlsx",
+                    FileName = fileName
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var fileInfo = new FileInfo(saveFileDialog.FileName);
+                    package.SaveAs(fileInfo);
+                    MessageBox.Show("El archivo se ha exportado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
         private async void buttonGenerateClientsBalances_Click(object sender, EventArgs e)
         {
             var response = await ApiHelper.GetListAsync<ClientsBalanceViewModel>("https://localhost:7215/api/reports/clients-balances");
@@ -644,5 +789,7 @@ namespace WinFormsApp
                 dataGridViewClientsBalances.DataSource = new BindingList<ClientsBalanceViewModel>(response);
             }
         }
+
+
     }
 }
