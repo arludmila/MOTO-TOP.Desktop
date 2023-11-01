@@ -619,7 +619,6 @@ namespace WinFormsApp
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Ventas por Vendedor");
-
                 // TITULO
                 worksheet.Cells["A1"].Value = "Cantidad de Ventas por Vendedor";
                 worksheet.Cells["A1:F1"].Merge = true;
