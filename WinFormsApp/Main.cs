@@ -5,16 +5,12 @@ using Contracts.Utils;
 using Contracts.ViewModels;
 using Contracts.ViewModels.Reports;
 using Entities.Core;
-using Entities.Relationships;
 using Newtonsoft.Json;
-using OfficeOpenXml.Style;
 using OfficeOpenXml;
-using ReaLTaiizor.Controls;
+using OfficeOpenXml.Style;
 using System.ComponentModel;
-using System.Windows.Forms;
 using WinFormsApp.Utils;
 using Timer = System.Windows.Forms.Timer;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WinFormsApp
 {
@@ -93,6 +89,16 @@ namespace WinFormsApp
 
             txtBoxSupplierProductSupplierId.Enabled = false;
             txtBoxSupplierProductProductId.Enabled = false;
+            txtBoxTotalSalesReportTotalAmount.Enabled = false;
+            txtBoxTotalSalesReportTotalQuantity.Enabled = false;
+
+            dateTimeClientPurchasesReportFrom.Value = DateTime.Today;
+            dateTimeClientPurchasesReportTo.Value = DateTime.Today;
+            dateTimeSellersSalesFrom.Value = DateTime.Today;
+            dateTimeSellersSalesTo.Value = DateTime.Today;
+            dateTimeTotalSalesFrom.Value = DateTime.Today;
+            dateTimeTotalSalesTo.Value = DateTime.Today;
+
         }
         private void StyleDataGrids()
         {
@@ -221,7 +227,8 @@ namespace WinFormsApp
             buttonColumnInvoices.Text = "Registrar Pago";
             buttonColumnInvoices.UseColumnTextForButtonValue = true;
             dataGridViewPendingInvoices.Columns.Add(buttonColumnInvoices);
-            // PENDING INVOICES
+            AutoSizeColumnsDGV(dataGridViewPendingInvoices);
+            // INVOICES
             SetupDataGridView(dataGridViewInvoices, invoicesColumns);
             // TRANSPORT COMPANIES
             Dictionary<string, string> transportCompaniesColumns = new Dictionary<string, string>
@@ -252,6 +259,7 @@ namespace WinFormsApp
                 { "LastName", "Apellido" },
                 { "Zone", "Zona" },
                 { "TotalSales", "Cantidad de Ventas" },
+                { "TotalAmount", "Importe Total ($)" },
             };
 
             SetupDataGridView(dataGridViewSellersSales, sellersSalesColumns);
@@ -280,6 +288,45 @@ namespace WinFormsApp
             };
 
             SetupDataGridView(dataGridViewClientsBalances, clientsBalancesColumns);
+            // PENDING INVOICES REPORT
+            Dictionary<string, string> pendingInvoicesReportColumns = new Dictionary<string, string>
+            {
+                { "Id", "Id" },
+                { "OrderId", "N° de Pedido" },
+                { "ClientId", "N° de Cliente" },
+                { "ClientName", "Cliente" },
+                { "ClientDocument", "Documento del Cliente" },
+                { "Date", "Fecha" },
+                { "TotalAmount", "Total" },
+                { "DebtAmount", "Deuda Pendiente" },
+            };
+            SetupDataGridView(dataGridViewPendingInvoicesReport, pendingInvoicesReportColumns);
+            // TOTAL SALES REPORT
+            Dictionary<string, string> totalSalesRepColumns = new Dictionary<string, string>
+            {
+                { "Id", "Id" },
+                { "OrderId", "N° de Pedido" },
+                { "ClientId", "N° de Cliente" },
+                { "Date", "Fecha" },
+                { "Amount", "Total" },
+
+            };
+            SetupDataGridView(dataGridViewTotalSalesReport, totalSalesRepColumns);
+            // CLIENTS PURCHASES REPORT
+            Dictionary<string, string> clientsPurchasesReportColumns = new Dictionary<string, string>
+            {
+                { "ClientId", "N° de Cliente" },
+                { "FirstName", "Nombre" },
+                { "LastName", "Apellido" },
+                { "DocumentType", "Tipo de Documento" },
+                { "DocumentNumber", "N° de Documento" },
+                { "Email", "Email" },
+                { "PhoneNumber", "Número de Telefono" },
+                { "TotalPurchases", "Cantidad de Compras" },
+                { "TotalAmount", "Importe Total ($)" },
+
+            };
+            SetupDataGridView(dataGridViewClientsPruchasesReport, clientsPurchasesReportColumns);
         }
         public static void SetupDataGridView(DataGridView dataGridView, Dictionary<string, string> columnDictionary)
         {
@@ -305,12 +352,17 @@ namespace WinFormsApp
             dataGridView.RowHeadersVisible = false;
             dataGridView.AllowUserToAddRows = false;
             // tamaño de c/columna --> fill (todas iguales)
+            AutoSizeColumnsDGV(dataGridView);
+
+
+        }
+        private static void AutoSizeColumnsDGV(DataGridView dataGridView)
+        {
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
-
         private async Task LoadData()
         {
             categories = await ApiHelper.GetListAsync<Category>("https://localhost:7215/api/categories");
@@ -589,12 +641,12 @@ namespace WinFormsApp
         {
             DateTime dateFrom = dateTimeSellersSalesFrom.Value;
             DateTime dateTo = dateTimeSellersSalesTo.Value;
-            var sellersSalesDto = new SellersSalesDto()
+            var datesDto = new DateFromToDto()
             {
                 From = dateFrom,
                 To = dateTo,
             };
-            string response = await ApiHelper.PostAsync("https://localhost:7215/api/reports/sellers-sales", sellersSalesDto);
+            string response = await ApiHelper.PostAsync("https://localhost:7215/api/reports/sellers-sales", datesDto);
             if (response.Contains("error") || response.Contains("failed"))
             {
                 MessageBox.Show("Error al generar reporte", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -640,7 +692,7 @@ namespace WinFormsApp
                 worksheet.Cells["C5"].Value = "Apellido";
                 worksheet.Cells["D5"].Value = "Zona";
                 worksheet.Cells["E5"].Value = "Cantidad de Ventas";
-
+                worksheet.Cells["F5"].Value = "Importe Total($)";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
@@ -745,18 +797,18 @@ namespace WinFormsApp
                 worksheet.Cells["A1:F1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                 // HEADERS PARA TABLA
-                worksheet.Cells["A5"].LoadFromCollection(clientsBalanceVM, true, OfficeOpenXml.Table.TableStyles.Light1);
-                worksheet.Cells["A5"].Value = "N° Cliente";
-                worksheet.Cells["B5"].Value = "Nombre";
-                worksheet.Cells["C5"].Value = "Apellido";
+                worksheet.Cells["A3"].LoadFromCollection(clientsBalanceVM, true, OfficeOpenXml.Table.TableStyles.Light1);
+                worksheet.Cells["A3"].Value = "N° Cliente";
+                worksheet.Cells["B3"].Value = "Nombre";
+                worksheet.Cells["C3"].Value = "Apellido";
 
-                worksheet.Cells["D5"].Value = "Dirección";
+                worksheet.Cells["D3"].Value = "Dirección";
 
-                worksheet.Cells["E5"].Value = "N° Telefono";
-                worksheet.Cells["F5"].Value = "Tipo de Documento";
-                worksheet.Cells["G5"].Value = "N° de Documento";
-                worksheet.Cells["H5"].Value = "Email";
-                worksheet.Cells["I5"].Value = "Saldo Total";
+                worksheet.Cells["E3"].Value = "N° Telefono";
+                worksheet.Cells["F3"].Value = "Tipo de Documento";
+                worksheet.Cells["G3"].Value = "N° de Documento";
+                worksheet.Cells["H3"].Value = "Email";
+                worksheet.Cells["I3"].Value = "Saldo Total";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
@@ -789,6 +841,129 @@ namespace WinFormsApp
             }
         }
 
+        private void buttonGeneratePendingInvoicesReport_Click(object sender, EventArgs e)
+        {
+            if (invoices != null)
+            {
+                // pending invoices...
+                pendingInvoices = GetPendingInvoices();
+                if (pendingInvoices != null)
+                {
+                    dataGridViewPendingInvoicesReport.DataSource = new BindingList<InvoiceViewModel>(pendingInvoices);
+                }
+            }
+        }
 
+        private void buttonExportPendingInvoicesReport_Click(object sender, EventArgs e)
+        {
+            var pendingInvoices = ((BindingList<InvoiceViewModel>)dataGridViewPendingInvoicesReport.DataSource).ToList();
+            ExportPendingInvoicesReportToExcel(pendingInvoices);
+        }
+        public void ExportPendingInvoicesReportToExcel(List<InvoiceViewModel> pendingInvoicesVM)
+        {
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Facturas Pendientes");
+
+                // TITULO
+                worksheet.Cells["A1"].Value = "Facturas Pendientes";
+                worksheet.Cells["A1:F1"].Merge = true;
+                worksheet.Cells["A1:F1"].Style.Font.Size = 16;
+                worksheet.Cells["A1:F1"].Style.Font.Bold = true;
+                worksheet.Cells["A1:F1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                // HEADERS PARA TABLA
+                worksheet.Cells["A3"].LoadFromCollection(pendingInvoicesVM, true, OfficeOpenXml.Table.TableStyles.Light1);
+                worksheet.Cells["A3"].Value = "N° Factura";
+                worksheet.Cells["B3"].Value = "N° de Pedido";
+                worksheet.Cells["C3"].Value = "N° de Cliente";
+
+                worksheet.Cells["D3"].Value = "Cliente";
+
+                worksheet.Cells["E3"].Value = "Documento del Cliente";
+                worksheet.Cells["F3"].Value = "Fecha";
+                worksheet.Cells["G3"].Value = "Total";
+                worksheet.Cells["H3"].Value = "Deuda Pendiente";
+                // Auto-fit COLUMNAS
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // GUARDAR ARCHIVO
+                var fileName = $"FacturasPendientes_{DateTime.Now:yyyyMMdd}.xlsx";
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel Files|*.xlsx",
+                    FileName = fileName
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var fileInfo = new FileInfo(saveFileDialog.FileName);
+                    package.SaveAs(fileInfo);
+                    MessageBox.Show("El archivo se ha exportado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private async void buttonGenerateTotalSalesReport_Click(object sender, EventArgs e)
+        {
+            DateTime dateFrom = dateTimeTotalSalesFrom.Value;
+            DateTime dateTo = dateTimeTotalSalesTo.Value;
+            var datesDto = new DateFromToDto()
+            {
+                From = dateFrom,
+                To = dateTo,
+            };
+            string response = await ApiHelper.PostAsync("https://localhost:7215/api/reports/total-sales", datesDto);
+            if (response.Contains("error") || response.Contains("failed"))
+            {
+                MessageBox.Show("Error al generar reporte", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                int totalQuantity = 0;
+                double totalAmount = 0;
+                var invoices = JsonConvert.DeserializeObject<List<Invoice>>(response);
+                dataGridViewTotalSalesReport.DataSource = new BindingList<Invoice>(invoices);
+                foreach (var invoice in invoices)
+                {
+                    totalQuantity++;
+                    totalAmount += invoice.Amount;
+                }
+                txtBoxTotalSalesReportTotalAmount.Text = "$" + totalAmount.ToString();
+                txtBoxTotalSalesReportTotalQuantity.Text = totalQuantity.ToString();
+            }
+        }
+
+        private void buttonExportTotalSalesReport_Click(object sender, EventArgs e)
+        {
+            // TODO: terminar este
+        }
+
+        private void buttonExportClientPurchasesReport_Click(object sender, EventArgs e)
+        {
+            // TODO: terminar este
+        }
+
+        private async void buttonGenerateClientPurchasesReport_Click(object sender, EventArgs e)
+        {
+            DateTime dateFrom = dateTimeClientPurchasesReportFrom.Value;
+            DateTime dateTo = dateTimeClientPurchasesReportTo.Value;
+            var datesDto = new DateFromToDto()
+            {
+                From = dateFrom,
+                To = dateTo,
+            };
+            string response = await ApiHelper.PostAsync("https://localhost:7215/api/reports/clients-purchases", datesDto);
+            if (response.Contains("error") || response.Contains("failed"))
+            {
+                MessageBox.Show("Error al generar reporte", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                var clientsPurchasesVM = JsonConvert.DeserializeObject<List<ClientPurchasesViewModel>>(response);
+                dataGridViewClientsPruchasesReport.DataSource = new BindingList<ClientPurchasesViewModel>(clientsPurchasesVM);
+            }
+        }
     }
 }
