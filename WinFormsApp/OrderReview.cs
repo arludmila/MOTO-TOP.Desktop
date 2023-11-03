@@ -31,7 +31,7 @@ namespace WinFormsApp
         }
         private async Task GetOrder(Guid id)
         {
-            _orderViewModel = await ApiHelper.GetAsync<OrderViewModel>($"https://localhost:7215/api/orders/view-models/{id}");
+            _orderViewModel = await ApiHelper.GetAsync<OrderViewModel>($"{ApiUrl.LocalUrl}orders/view-models/{id}");
         }
         private void StyleWinForm()
         {
@@ -132,7 +132,7 @@ namespace WinFormsApp
             else
             {
                 Guid.TryParse(txtBoxOrderId.Text, out Guid orderId);
-                Order order = await ApiHelper.GetAsync<Order>($"https://localhost:7215/api/orders/{orderId}");
+                Order order = await ApiHelper.GetAsync<Order>($"{ApiUrl.LocalUrl}orders/{orderId}");
 
                 var invoice = new InvoiceDto()
                 {
@@ -141,7 +141,7 @@ namespace WinFormsApp
                     OrderId = orderId,
                     ClientId = order.ClientId,
                 };
-                string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices", invoice);
+                string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}invoices", invoice);
                 if (response.Contains("error") || response.Contains("failed"))
                 {
                     MessageBox.Show("Error al facturar", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -162,7 +162,7 @@ namespace WinFormsApp
 
         private async void buttonCancelOrder_Click(object sender, EventArgs e)
         {
-            var response = await ApiHelper.DeleteAsync($"https://localhost:7215/api/orders/{_orderId}");
+            var response = await ApiHelper.DeleteAsync($"{ApiUrl.LocalUrl}orders/{_orderId}");
             if (response.Contains("error") || response.Contains("failed"))
             {
                 MessageBox.Show("Error al borrar pedido", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -209,7 +209,7 @@ namespace WinFormsApp
 
                     };
 
-                    var response = await ApiHelper.UpdateAsync($"https://localhost:7215/api/order-products/{orderProduct.Id}", orderProduct);
+                    var response = await ApiHelper.UpdateAsync($"{ApiUrl.LocalUrl}order-products/{orderProduct.Id}", orderProduct);
                     if (response.Contains("error") || response.Contains("failed"))
                     {
                         MessageBox.Show("Error al actualizar datos del pedido", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -217,7 +217,7 @@ namespace WinFormsApp
                 }
                 else
                 {
-                    var response = await ApiHelper.DeleteAsync($"https://localhost:7215/api/order-products/{orderProductVM.Id}");
+                    var response = await ApiHelper.DeleteAsync($"{ApiUrl.LocalUrl}order-products/{orderProductVM.Id}");
                     if (response.Contains("error") || response.Contains("failed"))
                     {
                         MessageBox.Show("Error al actualizar datos del pedido", response, MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -28,7 +28,7 @@ namespace WinFormsApp
                     Email = email
                 };
 
-                string response = await ApiHelper.PostAsync("https://localhost:7215/api/transport-companies", transportCompanyDto);
+                string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}transport-companies", transportCompanyDto);
 
                 if (response.Contains("error") || response.Contains("failed"))
                 {

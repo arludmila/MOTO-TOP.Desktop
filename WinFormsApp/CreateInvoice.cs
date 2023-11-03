@@ -101,7 +101,7 @@ namespace WinFormsApp
                     ClientId = clientId
                 };
 
-                string response = await ApiHelper.PostAsync("https://localhost:7215/api/invoices/detailed", invoiceWithDetailsDto);
+                string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}invoices/detailed", invoiceWithDetailsDto);
 
                 if (response.Contains("error") || response.Contains("failed"))
                 {

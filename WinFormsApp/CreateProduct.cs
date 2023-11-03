@@ -52,7 +52,7 @@ namespace WinFormsApp
                     PurchasePrice = _purchasePrice,
                 };
 
-                string response = await ApiHelper.PostAsync("https://localhost:7215/api/products", product);
+                string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}products", product);
 
 
                 if (response.Contains("error") || response.Contains("failed"))
@@ -71,7 +71,7 @@ namespace WinFormsApp
 
         private async void CreateProduct_Load(object sender, EventArgs e)
         {
-            var categories = await ApiHelper.GetListAsync<Category>("https://localhost:7215/api/categories");
+            var categories = await ApiHelper.GetListAsync<Category>($"{ApiUrl.LocalUrl}categories");
             if (categories != null)
             {
                 comboBoxCategories.DataSource = new BindingList<Category>(categories);

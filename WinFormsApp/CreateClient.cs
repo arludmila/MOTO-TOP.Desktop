@@ -47,7 +47,7 @@ namespace WinFormsApp
                 };
 
 
-                string response = await ApiHelper.PostAsync("https://localhost:7215/api/clients", clientDto);
+                string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}clients", clientDto);
 
                 if (response.Contains("error"))
                 {

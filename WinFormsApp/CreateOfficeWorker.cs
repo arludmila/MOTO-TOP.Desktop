@@ -47,7 +47,7 @@ namespace WinFormsApp
                     DocumentType = selectedDocType,
                 };
 
-                string response = await ApiHelper.PostAsync("https://localhost:7215/api/office-workers/register", registerDto);
+                string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}office-workers/register", registerDto);
 
                 if (response.Contains("error") || response.Contains("failed"))
                 {

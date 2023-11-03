@@ -31,7 +31,7 @@ namespace WinFormsApp
         }
         private async Task LoadData()
         {
-            products = await ApiHelper.GetListAsync<ProductViewModel>("https://localhost:7215/api/products/view-models");
+            products = await ApiHelper.GetListAsync<ProductViewModel>($"{ApiUrl.LocalUrl}products/view-models");
             if (products != null)
             {
                 dataGridViewProducts.DataSource = new BindingList<ProductViewModel>(products);

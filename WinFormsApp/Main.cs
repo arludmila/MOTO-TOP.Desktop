@@ -64,8 +64,8 @@ namespace WinFormsApp
                 {
                     Name = categoryName,
                 };
-
-                string response = await ApiHelper.PostAsync("https://localhost:7215/api/categories", category);
+                
+                string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}categories", category);
 
                 if (response.Contains("error") || response.Contains("failed"))
                 {
@@ -365,37 +365,37 @@ namespace WinFormsApp
         }
         private async Task LoadData()
         {
-            categories = await ApiHelper.GetListAsync<Category>("https://localhost:7215/api/categories");
+            categories = await ApiHelper.GetListAsync<Category>($"{ApiUrl.LocalUrl}categories");
             if (categories != null)
             {
                 dataGridViewCategories.DataSource = new BindingList<Category>(categories);
             }
-            products = await ApiHelper.GetListAsync<ProductViewModel>("https://localhost:7215/api/products/view-models");
+            products = await ApiHelper.GetListAsync<ProductViewModel>($"{ApiUrl.LocalUrl}products/view-models");
             if (products != null)
             {
                 dataGridViewProducts.DataSource = new BindingList<ProductViewModel>(products);
             }
-            clients = await ApiHelper.GetListAsync<Client>("https://localhost:7215/api/clients");
+            clients = await ApiHelper.GetListAsync<Client>($"{ApiUrl.LocalUrl}clients");
             if (clients != null)
             {
                 dataGridViewClients.DataSource = new BindingList<Client>(clients);
             }
-            suppliers = await ApiHelper.GetListAsync<Supplier>("https://localhost:7215/api/suppliers");
+            suppliers = await ApiHelper.GetListAsync<Supplier>($"{ApiUrl.LocalUrl}suppliers");
             if (suppliers != null)
             {
                 dataGridViewSuppliers.DataSource = new BindingList<Supplier>(suppliers);
             }
-            sellers = await ApiHelper.GetListAsync<SellerViewModel>("https://localhost:7215/api/sellers/view-models");
+            sellers = await ApiHelper.GetListAsync<SellerViewModel>($"{ApiUrl.LocalUrl}sellers/view-models");
             if (sellers != null)
             {
                 dataGridViewSellers.DataSource = new BindingList<SellerViewModel>(sellers);
             }
-            orders = await ApiHelper.GetListAsync<OrderViewModel>("https://localhost:7215/api/orders/view-models");
+            orders = await ApiHelper.GetListAsync<OrderViewModel>($"{ApiUrl.LocalUrl}orders/view-models");
             if (orders != null)
             {
                 dataGridViewOrders.DataSource = new BindingList<OrderViewModel>(orders);
             }
-            invoices = await ApiHelper.GetListAsync<InvoiceViewModel>("https://localhost:7215/api/invoices/view-models");
+            invoices = await ApiHelper.GetListAsync<InvoiceViewModel>($"{ApiUrl.LocalUrl}invoices/view-models");
 
             if (invoices != null)
             {
@@ -407,7 +407,7 @@ namespace WinFormsApp
                     dataGridViewPendingInvoices.DataSource = new BindingList<InvoiceViewModel>(pendingInvoices);
                 }
             }
-            billingTransactions = await ApiHelper.GetListAsync<BillingTransaction>("https://localhost:7215/api/billing-transactions");
+            billingTransactions = await ApiHelper.GetListAsync<BillingTransaction>($"{ApiUrl.LocalUrl}billing-transactions");
 
             if (billingTransactions != null)
             {
@@ -415,14 +415,14 @@ namespace WinFormsApp
             }
 
 
-            transportCompanies = await ApiHelper.GetListAsync<TransportCompany>("https://localhost:7215/api/transport-companies");
+            transportCompanies = await ApiHelper.GetListAsync<TransportCompany>($"{ApiUrl.LocalUrl}transport-companies");
 
             if (transportCompanies != null)
             {
                 dataGridViewTransportCompanies.DataSource = new BindingList<TransportCompany>(transportCompanies);
             }
 
-            officeWorkers = await ApiHelper.GetListAsync<OfficeWorkerViewModel>("https://localhost:7215/api/office-workers/view-models");
+            officeWorkers = await ApiHelper.GetListAsync<OfficeWorkerViewModel>($"{ApiUrl.LocalUrl}office-workers/view-models");
 
             if (officeWorkers != null)
             {
@@ -513,7 +513,7 @@ namespace WinFormsApp
                     SellingPrice = sellingPrice,
                 };
 
-                string response = await ApiHelper.PostAsync("https://localhost:7215/api/supplier-products", supplierProduct);
+                string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}supplier-products", supplierProduct);
                 if (response.Contains("error") || response.Contains("failed"))
                 {
                     MessageBox.Show("Error al registrar compra", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -646,7 +646,7 @@ namespace WinFormsApp
                 From = dateFrom,
                 To = dateTo,
             };
-            string response = await ApiHelper.PostAsync("https://localhost:7215/api/reports/sellers-sales", datesDto);
+            string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}reports/sellers-sales", datesDto);
             if (response.Contains("error") || response.Contains("failed"))
             {
                 MessageBox.Show("Error al generar reporte", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -716,7 +716,7 @@ namespace WinFormsApp
 
         private async void buttonGenerateReportOrdersPendingShipment_Click(object sender, EventArgs e)
         {
-            var response = await ApiHelper.GetListAsync<OrderViewModel>("https://localhost:7215/api/reports/orders-pending-shipment");
+            var response = await ApiHelper.GetListAsync<OrderViewModel>($"{ApiUrl.LocalUrl}reports/orders-pending-shipment");
             if (response == null)
             {
                 MessageBoxHelper.ShowInfoMessageBox("No hay pedidos pendientes de envio.");
@@ -830,7 +830,7 @@ namespace WinFormsApp
         }
         private async void buttonGenerateClientsBalances_Click(object sender, EventArgs e)
         {
-            var response = await ApiHelper.GetListAsync<ClientsBalanceViewModel>("https://localhost:7215/api/reports/clients-balances");
+            var response = await ApiHelper.GetListAsync<ClientsBalanceViewModel>($"{ApiUrl.LocalUrl}reports/clients-balances");
             if (response == null)
             {
                 MessageBoxHelper.ShowErrorMessageBox("Error al generar reporte.");
@@ -914,7 +914,7 @@ namespace WinFormsApp
                 From = dateFrom,
                 To = dateTo,
             };
-            string response = await ApiHelper.PostAsync("https://localhost:7215/api/reports/total-sales", datesDto);
+            string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}reports/total-sales", datesDto);
             if (response.Contains("error") || response.Contains("failed"))
             {
                 MessageBox.Show("Error al generar reporte", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -954,7 +954,7 @@ namespace WinFormsApp
                 From = dateFrom,
                 To = dateTo,
             };
-            string response = await ApiHelper.PostAsync("https://localhost:7215/api/reports/clients-purchases", datesDto);
+            string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}reports/clients-purchases", datesDto);
             if (response.Contains("error") || response.Contains("failed"))
             {
                 MessageBox.Show("Error al generar reporte", response, MessageBoxButtons.OK, MessageBoxIcon.Error);

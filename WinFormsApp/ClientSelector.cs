@@ -48,7 +48,7 @@ namespace WinFormsApp
             };
 
             Main.SetupDataGridView(dataGridViewClients, clientsColumns);
-            _clients = await ApiHelper.GetListAsync<Client>("https://localhost:7215/api/clients");
+            _clients = await ApiHelper.GetListAsync<Client>($"{ApiUrl.LocalUrl}clients");
             if (_clients != null)
             {
                 dataGridViewClients.DataSource = new BindingList<Client>(_clients);

@@ -37,7 +37,7 @@ namespace WinFormsApp
         }
         private async Task LoadData()
         {
-            suppliers = await ApiHelper.GetListAsync<Supplier>("https://localhost:7215/api/suppliers");
+            suppliers = await ApiHelper.GetListAsync<Supplier>($"{ApiUrl.LocalUrl}suppliers");
             if (suppliers != null)
             {
                 dataGridViewSuppliers.DataSource = new BindingList<Supplier>(suppliers);

@@ -52,7 +52,7 @@ namespace WinFormsApp
                 _billingTransactionDto.DocumentNumber = documentNumber;
                 _billingTransactionDto.PaymentMethod = selectedPaymentMethod;
                 _billingTransactionDto.DocumentType = documentType;
-                string response = await ApiHelper.PostAsync("https://localhost:7215/api/billing-transactions", _billingTransactionDto);
+                string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}billing-transactions", _billingTransactionDto);
 
                 if (response.Contains("error") || response.Contains("failed"))
                 {

@@ -28,7 +28,7 @@ namespace WinFormsApp
                     Email = email,
                 };
 
-                string response = await ApiHelper.PostAsync("https://localhost:7215/api/suppliers", supplier);
+                string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}suppliers", supplier);
 
                 if (response.Contains("error") || response.Contains("failed"))
                 {
