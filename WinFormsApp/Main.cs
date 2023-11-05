@@ -330,7 +330,7 @@ namespace WinFormsApp
                 { "TotalAmount", "Importe Total ($)" },
             };
             SetupDataGridView(dataGridViewProductsSalesReport, productsSalesReportColumns);
-            
+
         }
         public static void SetupDataGridView(DataGridView dataGridView, Dictionary<string, string> columnDictionary)
         {
@@ -760,7 +760,7 @@ namespace WinFormsApp
 
                 worksheet.Cells["E3"].Value = "Vendedor";
 
-                var dateColumn = worksheet.Column(2); 
+                var dateColumn = worksheet.Column(2);
                 dateColumn.Style.Numberformat.Format = "yyyy-MM-dd";
 
                 // Auto-fit COLUMNAS
@@ -945,7 +945,7 @@ namespace WinFormsApp
         private void buttonExportTotalSalesReport_Click(object sender, EventArgs e)
         {
             var invoices = ((BindingList<Invoice>)dataGridViewTotalSalesReport.DataSource).ToList();
-            ExportTotalSalesReportToExcel(invoices, dateTimeTotalSalesFrom.Value,dateTimeTotalSalesTo.Value);
+            ExportTotalSalesReportToExcel(invoices, dateTimeTotalSalesFrom.Value, dateTimeTotalSalesTo.Value);
         }
         public void ExportTotalSalesReportToExcel(List<Invoice> invoices, DateTime dateFrom, DateTime dateTo)
         {
@@ -960,7 +960,7 @@ namespace WinFormsApp
                 worksheet.Cells["A1:F1"].Style.Font.Size = 16;
                 worksheet.Cells["A1:F1"].Style.Font.Bold = true;
                 worksheet.Cells["A1:F1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                
+
                 // FECHAS
                 worksheet.Cells["A3"].Value = "Periodo:";
                 worksheet.Cells["B3"].Value = dateFrom.ToString("dd/MM/yyyy");
@@ -981,7 +981,7 @@ namespace WinFormsApp
                 worksheet.Cells["C6"].Value = "N° de Cliente";
                 worksheet.Cells["D6"].Value = "Pedido";
                 worksheet.Cells["E6"].Value = "N° de Factura";
-                var dateColumn = worksheet.Column(1); 
+                var dateColumn = worksheet.Column(1);
                 dateColumn.Style.Numberformat.Format = "yyyy-MM-dd";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
@@ -1005,14 +1005,14 @@ namespace WinFormsApp
 
         private void buttonExportClientPurchasesReport_Click(object sender, EventArgs e)
         {
-            
+
             var clientsPurchasesVM = ((BindingList<ClientPurchasesViewModel>)dataGridViewClientsPruchasesReport.DataSource).ToList();
             ExportClientsPurchasesReportToExcel(clientsPurchasesVM, dateTimeClientPurchasesReportFrom.Value, dateTimeClientPurchasesReportTo.Value);
 
         }
         public void ExportClientsPurchasesReportToExcel(List<ClientPurchasesViewModel> clientsPurchasesVM, DateTime dateFrom, DateTime dateTo)
         {
-            
+
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             using (var package = new ExcelPackage())
             {
@@ -1043,7 +1043,7 @@ namespace WinFormsApp
                 worksheet.Cells["G5"].Value = "N° de Telefono";
                 worksheet.Cells["H5"].Value = "Cantidad de Compras";
                 worksheet.Cells["I5"].Value = "Importe Total ($)";
-                
+
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
