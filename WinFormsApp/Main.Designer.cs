@@ -606,11 +606,11 @@
             tabPagePProducts.Controls.Add(labelProductsSearch);
             tabPagePProducts.Controls.Add(buttonCreateProduct);
             tabPagePProducts.Controls.Add(txtBoxProductsSearch);
-            tabPagePProducts.Location = new Point(129, 4);
+            tabPagePProducts.Location = new Point(154, 4);
             tabPagePProducts.Margin = new Padding(3, 4, 3, 4);
             tabPagePProducts.Name = "tabPagePProducts";
             tabPagePProducts.Padding = new Padding(3, 4, 3, 4);
-            tabPagePProducts.Size = new Size(1253, 709);
+            tabPagePProducts.Size = new Size(1228, 755);
             tabPagePProducts.TabIndex = 0;
             tabPagePProducts.Text = "Productos";
             // 
@@ -658,7 +658,7 @@
             dataGridViewProducts.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewProducts.RowTemplate.Height = 25;
             dataGridViewProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewProducts.Size = new Size(1219, 576);
+            dataGridViewProducts.Size = new Size(1194, 622);
             dataGridViewProducts.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewProducts.TabIndex = 4;
             // 
@@ -686,7 +686,7 @@
             buttonCreateProduct.Image = null;
             buttonCreateProduct.ImageAlign = ContentAlignment.MiddleLeft;
             buttonCreateProduct.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonCreateProduct.Location = new Point(17, 645);
+            buttonCreateProduct.Location = new Point(17, 691);
             buttonCreateProduct.Margin = new Padding(3, 4, 3, 4);
             buttonCreateProduct.Name = "buttonCreateProduct";
             buttonCreateProduct.PressedBorderColor = Color.FromArgb(165, 37, 37);
@@ -711,7 +711,7 @@
             txtBoxProductsSearch.Multiline = false;
             txtBoxProductsSearch.Name = "txtBoxProductsSearch";
             txtBoxProductsSearch.ReadOnly = false;
-            txtBoxProductsSearch.Size = new Size(673, 33);
+            txtBoxProductsSearch.Size = new Size(648, 33);
             txtBoxProductsSearch.TabIndex = 2;
             txtBoxProductsSearch.TextAlignment = HorizontalAlignment.Left;
             txtBoxProductsSearch.UseSystemPasswordChar = false;
@@ -723,11 +723,11 @@
             tabPagePSuppliers.Controls.Add(labelSearchSuppliers);
             tabPagePSuppliers.Controls.Add(buttonCreateSupplier);
             tabPagePSuppliers.Controls.Add(txtBoxSearchSuppliers);
-            tabPagePSuppliers.Location = new Point(129, 4);
+            tabPagePSuppliers.Location = new Point(154, 4);
             tabPagePSuppliers.Margin = new Padding(3, 4, 3, 4);
             tabPagePSuppliers.Name = "tabPagePSuppliers";
             tabPagePSuppliers.Padding = new Padding(3, 4, 3, 4);
-            tabPagePSuppliers.Size = new Size(1253, 709);
+            tabPagePSuppliers.Size = new Size(1228, 755);
             tabPagePSuppliers.TabIndex = 1;
             tabPagePSuppliers.Text = "Proveedores";
             // 
@@ -775,7 +775,7 @@
             dataGridViewSuppliers.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewSuppliers.RowTemplate.Height = 25;
             dataGridViewSuppliers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewSuppliers.Size = new Size(1219, 576);
+            dataGridViewSuppliers.Size = new Size(1194, 622);
             dataGridViewSuppliers.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewSuppliers.TabIndex = 12;
             // 
@@ -803,7 +803,7 @@
             buttonCreateSupplier.Image = null;
             buttonCreateSupplier.ImageAlign = ContentAlignment.MiddleLeft;
             buttonCreateSupplier.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonCreateSupplier.Location = new Point(14, 643);
+            buttonCreateSupplier.Location = new Point(14, 689);
             buttonCreateSupplier.Margin = new Padding(3, 4, 3, 4);
             buttonCreateSupplier.Name = "buttonCreateSupplier";
             buttonCreateSupplier.PressedBorderColor = Color.FromArgb(165, 37, 37);
@@ -828,7 +828,7 @@
             txtBoxSearchSuppliers.Multiline = false;
             txtBoxSearchSuppliers.Name = "txtBoxSearchSuppliers";
             txtBoxSearchSuppliers.ReadOnly = false;
-            txtBoxSearchSuppliers.Size = new Size(673, 33);
+            txtBoxSearchSuppliers.Size = new Size(648, 33);
             txtBoxSearchSuppliers.TabIndex = 10;
             txtBoxSearchSuppliers.TextAlignment = HorizontalAlignment.Left;
             txtBoxSearchSuppliers.UseSystemPasswordChar = false;
@@ -852,10 +852,10 @@
             tabPagePOrdersSupp.Controls.Add(labelQuantity);
             tabPagePOrdersSupp.Controls.Add(txtBoxSupplierProductQuantity);
             tabPagePOrdersSupp.Controls.Add(buttonCreateSupplierProduct);
-            tabPagePOrdersSupp.Location = new Point(129, 4);
+            tabPagePOrdersSupp.Location = new Point(154, 4);
             tabPagePOrdersSupp.Margin = new Padding(3, 4, 3, 4);
             tabPagePOrdersSupp.Name = "tabPagePOrdersSupp";
-            tabPagePOrdersSupp.Size = new Size(1253, 709);
+            tabPagePOrdersSupp.Size = new Size(1228, 755);
             tabPagePOrdersSupp.TabIndex = 2;
             tabPagePOrdersSupp.Text = "Compras";
             // 
@@ -873,7 +873,7 @@
             txtBoxSupplierProductSellingPrice.Multiline = false;
             txtBoxSupplierProductSellingPrice.Name = "txtBoxSupplierProductSellingPrice";
             txtBoxSupplierProductSellingPrice.ReadOnly = false;
-            txtBoxSupplierProductSellingPrice.Size = new Size(338, 33);
+            txtBoxSupplierProductSellingPrice.Size = new Size(313, 33);
             txtBoxSupplierProductSellingPrice.TabIndex = 50;
             txtBoxSupplierProductSellingPrice.TextAlignment = HorizontalAlignment.Left;
             txtBoxSupplierProductSellingPrice.UseSystemPasswordChar = false;
@@ -905,7 +905,7 @@
             txtBoxSupplierProductProfitMargin.Multiline = false;
             txtBoxSupplierProductProfitMargin.Name = "txtBoxSupplierProductProfitMargin";
             txtBoxSupplierProductProfitMargin.ReadOnly = false;
-            txtBoxSupplierProductProfitMargin.Size = new Size(91, 33);
+            txtBoxSupplierProductProfitMargin.Size = new Size(66, 33);
             txtBoxSupplierProductProfitMargin.TabIndex = 48;
             txtBoxSupplierProductProfitMargin.TextAlignment = HorizontalAlignment.Left;
             txtBoxSupplierProductProfitMargin.UseSystemPasswordChar = false;
@@ -938,7 +938,7 @@
             txtBoxSupplierProductPurchasePrice.Multiline = false;
             txtBoxSupplierProductPurchasePrice.Name = "txtBoxSupplierProductPurchasePrice";
             txtBoxSupplierProductPurchasePrice.ReadOnly = false;
-            txtBoxSupplierProductPurchasePrice.Size = new Size(338, 33);
+            txtBoxSupplierProductPurchasePrice.Size = new Size(313, 33);
             txtBoxSupplierProductPurchasePrice.TabIndex = 46;
             txtBoxSupplierProductPurchasePrice.TextAlignment = HorizontalAlignment.Left;
             txtBoxSupplierProductPurchasePrice.UseSystemPasswordChar = false;
@@ -976,7 +976,7 @@
             buttonSelectSupplier.BackColor = Color.Transparent;
             buttonSelectSupplier.BaseColor = Color.DimGray;
             buttonSelectSupplier.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonSelectSupplier.Location = new Point(794, 127);
+            buttonSelectSupplier.Location = new Point(769, 127);
             buttonSelectSupplier.Margin = new Padding(3, 4, 3, 4);
             buttonSelectSupplier.Name = "buttonSelectSupplier";
             buttonSelectSupplier.Rounded = true;
@@ -992,7 +992,7 @@
             buttonSelectProduct.BackColor = Color.Transparent;
             buttonSelectProduct.BaseColor = Color.DimGray;
             buttonSelectProduct.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonSelectProduct.Location = new Point(794, 79);
+            buttonSelectProduct.Location = new Point(769, 79);
             buttonSelectProduct.Margin = new Padding(3, 4, 3, 4);
             buttonSelectProduct.Name = "buttonSelectProduct";
             buttonSelectProduct.Rounded = true;
@@ -1016,7 +1016,7 @@
             txtBoxSupplierProductProductId.Multiline = false;
             txtBoxSupplierProductProductId.Name = "txtBoxSupplierProductProductId";
             txtBoxSupplierProductProductId.ReadOnly = false;
-            txtBoxSupplierProductProductId.Size = new Size(338, 33);
+            txtBoxSupplierProductProductId.Size = new Size(313, 33);
             txtBoxSupplierProductProductId.TabIndex = 40;
             txtBoxSupplierProductProductId.TextAlignment = HorizontalAlignment.Left;
             txtBoxSupplierProductProductId.UseSystemPasswordChar = false;
@@ -1036,7 +1036,7 @@
             txtBoxSupplierProductSupplierId.Multiline = false;
             txtBoxSupplierProductSupplierId.Name = "txtBoxSupplierProductSupplierId";
             txtBoxSupplierProductSupplierId.ReadOnly = false;
-            txtBoxSupplierProductSupplierId.Size = new Size(338, 33);
+            txtBoxSupplierProductSupplierId.Size = new Size(313, 33);
             txtBoxSupplierProductSupplierId.TabIndex = 39;
             txtBoxSupplierProductSupplierId.TextAlignment = HorizontalAlignment.Left;
             txtBoxSupplierProductSupplierId.UseSystemPasswordChar = false;
@@ -1095,7 +1095,7 @@
             txtBoxSupplierProductQuantity.Multiline = false;
             txtBoxSupplierProductQuantity.Name = "txtBoxSupplierProductQuantity";
             txtBoxSupplierProductQuantity.ReadOnly = false;
-            txtBoxSupplierProductQuantity.Size = new Size(338, 33);
+            txtBoxSupplierProductQuantity.Size = new Size(313, 33);
             txtBoxSupplierProductQuantity.TabIndex = 35;
             txtBoxSupplierProductQuantity.TextAlignment = HorizontalAlignment.Left;
             txtBoxSupplierProductQuantity.UseSystemPasswordChar = false;
@@ -1110,7 +1110,7 @@
             buttonCreateSupplierProduct.Margin = new Padding(3, 4, 3, 4);
             buttonCreateSupplierProduct.Name = "buttonCreateSupplierProduct";
             buttonCreateSupplierProduct.Rounded = true;
-            buttonCreateSupplierProduct.Size = new Size(179, 53);
+            buttonCreateSupplierProduct.Size = new Size(154, 53);
             buttonCreateSupplierProduct.TabIndex = 32;
             buttonCreateSupplierProduct.Text = "Registrar Compra";
             buttonCreateSupplierProduct.TextColor = Color.FromArgb(243, 243, 243);
@@ -1251,11 +1251,11 @@
             tabPageBTPendingInvoices.Controls.Add(dataGridViewPendingInvoices);
             tabPageBTPendingInvoices.Controls.Add(labelSearchPendingInvoices);
             tabPageBTPendingInvoices.Controls.Add(txtBoxSearchPendingInvoices);
-            tabPageBTPendingInvoices.Location = new Point(129, 4);
+            tabPageBTPendingInvoices.Location = new Point(154, 4);
             tabPageBTPendingInvoices.Margin = new Padding(3, 4, 3, 4);
             tabPageBTPendingInvoices.Name = "tabPageBTPendingInvoices";
             tabPageBTPendingInvoices.Padding = new Padding(3, 4, 3, 4);
-            tabPageBTPendingInvoices.Size = new Size(1253, 709);
+            tabPageBTPendingInvoices.Size = new Size(1228, 755);
             tabPageBTPendingInvoices.TabIndex = 1;
             tabPageBTPendingInvoices.Text = "Facturas Pendientes";
             // 
@@ -1303,7 +1303,7 @@
             dataGridViewPendingInvoices.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewPendingInvoices.RowTemplate.Height = 25;
             dataGridViewPendingInvoices.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewPendingInvoices.Size = new Size(1211, 633);
+            dataGridViewPendingInvoices.Size = new Size(1186, 679);
             dataGridViewPendingInvoices.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewPendingInvoices.TabIndex = 12;
             dataGridViewPendingInvoices.CellContentClick += dataGridViewPendingInvoices_CellContentClick;
@@ -1335,7 +1335,7 @@
             txtBoxSearchPendingInvoices.Multiline = false;
             txtBoxSearchPendingInvoices.Name = "txtBoxSearchPendingInvoices";
             txtBoxSearchPendingInvoices.ReadOnly = false;
-            txtBoxSearchPendingInvoices.Size = new Size(1122, 33);
+            txtBoxSearchPendingInvoices.Size = new Size(1097, 33);
             txtBoxSearchPendingInvoices.TabIndex = 10;
             txtBoxSearchPendingInvoices.TextAlignment = HorizontalAlignment.Left;
             txtBoxSearchPendingInvoices.UseSystemPasswordChar = false;
@@ -1654,11 +1654,11 @@
             tabPage2.Controls.Add(buttonExportReportOrdersPendingShipment);
             tabPage2.Controls.Add(dataGridViewOrdersPendingShipment);
             tabPage2.Controls.Add(dungeonHeaderLabel2);
-            tabPage2.Location = new Point(129, 4);
+            tabPage2.Location = new Point(154, 4);
             tabPage2.Margin = new Padding(3, 4, 3, 4);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3, 4, 3, 4);
-            tabPage2.Size = new Size(1253, 735);
+            tabPage2.Size = new Size(1228, 755);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Pedidos Pendientes de Envio";
             // 
@@ -1683,7 +1683,7 @@
             buttonExportReportOrdersPendingShipment.BackColor = Color.Transparent;
             buttonExportReportOrdersPendingShipment.BaseColor = Color.Black;
             buttonExportReportOrdersPendingShipment.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonExportReportOrdersPendingShipment.Location = new Point(8, 668);
+            buttonExportReportOrdersPendingShipment.Location = new Point(8, 688);
             buttonExportReportOrdersPendingShipment.Margin = new Padding(3, 4, 3, 4);
             buttonExportReportOrdersPendingShipment.Name = "buttonExportReportOrdersPendingShipment";
             buttonExportReportOrdersPendingShipment.Rounded = true;
@@ -1737,7 +1737,7 @@
             dataGridViewOrdersPendingShipment.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewOrdersPendingShipment.RowTemplate.Height = 25;
             dataGridViewOrdersPendingShipment.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewOrdersPendingShipment.Size = new Size(1218, 553);
+            dataGridViewOrdersPendingShipment.Size = new Size(1193, 573);
             dataGridViewOrdersPendingShipment.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewOrdersPendingShipment.TabIndex = 49;
             // 
@@ -1761,10 +1761,10 @@
             tabPage3.Controls.Add(buttonExportClientsBalances);
             tabPage3.Controls.Add(dataGridViewClientsBalances);
             tabPage3.Controls.Add(dungeonHeaderLabel3);
-            tabPage3.Location = new Point(129, 4);
+            tabPage3.Location = new Point(154, 4);
             tabPage3.Margin = new Padding(3, 4, 3, 4);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1253, 735);
+            tabPage3.Size = new Size(1228, 755);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Saldo de Clientes";
             // 
@@ -1789,7 +1789,7 @@
             buttonExportClientsBalances.BackColor = Color.Transparent;
             buttonExportClientsBalances.BaseColor = Color.Black;
             buttonExportClientsBalances.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonExportClientsBalances.Location = new Point(8, 668);
+            buttonExportClientsBalances.Location = new Point(8, 688);
             buttonExportClientsBalances.Margin = new Padding(3, 4, 3, 4);
             buttonExportClientsBalances.Name = "buttonExportClientsBalances";
             buttonExportClientsBalances.Rounded = true;
@@ -1843,7 +1843,7 @@
             dataGridViewClientsBalances.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewClientsBalances.RowTemplate.Height = 25;
             dataGridViewClientsBalances.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewClientsBalances.Size = new Size(1218, 553);
+            dataGridViewClientsBalances.Size = new Size(1193, 573);
             dataGridViewClientsBalances.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewClientsBalances.TabIndex = 53;
             // 
@@ -1867,10 +1867,10 @@
             tabPage4.Controls.Add(buttonExportPendingInvoicesReport);
             tabPage4.Controls.Add(dataGridViewPendingInvoicesReport);
             tabPage4.Controls.Add(dungeonHeaderLabel4);
-            tabPage4.Location = new Point(129, 4);
+            tabPage4.Location = new Point(154, 4);
             tabPage4.Margin = new Padding(3, 4, 3, 4);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1253, 735);
+            tabPage4.Size = new Size(1228, 755);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Facturas Pendientes";
             // 
@@ -1895,7 +1895,7 @@
             buttonExportPendingInvoicesReport.BackColor = Color.Transparent;
             buttonExportPendingInvoicesReport.BaseColor = Color.Black;
             buttonExportPendingInvoicesReport.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonExportPendingInvoicesReport.Location = new Point(8, 668);
+            buttonExportPendingInvoicesReport.Location = new Point(8, 688);
             buttonExportPendingInvoicesReport.Margin = new Padding(3, 4, 3, 4);
             buttonExportPendingInvoicesReport.Name = "buttonExportPendingInvoicesReport";
             buttonExportPendingInvoicesReport.Rounded = true;
@@ -1949,7 +1949,7 @@
             dataGridViewPendingInvoicesReport.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewPendingInvoicesReport.RowTemplate.Height = 25;
             dataGridViewPendingInvoicesReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewPendingInvoicesReport.Size = new Size(1218, 553);
+            dataGridViewPendingInvoicesReport.Size = new Size(1193, 573);
             dataGridViewPendingInvoicesReport.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewPendingInvoicesReport.TabIndex = 57;
             // 
@@ -1982,10 +1982,10 @@
             tabPage5.Controls.Add(dungeonLabel6);
             tabPage5.Controls.Add(dateTimeTotalSalesTo);
             tabPage5.Controls.Add(dateTimeTotalSalesFrom);
-            tabPage5.Location = new Point(129, 4);
+            tabPage5.Location = new Point(154, 4);
             tabPage5.Margin = new Padding(3, 4, 3, 4);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1253, 735);
+            tabPage5.Size = new Size(1228, 755);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Total de Ventas";
             // 
@@ -1997,7 +1997,7 @@
             txtBoxTotalSalesReportTotalAmount.EdgeColor = Color.White;
             txtBoxTotalSalesReportTotalAmount.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxTotalSalesReportTotalAmount.ForeColor = Color.DimGray;
-            txtBoxTotalSalesReportTotalAmount.Location = new Point(1026, 59);
+            txtBoxTotalSalesReportTotalAmount.Location = new Point(1001, 59);
             txtBoxTotalSalesReportTotalAmount.Margin = new Padding(3, 4, 3, 4);
             txtBoxTotalSalesReportTotalAmount.MaxLength = 32767;
             txtBoxTotalSalesReportTotalAmount.Multiline = false;
@@ -2016,7 +2016,7 @@
             txtBoxTotalSalesReportTotalQuantity.EdgeColor = Color.White;
             txtBoxTotalSalesReportTotalQuantity.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtBoxTotalSalesReportTotalQuantity.ForeColor = Color.DimGray;
-            txtBoxTotalSalesReportTotalQuantity.Location = new Point(1026, 13);
+            txtBoxTotalSalesReportTotalQuantity.Location = new Point(1001, 13);
             txtBoxTotalSalesReportTotalQuantity.Margin = new Padding(3, 4, 3, 4);
             txtBoxTotalSalesReportTotalQuantity.MaxLength = 32767;
             txtBoxTotalSalesReportTotalQuantity.Multiline = false;
@@ -2034,7 +2034,7 @@
             dungeonLabel8.BackColor = Color.Transparent;
             dungeonLabel8.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             dungeonLabel8.ForeColor = Color.FromArgb(76, 76, 77);
-            dungeonLabel8.Location = new Point(896, 63);
+            dungeonLabel8.Location = new Point(871, 63);
             dungeonLabel8.Name = "dungeonLabel8";
             dungeonLabel8.Size = new Size(137, 32);
             dungeonLabel8.TabIndex = 57;
@@ -2047,7 +2047,7 @@
             dungeonLabel7.BackColor = Color.Transparent;
             dungeonLabel7.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             dungeonLabel7.ForeColor = Color.FromArgb(76, 76, 77);
-            dungeonLabel7.Location = new Point(863, 17);
+            dungeonLabel7.Location = new Point(838, 17);
             dungeonLabel7.Name = "dungeonLabel7";
             dungeonLabel7.Size = new Size(172, 32);
             dungeonLabel7.TabIndex = 56;
@@ -2074,7 +2074,7 @@
             buttonExportTotalSalesReport.BackColor = Color.Transparent;
             buttonExportTotalSalesReport.BaseColor = Color.Black;
             buttonExportTotalSalesReport.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonExportTotalSalesReport.Location = new Point(8, 668);
+            buttonExportTotalSalesReport.Location = new Point(8, 688);
             buttonExportTotalSalesReport.Margin = new Padding(3, 4, 3, 4);
             buttonExportTotalSalesReport.Name = "buttonExportTotalSalesReport";
             buttonExportTotalSalesReport.Rounded = true;
@@ -2128,7 +2128,7 @@
             dataGridViewTotalSalesReport.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewTotalSalesReport.RowTemplate.Height = 25;
             dataGridViewTotalSalesReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewTotalSalesReport.Size = new Size(1218, 553);
+            dataGridViewTotalSalesReport.Size = new Size(1193, 573);
             dataGridViewTotalSalesReport.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewTotalSalesReport.TabIndex = 53;
             // 
@@ -2202,10 +2202,10 @@
             tabPage6.Controls.Add(dungeonLabel10);
             tabPage6.Controls.Add(dateTimeClientPurchasesReportTo);
             tabPage6.Controls.Add(dateTimeClientPurchasesReportFrom);
-            tabPage6.Location = new Point(129, 4);
+            tabPage6.Location = new Point(154, 4);
             tabPage6.Margin = new Padding(3, 4, 3, 4);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1253, 735);
+            tabPage6.Size = new Size(1228, 755);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Compras por Clientes";
             // 
@@ -2230,7 +2230,7 @@
             buttonExportClientPurchasesReport.BackColor = Color.Transparent;
             buttonExportClientPurchasesReport.BaseColor = Color.Black;
             buttonExportClientPurchasesReport.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonExportClientPurchasesReport.Location = new Point(8, 668);
+            buttonExportClientPurchasesReport.Location = new Point(8, 688);
             buttonExportClientPurchasesReport.Margin = new Padding(3, 4, 3, 4);
             buttonExportClientPurchasesReport.Name = "buttonExportClientPurchasesReport";
             buttonExportClientPurchasesReport.Rounded = true;
@@ -2284,7 +2284,7 @@
             dataGridViewClientsPruchasesReport.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewClientsPruchasesReport.RowTemplate.Height = 25;
             dataGridViewClientsPruchasesReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewClientsPruchasesReport.Size = new Size(1218, 553);
+            dataGridViewClientsPruchasesReport.Size = new Size(1193, 573);
             dataGridViewClientsPruchasesReport.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewClientsPruchasesReport.TabIndex = 53;
             // 
@@ -2358,10 +2358,10 @@
             tabPage7.Controls.Add(dungeonLabel12);
             tabPage7.Controls.Add(dateTimeProductsSalesTo);
             tabPage7.Controls.Add(dateTimeProductsSalesFrom);
-            tabPage7.Location = new Point(129, 4);
+            tabPage7.Location = new Point(154, 4);
             tabPage7.Margin = new Padding(3, 4, 3, 4);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(1253, 735);
+            tabPage7.Size = new Size(1228, 755);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Ventas por Productos";
             // 
@@ -2386,7 +2386,7 @@
             buttonExportProductsSalesReport.BackColor = Color.Transparent;
             buttonExportProductsSalesReport.BaseColor = Color.Black;
             buttonExportProductsSalesReport.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonExportProductsSalesReport.Location = new Point(8, 668);
+            buttonExportProductsSalesReport.Location = new Point(8, 688);
             buttonExportProductsSalesReport.Margin = new Padding(3, 4, 3, 4);
             buttonExportProductsSalesReport.Name = "buttonExportProductsSalesReport";
             buttonExportProductsSalesReport.Rounded = true;
@@ -2440,7 +2440,7 @@
             dataGridViewProductsSalesReport.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewProductsSalesReport.RowTemplate.Height = 25;
             dataGridViewProductsSalesReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewProductsSalesReport.Size = new Size(1218, 553);
+            dataGridViewProductsSalesReport.Size = new Size(1193, 573);
             dataGridViewProductsSalesReport.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewProductsSalesReport.TabIndex = 53;
             // 
@@ -2780,10 +2780,10 @@
             tabPageUsersOffWorkers.Controls.Add(labelSearchOffWorkers);
             tabPageUsersOffWorkers.Controls.Add(txtBoxSearchOfficeWorkers);
             tabPageUsersOffWorkers.Controls.Add(airSeparator3);
-            tabPageUsersOffWorkers.Location = new Point(129, 4);
+            tabPageUsersOffWorkers.Location = new Point(154, 4);
             tabPageUsersOffWorkers.Margin = new Padding(3, 4, 3, 4);
             tabPageUsersOffWorkers.Name = "tabPageUsersOffWorkers";
-            tabPageUsersOffWorkers.Size = new Size(1253, 709);
+            tabPageUsersOffWorkers.Size = new Size(1228, 755);
             tabPageUsersOffWorkers.TabIndex = 2;
             tabPageUsersOffWorkers.Text = "Central";
             // 
@@ -2831,7 +2831,7 @@
             dataGridViewOfficeWorkers.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewOfficeWorkers.RowTemplate.Height = 25;
             dataGridViewOfficeWorkers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewOfficeWorkers.Size = new Size(1218, 567);
+            dataGridViewOfficeWorkers.Size = new Size(1193, 613);
             dataGridViewOfficeWorkers.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewOfficeWorkers.TabIndex = 48;
             // 
@@ -2846,7 +2846,7 @@
             buttonCreateOfficeWorker.Image = null;
             buttonCreateOfficeWorker.ImageAlign = ContentAlignment.MiddleLeft;
             buttonCreateOfficeWorker.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonCreateOfficeWorker.Location = new Point(7, 649);
+            buttonCreateOfficeWorker.Location = new Point(7, 695);
             buttonCreateOfficeWorker.Margin = new Padding(3, 4, 3, 4);
             buttonCreateOfficeWorker.Name = "buttonCreateOfficeWorker";
             buttonCreateOfficeWorker.PressedBorderColor = Color.FromArgb(165, 37, 37);
@@ -2884,7 +2884,7 @@
             txtBoxSearchOfficeWorkers.Multiline = false;
             txtBoxSearchOfficeWorkers.Name = "txtBoxSearchOfficeWorkers";
             txtBoxSearchOfficeWorkers.ReadOnly = false;
-            txtBoxSearchOfficeWorkers.Size = new Size(1129, 33);
+            txtBoxSearchOfficeWorkers.Size = new Size(1104, 33);
             txtBoxSearchOfficeWorkers.TabIndex = 46;
             txtBoxSearchOfficeWorkers.TextAlignment = HorizontalAlignment.Left;
             txtBoxSearchOfficeWorkers.UseSystemPasswordChar = false;
