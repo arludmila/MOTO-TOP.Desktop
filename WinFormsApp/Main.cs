@@ -214,7 +214,6 @@ namespace WinFormsApp
                 { "DebtAmount", "Deuda Pendiente" },
             };
             SetupDataGridView(dataGridViewPendingInvoices, invoicesColumns);
-            // TODO: arreglar el auto size aca, xq si agrego columnas despues del SetupDataGridView quedan muy chicas!!!
             DataGridViewButtonColumn buttonColumnInvoices = new DataGridViewButtonColumn();
             buttonColumnInvoices.Name = "CreateBillTransactionButton";
             buttonColumnInvoices.HeaderText = "Registrar Pago";
@@ -264,7 +263,6 @@ namespace WinFormsApp
                 { "ShipmentStatus", "Estado" },
                 { "ClientName", "Cliente" },
                 { "SellerName", "Vendedor" },
-                { "TransportCompanyName", "Transporte" },
             };
             SetupDataGridView(dataGridViewOrdersPendingShipment, ordersPendShipColumns);
             // CLIENTS BALANCES
@@ -753,16 +751,17 @@ namespace WinFormsApp
                 worksheet.Cells["A1:F1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                 // HEADERS PARA TABLA
-                worksheet.Cells["A5"].LoadFromCollection(ordersVM, true, OfficeOpenXml.Table.TableStyles.Light1);
-                worksheet.Cells["A5"].Value = "Id";
-                worksheet.Cells["B5"].Value = "Fecha";
-                worksheet.Cells["C5"].Value = "Estado";
+                worksheet.Cells["A3"].LoadFromCollection(ordersVM, true, OfficeOpenXml.Table.TableStyles.Light1);
+                worksheet.Cells["A3"].Value = "Id";
+                worksheet.Cells["B3"].Value = "Fecha";
+                worksheet.Cells["C3"].Value = "Estado";
 
-                worksheet.Cells["D5"].Value = "Cliente";
+                worksheet.Cells["D3"].Value = "Cliente";
 
-                worksheet.Cells["E5"].Value = "Vendedor";
-                worksheet.Cells["F5"].Value = "Transporte";
-                // TODO: aca no deberia mostrar algunas de las cosas que muestra al final de la tabla (columnas)!!!
+                worksheet.Cells["E3"].Value = "Vendedor";
+
+                var dateColumn = worksheet.Column(2); 
+                dateColumn.Style.Numberformat.Format = "yyyy-MM-dd";
 
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
@@ -891,6 +890,8 @@ namespace WinFormsApp
                 worksheet.Cells["F3"].Value = "Fecha";
                 worksheet.Cells["G3"].Value = "Total";
                 worksheet.Cells["H3"].Value = "Deuda Pendiente";
+                var dateColumn = worksheet.Column(6);
+                dateColumn.Style.Numberformat.Format = "yyyy-MM-dd";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
@@ -948,7 +949,6 @@ namespace WinFormsApp
         }
         public void ExportTotalSalesReportToExcel(List<Invoice> invoices, DateTime dateFrom, DateTime dateTo)
         {
-            // ---- ACA
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             using (var package = new ExcelPackage())
             {
@@ -970,21 +970,19 @@ namespace WinFormsApp
 
                 // TOTALES:
                 worksheet.Cells["A4"].Value = "Cantidad de Ventas:";
-                worksheet.Cells["B4"].Value = txtBoxTotalSalesReportTotalQuantity.Text;
+                worksheet.Cells["B4"].Value = Convert.ToInt64(txtBoxTotalSalesReportTotalQuantity.Text);
                 worksheet.Cells["D4"].Value = "Importe Total ($):";
-                worksheet.Cells["E4"].Value = txtBoxTotalSalesReportTotalAmount.Text;
+                string cleanedString = new string(txtBoxTotalSalesReportTotalAmount.Text.Where(char.IsDigit).ToArray());
+                worksheet.Cells["E4"].Value = Convert.ToDouble(cleanedString);
                 // HEADERS PARA TABLA
-                // TODO: arreglar aca cosas!!!
                 worksheet.Cells["A6"].LoadFromCollection(invoices, true, OfficeOpenXml.Table.TableStyles.Light1);
                 worksheet.Cells["A6"].Value = "Fecha";
                 worksheet.Cells["B6"].Value = "Total Facturado ($)";
                 worksheet.Cells["C6"].Value = "N° de Cliente";
-                worksheet.Cells["D3"].Value = "Fecha";
-
-                //worksheet.Cells["E3"].Value = "Documento del Cliente";
-                //worksheet.Cells["F3"].Value = "Fecha";
-                //worksheet.Cells["G3"].Value = "Total";
-                //worksheet.Cells["H3"].Value = "Deuda Pendiente";
+                worksheet.Cells["D6"].Value = "Pedido";
+                worksheet.Cells["E6"].Value = "N° de Factura";
+                var dateColumn = worksheet.Column(1); 
+                dateColumn.Style.Numberformat.Format = "yyyy-MM-dd";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
@@ -1007,7 +1005,63 @@ namespace WinFormsApp
 
         private void buttonExportClientPurchasesReport_Click(object sender, EventArgs e)
         {
-            // TODO: terminar este
+            
+            var clientsPurchasesVM = ((BindingList<ClientPurchasesViewModel>)dataGridViewClientsPruchasesReport.DataSource).ToList();
+            ExportClientsPurchasesReportToExcel(clientsPurchasesVM, dateTimeClientPurchasesReportFrom.Value, dateTimeClientPurchasesReportTo.Value);
+
+        }
+        public void ExportClientsPurchasesReportToExcel(List<ClientPurchasesViewModel> clientsPurchasesVM, DateTime dateFrom, DateTime dateTo)
+        {
+            
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Compras por Clientes");
+
+                // TITULO
+                worksheet.Cells["A1"].Value = "Compras por Clientes";
+                worksheet.Cells["A1:F1"].Merge = true;
+                worksheet.Cells["A1:F1"].Style.Font.Size = 16;
+                worksheet.Cells["A1:F1"].Style.Font.Bold = true;
+                worksheet.Cells["A1:F1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                // FECHAS
+                worksheet.Cells["A3"].Value = "Periodo:";
+                worksheet.Cells["B3"].Value = dateFrom.ToString("dd/MM/yyyy");
+                worksheet.Cells["C3"].Value = " - ";
+                worksheet.Cells["C3"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                worksheet.Cells["D3"].Value = dateTo.ToString("dd/MM/yyyy");
+
+                // HEADERS PARA TABLA
+                worksheet.Cells["A5"].LoadFromCollection(clientsPurchasesVM, true, OfficeOpenXml.Table.TableStyles.Light1);
+                worksheet.Cells["A5"].Value = "N° de Cliente";
+                worksheet.Cells["B5"].Value = "Nombre";
+                worksheet.Cells["C5"].Value = "Apellido";
+                worksheet.Cells["D5"].Value = "Tipo de Documento";
+                worksheet.Cells["E5"].Value = "N° de Documento";
+                worksheet.Cells["F5"].Value = "Email";
+                worksheet.Cells["G5"].Value = "N° de Telefono";
+                worksheet.Cells["H5"].Value = "Cantidad de Compras";
+                worksheet.Cells["I5"].Value = "Importe Total ($)";
+                
+                // Auto-fit COLUMNAS
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // GUARDAR ARCHIVO
+                var fileName = $"ComprasXClientes_{dateFrom:yyyyMMdd}-{dateTo:yyyyMMdd}.xlsx";
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel Files|*.xlsx",
+                    FileName = fileName
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var fileInfo = new FileInfo(saveFileDialog.FileName);
+                    package.SaveAs(fileInfo);
+                    MessageBox.Show("El archivo se ha exportado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private async void buttonGenerateClientPurchasesReport_Click(object sender, EventArgs e)
@@ -1054,6 +1108,59 @@ namespace WinFormsApp
 
         private void buttonExportProductsSalesReport_Click(object sender, EventArgs e)
         {
+            var productsSalesVM = ((BindingList<ProductSalesViewModel>)dataGridViewProductsSalesReport.DataSource).ToList();
+            ExportProductsSalesReportToExcel(productsSalesVM, dateTimeProductsSalesFrom.Value, dateTimeProductsSalesTo.Value);
+
+        }
+        public void ExportProductsSalesReportToExcel(List<ProductSalesViewModel> productsSalesVM, DateTime dateFrom, DateTime dateTo)
+        {
+
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Ventas por Producto");
+
+                // TITULO
+                worksheet.Cells["A1"].Value = "Ventas por Producto";
+                worksheet.Cells["A1:F1"].Merge = true;
+                worksheet.Cells["A1:F1"].Style.Font.Size = 16;
+                worksheet.Cells["A1:F1"].Style.Font.Bold = true;
+                worksheet.Cells["A1:F1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                // FECHAS
+                worksheet.Cells["A3"].Value = "Periodo:";
+                worksheet.Cells["B3"].Value = dateFrom.ToString("dd/MM/yyyy");
+                worksheet.Cells["C3"].Value = " - ";
+                worksheet.Cells["C3"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                worksheet.Cells["D3"].Value = dateTo.ToString("dd/MM/yyyy");
+
+                // HEADERS PARA TABLA
+                worksheet.Cells["A5"].LoadFromCollection(productsSalesVM, true, OfficeOpenXml.Table.TableStyles.Light1);
+                worksheet.Cells["A5"].Value = "N° de Producto";
+                worksheet.Cells["B5"].Value = "Rubro";
+                worksheet.Cells["C5"].Value = "Producto";
+                worksheet.Cells["D5"].Value = "Descripción";
+                worksheet.Cells["E5"].Value = "Cantidad de Ventas";
+                worksheet.Cells["F5"].Value = "Importe Total ($)";
+
+                // Auto-fit COLUMNAS
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // GUARDAR ARCHIVO
+                var fileName = $"VentasXProducto_{dateFrom:yyyyMMdd}-{dateTo:yyyyMMdd}.xlsx";
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel Files|*.xlsx",
+                    FileName = fileName
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var fileInfo = new FileInfo(saveFileDialog.FileName);
+                    package.SaveAs(fileInfo);
+                    MessageBox.Show("El archivo se ha exportado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }
