@@ -10,6 +10,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.ComponentModel;
 using WinFormsApp.Utils;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using Timer = System.Windows.Forms.Timer;
 
 namespace WinFormsApp
@@ -64,7 +65,7 @@ namespace WinFormsApp
                 {
                     Name = categoryName,
                 };
-                
+
                 string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}categories", category);
 
                 if (response.Contains("error") || response.Contains("failed"))
@@ -98,6 +99,8 @@ namespace WinFormsApp
             dateTimeSellersSalesTo.Value = DateTime.Today;
             dateTimeTotalSalesFrom.Value = DateTime.Today;
             dateTimeTotalSalesTo.Value = DateTime.Today;
+            dateTimeProductsSalesFrom.Value = DateTime.Today;
+            dateTimeProductsSalesTo.Value = DateTime.Today;
 
         }
         private void StyleDataGrids()
@@ -111,15 +114,6 @@ namespace WinFormsApp
             };
 
             SetupDataGridView(dataGridViewCategories, categoriesColumns);
-            // Create a DataGridViewComboBoxColumn
-            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
-            comboBoxColumn.HeaderText = "Acciones"; // Header text
-
-            // Add the options 'borrar' and 'editar'
-            comboBoxColumn.Items.AddRange("Borrar", "Editar");
-
-            // Add the column to the DataGridView
-            dataGridViewCategories.Columns.Add(comboBoxColumn);
 
             // PRODUCTS
             Dictionary<string, string> productsColumns = new Dictionary<string, string>
@@ -327,6 +321,18 @@ namespace WinFormsApp
 
             };
             SetupDataGridView(dataGridViewClientsPruchasesReport, clientsPurchasesReportColumns);
+            // PRODUCTS SALES REPORT
+            Dictionary<string, string> productsSalesReportColumns = new Dictionary<string, string>
+            {
+                { "Id", "N° de Producto" },
+                { "CategoryName", "Rubro" },
+                { "Name", "Producto" },
+                { "Description", "Descripción" },
+                { "TotalSales", "Cantidad de Ventas" },
+                { "TotalAmount", "Importe Total ($)" },
+            };
+            SetupDataGridView(dataGridViewProductsSalesReport, productsSalesReportColumns);
+            
         }
         public static void SetupDataGridView(DataGridView dataGridView, Dictionary<string, string> columnDictionary)
         {
@@ -937,7 +943,66 @@ namespace WinFormsApp
 
         private void buttonExportTotalSalesReport_Click(object sender, EventArgs e)
         {
-            // TODO: terminar este
+            var invoices = ((BindingList<Invoice>)dataGridViewTotalSalesReport.DataSource).ToList();
+            ExportTotalSalesReportToExcel(invoices, dateTimeTotalSalesFrom.Value,dateTimeTotalSalesTo.Value);
+        }
+        public void ExportTotalSalesReportToExcel(List<Invoice> invoices, DateTime dateFrom, DateTime dateTo)
+        {
+            // ---- ACA
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Ventas Totales");
+
+                // TITULO
+                worksheet.Cells["A1"].Value = "Ventas Totales";
+                worksheet.Cells["A1:F1"].Merge = true;
+                worksheet.Cells["A1:F1"].Style.Font.Size = 16;
+                worksheet.Cells["A1:F1"].Style.Font.Bold = true;
+                worksheet.Cells["A1:F1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                
+                // FECHAS
+                worksheet.Cells["A3"].Value = "Periodo:";
+                worksheet.Cells["B3"].Value = dateFrom.ToString("dd/MM/yyyy");
+                worksheet.Cells["C3"].Value = " - ";
+                worksheet.Cells["C3"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                worksheet.Cells["D3"].Value = dateTo.ToString("dd/MM/yyyy");
+
+                // TOTALES:
+                worksheet.Cells["A4"].Value = "Cantidad de Ventas:";
+                worksheet.Cells["B4"].Value = txtBoxTotalSalesReportTotalQuantity.Text;
+                worksheet.Cells["D4"].Value = "Importe Total ($):";
+                worksheet.Cells["E4"].Value = txtBoxTotalSalesReportTotalAmount.Text;
+                // HEADERS PARA TABLA
+                // TODO: arreglar aca cosas!!!
+                worksheet.Cells["A6"].LoadFromCollection(invoices, true, OfficeOpenXml.Table.TableStyles.Light1);
+                worksheet.Cells["A6"].Value = "Fecha";
+                worksheet.Cells["B6"].Value = "Total Facturado ($)";
+                worksheet.Cells["C6"].Value = "N° de Cliente";
+                worksheet.Cells["D3"].Value = "Fecha";
+
+                //worksheet.Cells["E3"].Value = "Documento del Cliente";
+                //worksheet.Cells["F3"].Value = "Fecha";
+                //worksheet.Cells["G3"].Value = "Total";
+                //worksheet.Cells["H3"].Value = "Deuda Pendiente";
+                // Auto-fit COLUMNAS
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // GUARDAR ARCHIVO
+                var fileName = $"VentasTotales_{dateFrom:yyyyMMdd}-{dateTo:yyyyMMdd}.xlsx";
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel Files|*.xlsx",
+                    FileName = fileName
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var fileInfo = new FileInfo(saveFileDialog.FileName);
+                    package.SaveAs(fileInfo);
+                    MessageBox.Show("El archivo se ha exportado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private void buttonExportClientPurchasesReport_Click(object sender, EventArgs e)
@@ -964,6 +1029,31 @@ namespace WinFormsApp
                 var clientsPurchasesVM = JsonConvert.DeserializeObject<List<ClientPurchasesViewModel>>(response);
                 dataGridViewClientsPruchasesReport.DataSource = new BindingList<ClientPurchasesViewModel>(clientsPurchasesVM);
             }
+        }
+
+        private async void buttonGenerateProductsSalesReport_Click(object sender, EventArgs e)
+        {
+            DateTime dateFrom = dateTimeProductsSalesFrom.Value;
+            DateTime dateTo = dateTimeProductsSalesTo.Value;
+            var datesDto = new DateFromToDto()
+            {
+                From = dateFrom,
+                To = dateTo,
+            };
+            string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}reports/products-sales", datesDto);
+            if (response.Contains("error") || response.Contains("failed"))
+            {
+                MessageBox.Show("Error al generar reporte", response, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                var productsSalesVM = JsonConvert.DeserializeObject<List<ProductSalesViewModel>>(response);
+                dataGridViewProductsSalesReport.DataSource = new BindingList<ProductSalesViewModel>(productsSalesVM);
+            }
+        }
+
+        private void buttonExportProductsSalesReport_Click(object sender, EventArgs e)
+        {
         }
     }
 }
