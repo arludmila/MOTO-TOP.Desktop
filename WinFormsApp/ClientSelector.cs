@@ -1,4 +1,5 @@
 ﻿using Contracts.Utils;
+using Contracts.ViewModels;
 using Entities.Core;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace WinFormsApp
     public partial class ClientSelector : Form
     {
         private List<Client> _clients = new List<Client>();
-        public event Action<int> ClientSelected;
+        public event Action<Client> ClientSelected;
 
         public ClientSelector()
         {
@@ -68,17 +69,17 @@ namespace WinFormsApp
 
         private void dataGridViewClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridViewClients.Columns["SelectButton"].Index)
             {
-                // Get the selected product's ID from the DataGridView
-                int selectedProductId = (int)dataGridViewClients.Rows[e.RowIndex].Cells["Id"].Value;
-
-                // Raise the event and send the selected product's ID to the main form
-                ClientSelected?.Invoke(selectedProductId);
-
-                // Close the ProductSelector form
-                this.Close();
+                if (dataGridViewClients.Rows[e.RowIndex].DataBoundItem is Client selectedClient)
+                {
+                    ClientSelected?.Invoke(selectedClient);
+                }
+                Close();
             }
+
         }
     }
 }

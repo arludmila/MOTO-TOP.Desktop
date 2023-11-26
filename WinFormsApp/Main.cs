@@ -5,6 +5,7 @@ using Contracts.Utils;
 using Contracts.ViewModels;
 using Contracts.ViewModels.Reports;
 using Entities.Core;
+using Entities.Relationships;
 using Newtonsoft.Json;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
@@ -17,6 +18,7 @@ namespace WinFormsApp
 {
     public partial class Main : Form
     {
+        private int _officeWorkerId;
         private List<Category> categories;
         private List<ProductViewModel> products;
         private List<Client> clients;
@@ -25,17 +27,19 @@ namespace WinFormsApp
         private List<OrderViewModel> orders;
         private List<InvoiceViewModel> invoices;
         private List<InvoiceViewModel> pendingInvoices;
-        private List<BillingTransaction> billingTransactions;
+        private List<BillingTransactionViewModel> billingTransactions;
         private List<TransportCompany> transportCompanies;
         private List<OfficeWorkerViewModel> officeWorkers;
+        private List<DiscountedProductViewModel> discountedProducts;
+        private List<SellerClient> visitRequests;
         private Timer refreshTimer;
         private double _purchasePrice;
         private double _profitMarginPercentage;
 
-        public Main()
+        public Main(int officeWorkerId)
         {
             this.StartPosition = FormStartPosition.CenterScreen;
-
+            _officeWorkerId = officeWorkerId;
 
             InitializeComponent();
             refreshTimer = new System.Windows.Forms.Timer();
@@ -90,6 +94,7 @@ namespace WinFormsApp
 
             txtBoxSupplierProductSupplierId.Enabled = false;
             txtBoxSupplierProductProductId.Enabled = false;
+            txtBoxSupplierProductProductName.Enabled = false;
             txtBoxTotalSalesReportTotalAmount.Enabled = false;
             txtBoxTotalSalesReportTotalQuantity.Enabled = false;
 
@@ -197,7 +202,7 @@ namespace WinFormsApp
             {
                 { "Id", "Id" },
                 { "PaymentMethod", "Metodo de Pago" },
-                { "ClientId", "N° Cliente" },
+                { "ClientName", "Cliente" },
                 { "DocumentType", "Tipo de Documento" },
                 { "DocumentNumber", "N° Documento" },
                 { "Amount", "Total" },
@@ -208,7 +213,9 @@ namespace WinFormsApp
             {
                 { "Id", "Id" },
                 { "OrderId", "N° de Pedido" },
+                { "SellerName", "Vendedor" },
                 { "ClientId", "N° de Cliente" },
+                { "ClientName", "Cliente" },
                 { "Date", "Fecha" },
                 { "TotalAmount", "Total" },
                 { "DebtAmount", "Deuda Pendiente" },
@@ -259,7 +266,7 @@ namespace WinFormsApp
             // ORDERS PENDING SHIPMENT
             Dictionary<string, string> ordersPendShipColumns = new Dictionary<string, string>
             {
-                { "Id", "Id" },
+                { "Id", "Id de Envio" },
                 { "ShipmentStatus", "Estado" },
                 { "ClientName", "Cliente" },
                 { "SellerName", "Vendedor" },
@@ -298,9 +305,11 @@ namespace WinFormsApp
             {
                 { "Id", "Id" },
                 { "OrderId", "N° de Pedido" },
+                { "SellerName", "Vendedor" },
                 { "ClientId", "N° de Cliente" },
+                { "ClientName", "Cliente" },
                 { "Date", "Fecha" },
-                { "Amount", "Total" },
+                { "TotalAmount", "Total" },
 
             };
             SetupDataGridView(dataGridViewTotalSalesReport, totalSalesRepColumns);
@@ -330,7 +339,49 @@ namespace WinFormsApp
                 { "TotalAmount", "Importe Total ($)" },
             };
             SetupDataGridView(dataGridViewProductsSalesReport, productsSalesReportColumns);
+            // ACTIVE DISCOUNTS
+            Dictionary<string, string> activeDiscountsColumns = new Dictionary<string, string>
+            {
+                { "Id", "N° de Producto" },
+                { "DateStart", "Fecha de Inicio" },
+                { "DateEnd", "Fecha Final" },
+                { "CategoryName", "Rubro" },
+                { "Name", "Nombre" },
+                { "Description", "Descripcion" },
+                { "Quantity", "Stock" },
+                { "OriginalPrice", "Precio Original" },
+                { "DiscountPercentage", "Descuento (%)" },
+                { "DiscountAmount", "Descuento ($)" },
+                { "DiscountedPrice", "Precio con Descuento" },
 
+            };
+            SetupDataGridView(dataGridViewActiveDiscounts, activeDiscountsColumns);
+            // VISIT REQUEST
+            Dictionary<string, string> visitRequestsColumns = new Dictionary<string, string>
+            {
+                 { "Id", "Id" },
+                { "FirstName", "Nombre" },
+                { "LastName", "Apellido" },
+                { "Location", "Ubicación" },
+                { "PhoneNumber", "N° de Telefono" },
+                { "Email", "Email" },
+
+
+            };
+            SetupDataGridView(dataGridViewVisitRequest, visitRequestsColumns);
+            DataGridViewCheckBoxColumn vrcheckBoxColumnOrders = new DataGridViewCheckBoxColumn();
+            vrcheckBoxColumnOrders.HeaderText = "Atendido";
+            vrcheckBoxColumnOrders.Name = "IsDone";
+            vrcheckBoxColumnOrders.DataPropertyName = "IsDone";
+            vrcheckBoxColumnOrders.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewVisitRequest.Columns.Add(vrcheckBoxColumnOrders);
+            dataGridViewVisitRequest.Columns["IsDone"].ReadOnly = true;
+            DataGridViewButtonColumn vrbuttonColumnOrders = new DataGridViewButtonColumn();
+            vrbuttonColumnOrders.Name = "ReviewButton";
+            vrbuttonColumnOrders.HeaderText = "Revisar";
+            vrbuttonColumnOrders.Text = "Revisar";
+            vrbuttonColumnOrders.UseColumnTextForButtonValue = true;
+            dataGridViewVisitRequest.Columns.Add(vrbuttonColumnOrders);
         }
         public static void SetupDataGridView(DataGridView dataGridView, Dictionary<string, string> columnDictionary)
         {
@@ -411,11 +462,11 @@ namespace WinFormsApp
                     dataGridViewPendingInvoices.DataSource = new BindingList<InvoiceViewModel>(pendingInvoices);
                 }
             }
-            billingTransactions = await ApiHelper.GetListAsync<BillingTransaction>($"{ApiUrl.LocalUrl}billing-transactions");
+            billingTransactions = await ApiHelper.GetListAsync<BillingTransactionViewModel>($"{ApiUrl.LocalUrl}billing-transactions/view-models");
 
             if (billingTransactions != null)
             {
-                dataGridViewBillingTransactions.DataSource = new BindingList<BillingTransaction>(billingTransactions);
+                dataGridViewBillingTransactions.DataSource = new BindingList<BillingTransactionViewModel>(billingTransactions);
             }
 
 
@@ -432,6 +483,18 @@ namespace WinFormsApp
             {
                 dataGridViewOfficeWorkers.DataSource = new BindingList<OfficeWorkerViewModel>(officeWorkers);
             }
+
+            discountedProducts = await ApiHelper.GetListAsync<DiscountedProductViewModel>($"{ApiUrl.LocalUrl}products/discounted");
+            if (discountedProducts != null)
+            {
+                dataGridViewActiveDiscounts.DataSource = new BindingList<DiscountedProductViewModel>(discountedProducts);
+            }
+            visitRequests = await ApiHelper.GetListAsync<SellerClient>($"{ApiUrl.LocalUrl}seller-clients");
+            if (visitRequests != null)
+            {
+                dataGridViewVisitRequest.DataSource = new BindingList<SellerClient>(visitRequests);
+            }
+
         }
         private List<InvoiceViewModel> GetPendingInvoices()
         {
@@ -525,7 +588,7 @@ namespace WinFormsApp
                 else
                 {
                     MessageBoxHelper.ShowSuccessMessageBox("Compra registrada!");
-                    FormInputClearer.ClearDungeonTextBoxes(txtBoxSupplierProductProductId, txtBoxSupplierProductSupplierId, txtBoxSupplierProductSellingPrice, txtBoxSupplierProductQuantity, txtBoxSupplierProductProfitMargin, txtBoxSupplierProductPurchasePrice);
+                    FormInputClearer.ClearDungeonTextBoxes(txtBoxSupplierProductProductId, txtBoxSupplierProductSupplierId, txtBoxSupplierProductSellingPrice, txtBoxSupplierProductQuantity, txtBoxSupplierProductProfitMargin, txtBoxSupplierProductPurchasePrice, txtBoxSupplierProductProductName);
                     await LoadData();
 
                 }
@@ -559,6 +622,7 @@ namespace WinFormsApp
         private void HandleProductSelected(ProductViewModel selectedProduct)
         {
             txtBoxSupplierProductProductId.Text = selectedProduct.Id.ToString();
+            txtBoxSupplierProductProductName.Text = $"{selectedProduct.CategoryName} {selectedProduct.Name}";
         }
 
         private void buttonSelectSupplier_Click(object sender, EventArgs e)
@@ -600,7 +664,7 @@ namespace WinFormsApp
 
         private async void buttonCreateInvoice_Click(object sender, EventArgs e)
         {
-            var form = new CreateInvoice();
+            var form = new CreateInvoice(_officeWorkerId);
             form.ShowDialog();
             await LoadData();
         }
@@ -697,6 +761,13 @@ namespace WinFormsApp
                 worksheet.Cells["D5"].Value = "Zona";
                 worksheet.Cells["E5"].Value = "Cantidad de Ventas";
                 worksheet.Cells["F5"].Value = "Importe Total($)";
+
+                // SUMA -- FORMULA
+                int rows = worksheet.Dimension.End.Row;
+                int finalRow = rows + 1;
+                worksheet.Cells[$"E{finalRow}"].Formula = $"SUM(E6:E{rows})";
+                worksheet.Cells[$"F{finalRow}"].Formula = $"SUM(F6:F{rows})";
+
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
@@ -814,6 +885,10 @@ namespace WinFormsApp
                 worksheet.Cells["G3"].Value = "N° de Documento";
                 worksheet.Cells["H3"].Value = "Email";
                 worksheet.Cells["I3"].Value = "Saldo Total";
+                // SUMA -- FORMULA
+                int rows = worksheet.Dimension.End.Row;
+                int finalRow = rows + 1;
+                worksheet.Cells[$"I{finalRow}"].Formula = $"SUM(I4:I{rows})";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
@@ -880,18 +955,23 @@ namespace WinFormsApp
 
                 // HEADERS PARA TABLA
                 worksheet.Cells["A3"].LoadFromCollection(pendingInvoicesVM, true, OfficeOpenXml.Table.TableStyles.Light1);
-                worksheet.Cells["A3"].Value = "N° Factura";
+                worksheet.Cells["A3"].Value = "N° de Factura";
                 worksheet.Cells["B3"].Value = "N° de Pedido";
-                worksheet.Cells["C3"].Value = "N° de Cliente";
-
-                worksheet.Cells["D3"].Value = "Cliente";
-
+                worksheet.Cells["C3"].Value = "Vendedor";
+                worksheet.Cells["D3"].Value = "N° de Cliente";
                 worksheet.Cells["E3"].Value = "Documento del Cliente";
-                worksheet.Cells["F3"].Value = "Fecha";
-                worksheet.Cells["G3"].Value = "Total";
-                worksheet.Cells["H3"].Value = "Deuda Pendiente";
+                worksheet.Cells["F3"].Value = "Cliente";
+                worksheet.Cells["G3"].Value = "Fecha";
+
+                worksheet.Cells["H3"].Value = "Total Facturado ($)";
+                worksheet.Cells["I3"].Value = "Deuda Pendiente ($)";
                 var dateColumn = worksheet.Column(6);
                 dateColumn.Style.Numberformat.Format = "yyyy-MM-dd";
+                // SUMA -- FORMULA
+                int rows = worksheet.Dimension.End.Row;
+                int finalRow = rows + 1;
+                worksheet.Cells[$"H{finalRow}"].Formula = $"SUM(H4:H{rows})";
+                worksheet.Cells[$"I{finalRow}"].Formula = $"SUM(I4:I{rows})";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
@@ -930,12 +1010,12 @@ namespace WinFormsApp
             {
                 int totalQuantity = 0;
                 double totalAmount = 0;
-                var invoices = JsonConvert.DeserializeObject<List<Invoice>>(response);
-                dataGridViewTotalSalesReport.DataSource = new BindingList<Invoice>(invoices);
+                var invoices = JsonConvert.DeserializeObject<List<InvoiceViewModel>>(response);
+                dataGridViewTotalSalesReport.DataSource = new BindingList<InvoiceViewModel>(invoices);
                 foreach (var invoice in invoices)
                 {
                     totalQuantity++;
-                    totalAmount += invoice.Amount;
+                    totalAmount += invoice.TotalAmount;
                 }
                 txtBoxTotalSalesReportTotalAmount.Text = "$" + totalAmount.ToString();
                 txtBoxTotalSalesReportTotalQuantity.Text = totalQuantity.ToString();
@@ -944,10 +1024,10 @@ namespace WinFormsApp
 
         private void buttonExportTotalSalesReport_Click(object sender, EventArgs e)
         {
-            var invoices = ((BindingList<Invoice>)dataGridViewTotalSalesReport.DataSource).ToList();
+            var invoices = ((BindingList<InvoiceViewModel>)dataGridViewTotalSalesReport.DataSource).ToList();
             ExportTotalSalesReportToExcel(invoices, dateTimeTotalSalesFrom.Value, dateTimeTotalSalesTo.Value);
         }
-        public void ExportTotalSalesReportToExcel(List<Invoice> invoices, DateTime dateFrom, DateTime dateTo)
+        public void ExportTotalSalesReportToExcel(List<InvoiceViewModel> invoices, DateTime dateFrom, DateTime dateTo)
         {
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             using (var package = new ExcelPackage())
@@ -976,13 +1056,24 @@ namespace WinFormsApp
                 worksheet.Cells["E4"].Value = Convert.ToDouble(cleanedString);
                 // HEADERS PARA TABLA
                 worksheet.Cells["A6"].LoadFromCollection(invoices, true, OfficeOpenXml.Table.TableStyles.Light1);
-                worksheet.Cells["A6"].Value = "Fecha";
-                worksheet.Cells["B6"].Value = "Total Facturado ($)";
-                worksheet.Cells["C6"].Value = "N° de Cliente";
-                worksheet.Cells["D6"].Value = "Pedido";
-                worksheet.Cells["E6"].Value = "N° de Factura";
-                var dateColumn = worksheet.Column(1);
+                worksheet.Cells["A6"].Value = "N° de Factura";
+                worksheet.Cells["B6"].Value = "N° de Pedido";
+                worksheet.Cells["C6"].Value = "Vendedor";
+                worksheet.Cells["D6"].Value = "N° de Cliente";
+                worksheet.Cells["E6"].Value = "Documento del Cliente";
+                worksheet.Cells["F6"].Value = "Cliente";
+                worksheet.Cells["G6"].Value = "Fecha";
+
+                worksheet.Cells["H6"].Value = "Total Facturado ($)";
+                worksheet.Cells["I6"].Value = "Deuda Pendiente ($)";
+
+                var dateColumn = worksheet.Column(6);
                 dateColumn.Style.Numberformat.Format = "yyyy-MM-dd";
+                // SUMA -- FORMULA
+                int rows = worksheet.Dimension.End.Row;
+                int finalRow = rows + 1;
+                worksheet.Cells[$"H{finalRow}"].Formula = $"SUM(H7:H{rows})";
+                worksheet.Cells[$"I{finalRow}"].Formula = $"SUM(I7:I{rows})";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
@@ -1043,7 +1134,11 @@ namespace WinFormsApp
                 worksheet.Cells["G5"].Value = "N° de Telefono";
                 worksheet.Cells["H5"].Value = "Cantidad de Compras";
                 worksheet.Cells["I5"].Value = "Importe Total ($)";
-
+                // SUMA -- FORMULA
+                int rows = worksheet.Dimension.End.Row;
+                int finalRow = rows + 1;
+                worksheet.Cells[$"H{finalRow}"].Formula = $"SUM(H6:H{rows})";
+                worksheet.Cells[$"I{finalRow}"].Formula = $"SUM(I6:I{rows})";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
@@ -1142,7 +1237,11 @@ namespace WinFormsApp
                 worksheet.Cells["D5"].Value = "Descripción";
                 worksheet.Cells["E5"].Value = "Cantidad de Ventas";
                 worksheet.Cells["F5"].Value = "Importe Total ($)";
-
+                // SUMA -- FORMULA
+                int rows = worksheet.Dimension.End.Row;
+                int finalRow = rows + 1;
+                worksheet.Cells[$"E{finalRow}"].Formula = $"SUM(E6:E{rows})";
+                worksheet.Cells[$"F{finalRow}"].Formula = $"SUM(F6:F{rows})";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
@@ -1159,6 +1258,49 @@ namespace WinFormsApp
                     var fileInfo = new FileInfo(saveFileDialog.FileName);
                     package.SaveAs(fileInfo);
                     MessageBox.Show("El archivo se ha exportado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void buttonCreateDiscount_Click(object sender, EventArgs e)
+        {
+            var form = new CreateDiscount();
+            form.ShowDialog();
+        }
+
+        private void buttonCreateProductHasDiscount_Click(object sender, EventArgs e)
+        {
+            var form = new CreateProductHasDiscount();
+            form.ShowDialog();
+
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (MessageBox.Show("¿Realmente quieres salir?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
+        }
+
+        private async void dataGridViewVisitRequest_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridViewVisitRequest.Columns["ReviewButton"].Index && e.RowIndex >= 0)
+            {
+                bool hasInvoice = (bool)dataGridViewVisitRequest.Rows[e.RowIndex].Cells["IsDone"].Value;
+                if (!hasInvoice)
+                {
+                    int visitReqId = (int)dataGridViewVisitRequest.Rows[e.RowIndex].Cells["Id"].Value;
+                    var form = new ReviewVisitRequest(visitReqId);
+                    form.ShowDialog();
+                    await LoadData();
                 }
             }
         }

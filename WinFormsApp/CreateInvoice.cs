@@ -21,9 +21,11 @@ namespace WinFormsApp
     {
         private double _total;
         private List<OrderProductDto> _invoiceDetails;
-        public CreateInvoice()
+        private int _officeWorkerId;
+        private string _productName;
+        public CreateInvoice(int officeWorkerId)
         {
-           
+            _officeWorkerId = officeWorkerId;
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             Text = "Registro de Venta";
@@ -44,6 +46,7 @@ namespace WinFormsApp
                     ProductId = productId,
                     Quantity = quantity,
                     Price = price,
+                    ProductName = _productName
                 };
 
                 _invoiceDetails.Add(orderProductDto);
@@ -84,7 +87,10 @@ namespace WinFormsApp
         private void HandleProductSelected(ProductViewModel selectedProduct)
         {
             txtBoxProductId.Text = selectedProduct.Id.ToString();
+
             txtBoxPrice.Text = selectedProduct.SellingPrice.ToString();
+            
+            _productName = $"{selectedProduct.CategoryName}: {selectedProduct.Name}";
         }
 
         private async void buttonCreateDetailedInvoice_Click(object sender, EventArgs e)
@@ -98,7 +104,8 @@ namespace WinFormsApp
                     Date = DateTime.Now,
                     Amount = _total,
                     InvoiceDetails = _invoiceDetails,
-                    ClientId = clientId
+                    ClientId = clientId,
+                    OfficeWorkerId = _officeWorkerId
                 };
 
                 string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}invoices/detailed", invoiceWithDetailsDto);
@@ -125,6 +132,7 @@ namespace WinFormsApp
             Dictionary<string, string> detailsColumns = new Dictionary<string, string>
             {
                 { "ProductId", "Id de Producto" },
+                { "ProductName", "Producto" },
                 { "Quantity", "Cantidad" },
                 { "Price", "Precio" },
             };
@@ -143,9 +151,10 @@ namespace WinFormsApp
                 productSelectorForm.ShowDialog();
             }
         }
-        private void HandleClientSelected(int selectedClienttId)
+        private void HandleClientSelected(Client selectedClient)
         {
-            txtBoxClientId.Text = selectedClienttId.ToString();
+            txtBoxClientId.Text = selectedClient.Id.ToString();
+            txtBoxClientName.Text = $"{selectedClient.LastName}, {selectedClient.FirstName}";
         }
     }
 }

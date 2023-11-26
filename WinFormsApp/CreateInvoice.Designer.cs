@@ -50,6 +50,7 @@
             buttonSelectClient = new ReaLTaiizor.Controls.ForeverButton();
             txtBoxClientId = new ReaLTaiizor.Controls.DungeonTextBox();
             labelClient = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxClientName = new ReaLTaiizor.Controls.DungeonTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDetails).BeginInit();
             SuspendLayout();
             // 
@@ -336,7 +337,7 @@
             txtBoxClientId.Multiline = false;
             txtBoxClientId.Name = "txtBoxClientId";
             txtBoxClientId.ReadOnly = false;
-            txtBoxClientId.Size = new Size(484, 28);
+            txtBoxClientId.Size = new Size(73, 28);
             txtBoxClientId.TabIndex = 53;
             txtBoxClientId.TextAlignment = HorizontalAlignment.Left;
             txtBoxClientId.UseSystemPasswordChar = false;
@@ -353,11 +354,29 @@
             labelClient.TabIndex = 52;
             labelClient.Text = "Cliente:";
             // 
+            // txtBoxClientName
+            // 
+            txtBoxClientName.BackColor = Color.Transparent;
+            txtBoxClientName.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxClientName.EdgeColor = Color.White;
+            txtBoxClientName.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxClientName.ForeColor = Color.DimGray;
+            txtBoxClientName.Location = new Point(166, 246);
+            txtBoxClientName.MaxLength = 32767;
+            txtBoxClientName.Multiline = false;
+            txtBoxClientName.Name = "txtBoxClientName";
+            txtBoxClientName.ReadOnly = false;
+            txtBoxClientName.Size = new Size(405, 28);
+            txtBoxClientName.TabIndex = 55;
+            txtBoxClientName.TextAlignment = HorizontalAlignment.Left;
+            txtBoxClientName.UseSystemPasswordChar = false;
+            // 
             // CreateInvoice
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 628);
+            Controls.Add(txtBoxClientName);
             Controls.Add(buttonSelectClient);
             Controls.Add(txtBoxClientId);
             Controls.Add(labelClient);
@@ -406,5 +425,6 @@
         private ReaLTaiizor.Controls.ForeverButton buttonSelectClient;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxClientId;
         private ReaLTaiizor.Controls.DungeonLabel labelClient;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxClientName;
     }
 }

@@ -33,7 +33,6 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             labelClientsSearch = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxClientsSearch = new ReaLTaiizor.Controls.DungeonTextBox();
-            buttonCreateClient = new ReaLTaiizor.Controls.ForeverButton();
             dataGridViewClients = new ReaLTaiizor.Controls.PoisonDataGridView();
             labelTitle = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClients).BeginInit();
@@ -53,6 +52,7 @@
             // 
             // txtBoxClientsSearch
             // 
+            txtBoxClientsSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtBoxClientsSearch.BackColor = Color.Transparent;
             txtBoxClientsSearch.BorderColor = Color.FromArgb(180, 180, 180);
             txtBoxClientsSearch.EdgeColor = Color.White;
@@ -68,23 +68,10 @@
             txtBoxClientsSearch.TextAlignment = HorizontalAlignment.Left;
             txtBoxClientsSearch.UseSystemPasswordChar = false;
             // 
-            // buttonCreateClient
-            // 
-            buttonCreateClient.BackColor = Color.Transparent;
-            buttonCreateClient.BaseColor = Color.DimGray;
-            buttonCreateClient.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonCreateClient.Location = new Point(306, 398);
-            buttonCreateClient.Name = "buttonCreateClient";
-            buttonCreateClient.Rounded = true;
-            buttonCreateClient.Size = new Size(160, 40);
-            buttonCreateClient.TabIndex = 2;
-            buttonCreateClient.Text = "Agregar Cliente";
-            buttonCreateClient.TextColor = Color.FromArgb(243, 243, 243);
-            buttonCreateClient.Click += buttonCreateClient_Click;
-            // 
             // dataGridViewClients
             // 
             dataGridViewClients.AllowUserToResizeRows = false;
+            dataGridViewClients.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewClients.BackgroundColor = Color.FromArgb(255, 255, 255);
             dataGridViewClients.BorderStyle = BorderStyle.None;
             dataGridViewClients.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -130,6 +117,7 @@
             // 
             // labelTitle
             // 
+            labelTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelTitle.AutoSize = true;
             labelTitle.BackColor = Color.Transparent;
             labelTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
@@ -144,10 +132,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 410);
             Controls.Add(labelClientsSearch);
             Controls.Add(txtBoxClientsSearch);
-            Controls.Add(buttonCreateClient);
             Controls.Add(dataGridViewClients);
             Controls.Add(labelTitle);
             Name = "ClientSelector";

@@ -33,7 +33,6 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             labelSuppliersSearch = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxSuppliersSearch = new ReaLTaiizor.Controls.DungeonTextBox();
-            buttonCreateSupplier = new ReaLTaiizor.Controls.ForeverButton();
             dataGridViewSuppliers = new ReaLTaiizor.Controls.PoisonDataGridView();
             labelTitle = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridViewSuppliers).BeginInit();
@@ -53,6 +52,7 @@
             // 
             // txtBoxSuppliersSearch
             // 
+            txtBoxSuppliersSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtBoxSuppliersSearch.BackColor = Color.Transparent;
             txtBoxSuppliersSearch.BorderColor = Color.FromArgb(180, 180, 180);
             txtBoxSuppliersSearch.EdgeColor = Color.White;
@@ -68,23 +68,10 @@
             txtBoxSuppliersSearch.TextAlignment = HorizontalAlignment.Left;
             txtBoxSuppliersSearch.UseSystemPasswordChar = false;
             // 
-            // buttonCreateSupplier
-            // 
-            buttonCreateSupplier.BackColor = Color.Transparent;
-            buttonCreateSupplier.BaseColor = Color.DimGray;
-            buttonCreateSupplier.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonCreateSupplier.Location = new Point(306, 400);
-            buttonCreateSupplier.Name = "buttonCreateSupplier";
-            buttonCreateSupplier.Rounded = true;
-            buttonCreateSupplier.Size = new Size(160, 40);
-            buttonCreateSupplier.TabIndex = 36;
-            buttonCreateSupplier.Text = "Agregar Proveedor";
-            buttonCreateSupplier.TextColor = Color.FromArgb(243, 243, 243);
-            buttonCreateSupplier.Click += buttonCreateSupplier_Click;
-            // 
             // dataGridViewSuppliers
             // 
             dataGridViewSuppliers.AllowUserToResizeRows = false;
+            dataGridViewSuppliers.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewSuppliers.BackgroundColor = Color.FromArgb(255, 255, 255);
             dataGridViewSuppliers.BorderStyle = BorderStyle.None;
             dataGridViewSuppliers.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -130,6 +117,7 @@
             // 
             // labelTitle
             // 
+            labelTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelTitle.AutoSize = true;
             labelTitle.BackColor = Color.Transparent;
             labelTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
@@ -144,10 +132,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 410);
             Controls.Add(labelSuppliersSearch);
             Controls.Add(txtBoxSuppliersSearch);
-            Controls.Add(buttonCreateSupplier);
             Controls.Add(dataGridViewSuppliers);
             Controls.Add(labelTitle);
             Name = "SupplierSelector";

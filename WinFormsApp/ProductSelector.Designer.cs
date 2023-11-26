@@ -31,7 +31,6 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            buttonCreateProduct = new ReaLTaiizor.Controls.ForeverButton();
             dataGridViewProducts = new ReaLTaiizor.Controls.PoisonDataGridView();
             labelTitle = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             labelProductsSearch = new ReaLTaiizor.Controls.DungeonLabel();
@@ -39,23 +38,10 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).BeginInit();
             SuspendLayout();
             // 
-            // buttonCreateProduct
-            // 
-            buttonCreateProduct.BackColor = Color.Transparent;
-            buttonCreateProduct.BaseColor = Color.DimGray;
-            buttonCreateProduct.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonCreateProduct.Location = new Point(306, 398);
-            buttonCreateProduct.Name = "buttonCreateProduct";
-            buttonCreateProduct.Rounded = true;
-            buttonCreateProduct.Size = new Size(150, 40);
-            buttonCreateProduct.TabIndex = 31;
-            buttonCreateProduct.Text = "Agregar Producto";
-            buttonCreateProduct.TextColor = Color.FromArgb(243, 243, 243);
-            buttonCreateProduct.Click += buttonCreateProduct_Click;
-            // 
             // dataGridViewProducts
             // 
             dataGridViewProducts.AllowUserToResizeRows = false;
+            dataGridViewProducts.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewProducts.BackgroundColor = Color.FromArgb(255, 255, 255);
             dataGridViewProducts.BorderStyle = BorderStyle.None;
             dataGridViewProducts.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -102,6 +88,7 @@
             // 
             // labelTitle
             // 
+            labelTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelTitle.AutoSize = true;
             labelTitle.BackColor = Color.Transparent;
             labelTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
@@ -126,6 +113,7 @@
             // 
             // txtBoxProductsSearch
             // 
+            txtBoxProductsSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtBoxProductsSearch.BackColor = Color.Transparent;
             txtBoxProductsSearch.BorderColor = Color.FromArgb(180, 180, 180);
             txtBoxProductsSearch.EdgeColor = Color.White;
@@ -145,10 +133,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 411);
             Controls.Add(labelProductsSearch);
             Controls.Add(txtBoxProductsSearch);
-            Controls.Add(buttonCreateProduct);
             Controls.Add(dataGridViewProducts);
             Controls.Add(labelTitle);
             Name = "ProductSelector";
