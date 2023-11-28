@@ -44,6 +44,8 @@
             labelProfitMargin = new ReaLTaiizor.Controls.DungeonLabel();
             txtBoxSellingPrice = new ReaLTaiizor.Controls.DungeonTextBox();
             labelSellingPrice = new ReaLTaiizor.Controls.DungeonLabel();
+            txtBoxImagePath = new ReaLTaiizor.Controls.DungeonTextBox();
+            dungeonLabel1 = new ReaLTaiizor.Controls.DungeonLabel();
             SuspendLayout();
             // 
             // txtBoxName
@@ -223,7 +225,7 @@
             buttonCreateProduct.Image = null;
             buttonCreateProduct.ImageAlign = ContentAlignment.MiddleLeft;
             buttonCreateProduct.InactiveColor = Color.FromArgb(32, 34, 37);
-            buttonCreateProduct.Location = new Point(254, 397);
+            buttonCreateProduct.Location = new Point(240, 459);
             buttonCreateProduct.Name = "buttonCreateProduct";
             buttonCreateProduct.PressedBorderColor = Color.FromArgb(165, 37, 37);
             buttonCreateProduct.PressedColor = Color.FromArgb(165, 37, 37);
@@ -292,11 +294,42 @@
             labelSellingPrice.TabIndex = 14;
             labelSellingPrice.Text = "Precio de Venta ($):";
             // 
+            // txtBoxImagePath
+            // 
+            txtBoxImagePath.BackColor = Color.Transparent;
+            txtBoxImagePath.BorderColor = Color.FromArgb(180, 180, 180);
+            txtBoxImagePath.EdgeColor = Color.White;
+            txtBoxImagePath.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBoxImagePath.ForeColor = Color.DimGray;
+            txtBoxImagePath.Location = new Point(240, 390);
+            txtBoxImagePath.MaxLength = 32767;
+            txtBoxImagePath.Multiline = false;
+            txtBoxImagePath.Name = "txtBoxImagePath";
+            txtBoxImagePath.ReadOnly = false;
+            txtBoxImagePath.Size = new Size(296, 28);
+            txtBoxImagePath.TabIndex = 17;
+            txtBoxImagePath.TextAlignment = HorizontalAlignment.Left;
+            txtBoxImagePath.UseSystemPasswordChar = false;
+            // 
+            // dungeonLabel1
+            // 
+            dungeonLabel1.AutoSize = true;
+            dungeonLabel1.BackColor = Color.Transparent;
+            dungeonLabel1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            dungeonLabel1.ForeColor = Color.FromArgb(76, 76, 77);
+            dungeonLabel1.Location = new Point(97, 393);
+            dungeonLabel1.Name = "dungeonLabel1";
+            dungeonLabel1.Size = new Size(137, 25);
+            dungeonLabel1.TabIndex = 16;
+            dungeonLabel1.Text = "Link de Imagen:";
+            // 
             // CreateProduct
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(583, 450);
+            ClientSize = new Size(583, 511);
+            Controls.Add(txtBoxImagePath);
+            Controls.Add(dungeonLabel1);
             Controls.Add(txtBoxSellingPrice);
             Controls.Add(labelSellingPrice);
             Controls.Add(txtBoxProfitMargin);
@@ -338,5 +371,7 @@
         private ReaLTaiizor.Controls.DungeonLabel labelProfitMargin;
         private ReaLTaiizor.Controls.DungeonTextBox txtBoxSellingPrice;
         private ReaLTaiizor.Controls.DungeonLabel labelSellingPrice;
+        private ReaLTaiizor.Controls.DungeonTextBox txtBoxImagePath;
+        private ReaLTaiizor.Controls.DungeonLabel dungeonLabel1;
     }
 }

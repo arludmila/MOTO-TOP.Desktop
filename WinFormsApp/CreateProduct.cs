@@ -38,6 +38,8 @@ namespace WinFormsApp
             double sellingPrice;
             int quantity;
             string name = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxName, "Name")!;
+            string imagePath = FormInputValidator.ValidateAndGetDungeonTextBoxText(txtBoxImagePath, "ImagePath")!;
+
             string description = FormInputValidator.ValidateAndGetDungeonRichTextBoxText(txtBoxDescription, "Description")!;
             if (FormInputValidator.TryConvertDungeonTextBoxToDouble(txtBoxSellingPrice, "SellingPrice", out sellingPrice) &&
                 FormInputValidator.TryConvertDungeonTextBoxToInt(txtBoxQuantity, "Quantity", out quantity))
@@ -50,6 +52,7 @@ namespace WinFormsApp
                     Quantity = quantity,
                     CategoryId = categoryId,
                     PurchasePrice = _purchasePrice,
+                    ImagePath = imagePath,
                 };
 
                 string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}products", product);

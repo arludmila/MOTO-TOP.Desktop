@@ -1,4 +1,6 @@
-﻿using Contracts.Utils;
+﻿using Contracts.DTOs.Entities;
+using Contracts.DTOs.Relationships;
+using Contracts.Utils;
 using Contracts.ViewModels;
 using Entities.Relationships;
 using System;
@@ -10,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsApp.Utils;
 
 namespace WinFormsApp
 {
@@ -45,6 +48,35 @@ namespace WinFormsApp
         private async Task GetVisitRequest(int id)
         {
             visitRequest = await ApiHelper.GetAsync<SellerClient>($"{ApiUrl.LocalUrl}seller-clients/{id}");
+        }
+        // boton --> marcar como hecho la visita, ya se arreglo el tema
+        private async void buttonCreateSeller_Click(object sender, EventArgs e)
+        {
+            if (visitRequest.IsDone)
+            {
+                return;
+            }
+            var sellerClientDto = new SellerClientDto()
+            {
+                Email = visitRequest.Email,
+                Location = visitRequest.Location,
+                FirstName = visitRequest.FirstName,
+                LastName = visitRequest.LastName,
+                PhoneNumber = visitRequest.PhoneNumber,
+                Message = visitRequest.Message,
+                IsDone = true
+            };
+            string response = await ApiHelper.UpdateAsync($"{ApiUrl.LocalUrl}seller-clients/{visitRequest.Id}", sellerClientDto);
+
+            if (response.Contains("error") || response.Contains("failed"))
+            {
+                MessageBoxHelper.ShowErrorMessageBox("Error al marcar como atendida.");
+            }
+            else
+            {
+                MessageBoxHelper.ShowSuccessMessageBox("Marcada como atendida.");
+                Close();
+            }
         }
     }
 }

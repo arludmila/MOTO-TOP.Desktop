@@ -32,6 +32,22 @@ namespace WinFormsApp
         private List<OfficeWorkerViewModel> officeWorkers;
         private List<DiscountedProductViewModel> discountedProducts;
         private List<SellerClient> visitRequests;
+
+
+        private string textToSearchCategories;
+        private string textToSearchProducts;
+        private string textToSearchClients;
+        private string textToSearchSuppliers;
+        private string textToSearchSellers;
+        private string textToSearchOrders; // Ajusta según la propiedad real
+        private string textToSearchInvoices; // Ajusta según la propiedad real
+        private string textToSearchPendingInvoices; // Ajusta según la propiedad real
+        private string textToSearchBillingTransactions; // Ajusta según la propiedad real
+        private string textToSearchTransportCompanies; // Ajusta según la propiedad real
+        private string textToSearchOfficeWorkers; // Ajusta según la propiedad real
+        private string textToSearchDiscountedProducts; // Ajusta según la propiedad real
+        private string textToSearchVisitRequests; // Ajusta según la propiedad real
+
         private Timer refreshTimer;
         private double _purchasePrice;
         private double _profitMarginPercentage;
@@ -176,6 +192,7 @@ namespace WinFormsApp
             Dictionary<string, string> ordersColumns = new Dictionary<string, string>
             {
                 { "Id", "Id" },
+                 { "Date", "Fecha" },
                 { "ShipmentStatus", "Estado" },
                 { "ClientName", "Cliente" },
                 { "SellerName", "Vendedor" },
@@ -230,6 +247,12 @@ namespace WinFormsApp
             AutoSizeColumnsDGV(dataGridViewPendingInvoices);
             // INVOICES
             SetupDataGridView(dataGridViewInvoices, invoicesColumns);
+            DataGridViewButtonColumn inbuttonColumnOrders = new DataGridViewButtonColumn();
+            inbuttonColumnOrders.Name = "ReviewButton";
+            inbuttonColumnOrders.HeaderText = "Revisar";
+            inbuttonColumnOrders.Text = "Revisar";
+            inbuttonColumnOrders.UseColumnTextForButtonValue = true;
+            dataGridViewInvoices.Columns.Add(inbuttonColumnOrders);
             // TRANSPORT COMPANIES
             Dictionary<string, string> transportCompaniesColumns = new Dictionary<string, string>
             {
@@ -356,6 +379,12 @@ namespace WinFormsApp
 
             };
             SetupDataGridView(dataGridViewActiveDiscounts, activeDiscountsColumns);
+            DataGridViewButtonColumn acbuttonColumnOrders = new DataGridViewButtonColumn();
+            acbuttonColumnOrders.Name = "EditButton";
+            acbuttonColumnOrders.HeaderText = "Editar";
+            acbuttonColumnOrders.Text = "Editar";
+            acbuttonColumnOrders.UseColumnTextForButtonValue = true;
+            dataGridViewActiveDiscounts.Columns.Add(acbuttonColumnOrders);
             // VISIT REQUEST
             Dictionary<string, string> visitRequestsColumns = new Dictionary<string, string>
             {
@@ -421,80 +450,70 @@ namespace WinFormsApp
         private async Task LoadData()
         {
             categories = await ApiHelper.GetListAsync<Category>($"{ApiUrl.LocalUrl}categories");
-            if (categories != null)
-            {
-                dataGridViewCategories.DataSource = new BindingList<Category>(categories);
-            }
+            SearchListGeneric(categories, dataGridViewCategories, textToSearchCategories);
+
+
             products = await ApiHelper.GetListAsync<ProductViewModel>($"{ApiUrl.LocalUrl}products/view-models");
-            if (products != null)
-            {
-                dataGridViewProducts.DataSource = new BindingList<ProductViewModel>(products);
-            }
+
+            SearchListGeneric(products, dataGridViewProducts, textToSearchProducts);
             clients = await ApiHelper.GetListAsync<Client>($"{ApiUrl.LocalUrl}clients");
-            if (clients != null)
-            {
-                dataGridViewClients.DataSource = new BindingList<Client>(clients);
-            }
+            SearchListGeneric(clients, dataGridViewClients, textToSearchClients);
+
             suppliers = await ApiHelper.GetListAsync<Supplier>($"{ApiUrl.LocalUrl}suppliers");
-            if (suppliers != null)
-            {
-                dataGridViewSuppliers.DataSource = new BindingList<Supplier>(suppliers);
-            }
+            SearchListGeneric(suppliers, dataGridViewSuppliers, textToSearchSuppliers);
+
             sellers = await ApiHelper.GetListAsync<SellerViewModel>($"{ApiUrl.LocalUrl}sellers/view-models");
-            if (sellers != null)
-            {
-                dataGridViewSellers.DataSource = new BindingList<SellerViewModel>(sellers);
-            }
+            SearchListGeneric(sellers, dataGridViewSellers, textToSearchSellers);
+
             orders = await ApiHelper.GetListAsync<OrderViewModel>($"{ApiUrl.LocalUrl}orders/view-models");
-            if (orders != null)
-            {
-                dataGridViewOrders.DataSource = new BindingList<OrderViewModel>(orders);
-            }
+            SearchListGeneric(orders, dataGridViewOrders, textToSearchOrders);
+
             invoices = await ApiHelper.GetListAsync<InvoiceViewModel>($"{ApiUrl.LocalUrl}invoices/view-models");
+            SearchListGeneric(invoices, dataGridViewInvoices, textToSearchInvoices);
 
-            if (invoices != null)
-            {
-                dataGridViewInvoices.DataSource = new BindingList<InvoiceViewModel>(invoices);
-                // pending invoices...
-                pendingInvoices = GetPendingInvoices();
-                if (pendingInvoices != null)
-                {
-                    dataGridViewPendingInvoices.DataSource = new BindingList<InvoiceViewModel>(pendingInvoices);
-                }
-            }
+            // pending invoices...
+            pendingInvoices = GetPendingInvoices();
+            SearchListGeneric(pendingInvoices, dataGridViewPendingInvoices, textToSearchPendingInvoices);
+
             billingTransactions = await ApiHelper.GetListAsync<BillingTransactionViewModel>($"{ApiUrl.LocalUrl}billing-transactions/view-models");
-
-            if (billingTransactions != null)
-            {
-                dataGridViewBillingTransactions.DataSource = new BindingList<BillingTransactionViewModel>(billingTransactions);
-            }
-
+            SearchListGeneric(billingTransactions, dataGridViewBillingTransactions, textToSearchBillingTransactions);
 
             transportCompanies = await ApiHelper.GetListAsync<TransportCompany>($"{ApiUrl.LocalUrl}transport-companies");
-
-            if (transportCompanies != null)
-            {
-                dataGridViewTransportCompanies.DataSource = new BindingList<TransportCompany>(transportCompanies);
-            }
+            SearchListGeneric(transportCompanies, dataGridViewTransportCompanies, textToSearchTransportCompanies);
 
             officeWorkers = await ApiHelper.GetListAsync<OfficeWorkerViewModel>($"{ApiUrl.LocalUrl}office-workers/view-models");
-
-            if (officeWorkers != null)
-            {
-                dataGridViewOfficeWorkers.DataSource = new BindingList<OfficeWorkerViewModel>(officeWorkers);
-            }
+            SearchListGeneric(officeWorkers, dataGridViewOfficeWorkers, textToSearchOfficeWorkers);
 
             discountedProducts = await ApiHelper.GetListAsync<DiscountedProductViewModel>($"{ApiUrl.LocalUrl}products/discounted");
-            if (discountedProducts != null)
-            {
-                dataGridViewActiveDiscounts.DataSource = new BindingList<DiscountedProductViewModel>(discountedProducts);
-            }
-            visitRequests = await ApiHelper.GetListAsync<SellerClient>($"{ApiUrl.LocalUrl}seller-clients");
-            if (visitRequests != null)
-            {
-                dataGridViewVisitRequest.DataSource = new BindingList<SellerClient>(visitRequests);
-            }
+            SearchListGeneric(discountedProducts, dataGridViewActiveDiscounts, textToSearchDiscountedProducts);
 
+            visitRequests = await ApiHelper.GetListAsync<SellerClient>($"{ApiUrl.LocalUrl}seller-clients");
+            SearchListGeneric(visitRequests, dataGridViewVisitRequest, textToSearchVisitRequests);
+
+        }
+        private void SearchListGeneric<T>(List<T> lista, DataGridView dataGridView, string textToSearch)
+        {
+            if (string.IsNullOrWhiteSpace(textToSearch))
+            {
+                // Si el texto de búsqueda está vacío, mostrar todos los elementos en el DataGridView
+                dataGridView.DataSource = new BindingList<T>(lista);
+            }
+            else
+            {
+                // Filtrar la lista según el criterio de búsqueda
+                var resultados = lista.Where(item => ContieneValorEnJson(item, textToSearch.ToLower())).ToList();
+
+                // Actualizar el DataGridView con los resultados encontrados
+                dataGridView.DataSource = new BindingList<T>(resultados);
+            }
+        }
+        private bool ContieneValorEnJson<T>(T item, string textToSearch)
+        {
+            // Convertir el objeto a formato JSON
+            var json = JsonConvert.SerializeObject(item);
+
+            // Verificar si el JSON contiene el valor de búsqueda
+            return json.ToLower().Contains(textToSearch);
         }
         private List<InvoiceViewModel> GetPendingInvoices()
         {
@@ -547,6 +566,12 @@ namespace WinFormsApp
                     var form = new OrderReview(orderId);
                     form.ShowDialog();
                     await LoadData();
+                }
+                else
+                {
+                    Guid orderId = (Guid)dataGridViewOrders.Rows[e.RowIndex].Cells["Id"].Value;
+                    var form = new UpdateOrderStatus(orderId);
+                    form.ShowDialog();
                 }
             }
         }
@@ -1294,15 +1319,103 @@ namespace WinFormsApp
         {
             if (e.ColumnIndex == dataGridViewVisitRequest.Columns["ReviewButton"].Index && e.RowIndex >= 0)
             {
-                bool hasInvoice = (bool)dataGridViewVisitRequest.Rows[e.RowIndex].Cells["IsDone"].Value;
-                if (!hasInvoice)
-                {
-                    int visitReqId = (int)dataGridViewVisitRequest.Rows[e.RowIndex].Cells["Id"].Value;
-                    var form = new ReviewVisitRequest(visitReqId);
-                    form.ShowDialog();
-                    await LoadData();
-                }
+                int visitReqId = (int)dataGridViewVisitRequest.Rows[e.RowIndex].Cells["Id"].Value;
+                var form = new ReviewVisitRequest(visitReqId);
+                form.ShowDialog();
+                await LoadData();
             }
+        }
+
+        private async void dataGridViewInvoices_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridViewInvoices.Columns["ReviewButton"].Index && e.RowIndex >= 0)
+            {
+                int invoiceId = (int)dataGridViewInvoices.Rows[e.RowIndex].Cells["Id"].Value;
+                var form = new InvoiceReview(invoiceId);
+                form.ShowDialog();
+                await LoadData();
+            }
+        }
+
+        private void txtBoxSearchCategories_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchCategories = txtBoxSearchCategories.Text;
+            SearchListGeneric(categories, dataGridViewCategories, textToSearchCategories);
+
+        }
+
+        private void txtBoxOrdersSearch_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchOrders = txtBoxOrdersSearch.Text;
+            SearchListGeneric(orders, dataGridViewOrders, textToSearchOrders);
+        }
+
+
+        private void txtBoxProductsSearch_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchProducts = txtBoxProductsSearch.Text;
+            SearchListGeneric(products, dataGridViewProducts, textToSearchProducts);
+        }
+
+        private void txtBoxSearchSuppliers_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchSuppliers = txtBoxSearchSuppliers.Text;
+            SearchListGeneric(suppliers, dataGridViewSuppliers, textToSearchSuppliers);
+        }
+
+        private void txtBoxSearchDiscounts_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchDiscountedProducts = txtBoxSearchDiscounts.Text;
+            SearchListGeneric(discountedProducts, dataGridViewActiveDiscounts, textToSearchDiscountedProducts);
+        }
+
+        private void txtBoxSearchBillingTransactions_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchBillingTransactions = txtBoxSearchBillingTransactions.Text;
+            SearchListGeneric(billingTransactions, dataGridViewBillingTransactions, textToSearchBillingTransactions);
+        }
+
+        private void txtBoxSearchPendingInvoices_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchPendingInvoices = txtBoxSearchPendingInvoices.Text;
+            SearchListGeneric(pendingInvoices, dataGridViewPendingInvoices, textToSearchPendingInvoices);
+        }
+
+        private void txtBoxSearchInvoices_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchInvoices = txtBoxSearchInvoices.Text;
+            SearchListGeneric(invoices, dataGridViewInvoices, textToSearchInvoices);
+        }
+
+        private void txtBoxSearchClients_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchClients = txtBoxSearchClients.Text;
+            SearchListGeneric(clients, dataGridViewClients, textToSearchClients);
+        }
+
+        private void dungeonTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            // Ajusta el nombre de la variable y la llamada a la función según tus necesidades
+            textToSearchVisitRequests = dungeonTextBox1.Text;
+            SearchListGeneric(visitRequests, dataGridViewVisitRequest, textToSearchVisitRequests);
+        }
+
+        private void txtBoxSearchSellers_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchSellers = txtBoxSearchSellers.Text;
+            SearchListGeneric(sellers, dataGridViewSellers, textToSearchSellers);
+        }
+
+        private void txtBoxSearchOfficeWorkers_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchOfficeWorkers = txtBoxSearchOfficeWorkers.Text;
+            SearchListGeneric(officeWorkers, dataGridViewOfficeWorkers, textToSearchOfficeWorkers);
+        }
+
+        private void txtBoxSearchTransportCompanies_TextChanged(object sender, EventArgs e)
+        {
+            textToSearchTransportCompanies = txtBoxSearchTransportCompanies.Text;
+            SearchListGeneric(transportCompanies, dataGridViewTransportCompanies, textToSearchTransportCompanies);
         }
     }
 }

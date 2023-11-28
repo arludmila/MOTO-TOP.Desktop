@@ -122,6 +122,7 @@
             buttonCreateSeller.TabIndex = 20;
             buttonCreateSeller.Text = "Solicitud Atendida";
             buttonCreateSeller.TextAlignment = StringAlignment.Center;
+            buttonCreateSeller.Click += buttonCreateSeller_Click;
             // 
             // dungeonHeaderLabel1
             // 

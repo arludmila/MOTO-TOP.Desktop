@@ -249,6 +249,7 @@
             dataGridViewDetails.Size = new Size(776, 261);
             dataGridViewDetails.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Orange;
             dataGridViewDetails.TabIndex = 47;
+            dataGridViewDetails.CellContentClick += dataGridViewDetails_CellContentClick;
             // 
             // dungeonHeaderLabel2
             // 
