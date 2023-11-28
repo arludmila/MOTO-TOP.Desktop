@@ -74,5 +74,10 @@ namespace WinFormsApp
                 Close();
             }
         }
+
+        private void txtBoxDiscountsSearch_TextChanged(object sender, EventArgs e)
+        {
+            Main.SearchListGeneric(discounts, dataGridViewDiscounts, txtBoxDiscountsSearch.Text);
+        }
     }
 }

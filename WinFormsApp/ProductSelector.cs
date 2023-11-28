@@ -1,5 +1,6 @@
 ﻿using Contracts.Utils;
 using Contracts.ViewModels;
+using Entities.Core;
 using System.ComponentModel;
 
 namespace WinFormsApp
@@ -94,6 +95,11 @@ namespace WinFormsApp
                 }
                 Close();
             }
+        }
+
+        private void txtBoxProductsSearch_TextChanged(object sender, EventArgs e)
+        {
+            Main.SearchListGeneric(products, dataGridViewProducts, txtBoxProductsSearch.Text);
         }
     }
 }

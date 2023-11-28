@@ -69,7 +69,7 @@ namespace WinFormsApp
 
         private void dataGridViewClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridViewClients.Columns["SelectButton"].Index)
             {
@@ -80,6 +80,11 @@ namespace WinFormsApp
                 Close();
             }
 
+        }
+
+        private void txtBoxClientsSearch_TextChanged(object sender, EventArgs e)
+        {
+            Main.SearchListGeneric(_clients,dataGridViewClients,txtBoxClientsSearch.Text);
         }
     }
 }

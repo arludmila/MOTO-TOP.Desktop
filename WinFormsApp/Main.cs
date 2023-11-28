@@ -491,7 +491,7 @@ namespace WinFormsApp
             SearchListGeneric(visitRequests, dataGridViewVisitRequest, textToSearchVisitRequests);
 
         }
-        private void SearchListGeneric<T>(List<T> lista, DataGridView dataGridView, string textToSearch)
+        public static void SearchListGeneric<T>(List<T> lista, DataGridView dataGridView, string textToSearch)
         {
             if (string.IsNullOrWhiteSpace(textToSearch))
             {
@@ -507,7 +507,7 @@ namespace WinFormsApp
                 dataGridView.DataSource = new BindingList<T>(resultados);
             }
         }
-        private bool ContieneValorEnJson<T>(T item, string textToSearch)
+        private static bool ContieneValorEnJson<T>(T item, string textToSearch)
         {
             // Convertir el objeto a formato JSON
             var json = JsonConvert.SerializeObject(item);
@@ -792,7 +792,10 @@ namespace WinFormsApp
                 int finalRow = rows + 1;
                 worksheet.Cells[$"E{finalRow}"].Formula = $"SUM(E6:E{rows})";
                 worksheet.Cells[$"F{finalRow}"].Formula = $"SUM(F6:F{rows})";
-
+                using (var range = worksheet.Cells[$"F6:F{finalRow}"])
+                {
+                    range.Style.Numberformat.Format = "_($* #,##0.00_);_($* (#,##0.00);_($* \"-\"??_);_(@_)";
+                }
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
@@ -916,6 +919,11 @@ namespace WinFormsApp
                 worksheet.Cells[$"I{finalRow}"].Formula = $"SUM(I4:I{rows})";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+                // Apply accounting format to cells from I4 to the end
+                using (var range = worksheet.Cells[$"I4:I{finalRow}"])
+                {
+                    range.Style.Numberformat.Format = "_($* #,##0.00_);_($* (#,##0.00);_($* \"-\"??_);_(@_)";
+                }
 
                 // GUARDAR ARCHIVO
                 var fileName = $"SaldoDeClientes_{DateTime.Now:yyyyMMdd}.xlsx";
@@ -999,6 +1007,17 @@ namespace WinFormsApp
                 worksheet.Cells[$"I{finalRow}"].Formula = $"SUM(I4:I{rows})";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+                // Apply accounting format to cells from H4 to the end
+                using (var range = worksheet.Cells[$"H4:H{finalRow}"])
+                {
+                    range.Style.Numberformat.Format = "_($* #,##0.00_);_($* (#,##0.00);_($* \"-\"??_);_(@_)";
+                }
+
+                // Apply accounting format to cells from I4 to the end
+                using (var range = worksheet.Cells[$"I4:I{finalRow}"])
+                {
+                    range.Style.Numberformat.Format = "_($* #,##0.00_);_($* (#,##0.00);_($* \"-\"??_);_(@_)";
+                }
 
                 // GUARDAR ARCHIVO
                 var fileName = $"FacturasPendientes_{DateTime.Now:yyyyMMdd}.xlsx";
@@ -1099,8 +1118,22 @@ namespace WinFormsApp
                 int finalRow = rows + 1;
                 worksheet.Cells[$"H{finalRow}"].Formula = $"SUM(H7:H{rows})";
                 worksheet.Cells[$"I{finalRow}"].Formula = $"SUM(I7:I{rows})";
+                // Get the range of the 'Fecha' column
+                var fechaColumn = worksheet.Cells["G7:G" + finalRow];
+
+                // Set the date format for the 'Fecha' column
+                fechaColumn.Style.Numberformat.Format = "yyyy-MM-dd";
+
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+                // Apply accounting format to cell E4
+                worksheet.Cells["E4"].Style.Numberformat.Format = "_($* #,##0.00_);_($* (#,##0.00);_($* \"-\"??_);_(@_)";
+
+                // Apply accounting format to cells from H7 to the end
+                using (var range = worksheet.Cells[$"H7:I{finalRow}"])
+                {
+                    range.Style.Numberformat.Format = "_($* #,##0.00_);_($* (#,##0.00);_($* \"-\"??_);_(@_)";
+                }
 
                 // GUARDAR ARCHIVO
                 var fileName = $"VentasTotales_{dateFrom:yyyyMMdd}-{dateTo:yyyyMMdd}.xlsx";
@@ -1166,6 +1199,13 @@ namespace WinFormsApp
                 worksheet.Cells[$"I{finalRow}"].Formula = $"SUM(I6:I{rows})";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+               
+
+                // Apply accounting format to cells from I6 to the end
+                using (var range = worksheet.Cells[$"I6:I{finalRow}"])
+                {
+                    range.Style.Numberformat.Format = "_($* #,##0.00_);_($* (#,##0.00);_($* \"-\"??_);_(@_)";
+                }
 
                 // GUARDAR ARCHIVO
                 var fileName = $"ComprasXClientes_{dateFrom:yyyyMMdd}-{dateTo:yyyyMMdd}.xlsx";
@@ -1269,6 +1309,13 @@ namespace WinFormsApp
                 worksheet.Cells[$"F{finalRow}"].Formula = $"SUM(F6:F{rows})";
                 // Auto-fit COLUMNAS
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+               
+
+                // Apply accounting format to cells from F6 to the end
+                using (var range = worksheet.Cells[$"F6:F{finalRow}"])
+                {
+                    range.Style.Numberformat.Format = "_($* #,##0.00_);_($* (#,##0.00);_($* \"-\"??_);_(@_)";
+                }
 
                 // GUARDAR ARCHIVO
                 var fileName = $"VentasXProducto_{dateFrom:yyyyMMdd}-{dateTo:yyyyMMdd}.xlsx";

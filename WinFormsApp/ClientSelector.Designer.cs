@@ -67,6 +67,7 @@
             txtBoxClientsSearch.TabIndex = 1;
             txtBoxClientsSearch.TextAlignment = HorizontalAlignment.Left;
             txtBoxClientsSearch.UseSystemPasswordChar = false;
+            txtBoxClientsSearch.TextChanged += txtBoxClientsSearch_TextChanged;
             // 
             // dataGridViewClients
             // 

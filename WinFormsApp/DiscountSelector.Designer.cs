@@ -67,6 +67,7 @@
             txtBoxDiscountsSearch.TabIndex = 37;
             txtBoxDiscountsSearch.TextAlignment = HorizontalAlignment.Left;
             txtBoxDiscountsSearch.UseSystemPasswordChar = false;
+            txtBoxDiscountsSearch.TextChanged += txtBoxDiscountsSearch_TextChanged;
             // 
             // dataGridViewDiscounts
             // 

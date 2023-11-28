@@ -226,11 +226,11 @@ namespace WinFormsApp
                 {
                     Date = DateTime.Now,
                     Amount = _total,
-                    //InvoiceDetails = _invoiceDetails,
+                    InvoiceDetails = invoiceDetailsDto,
                     ClientId = clientId,
                     OfficeWorkerId = _officeWorkerId
                 };
-
+      
 
                 string response = await ApiHelper.PostAsync($"{ApiUrl.LocalUrl}invoices/detailed", invoiceWithDetailsDto);
 

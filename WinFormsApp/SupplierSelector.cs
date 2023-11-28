@@ -76,5 +76,10 @@ namespace WinFormsApp
                 this.Close();
             }
         }
+
+        private void txtBoxSuppliersSearch_TextChanged(object sender, EventArgs e)
+        {
+            Main.SearchListGeneric(suppliers, dataGridViewSuppliers, txtBoxSuppliersSearch.Text);
+        }
     }
 }

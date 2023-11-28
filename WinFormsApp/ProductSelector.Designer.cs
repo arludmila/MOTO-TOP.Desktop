@@ -128,6 +128,7 @@
             txtBoxProductsSearch.TabIndex = 32;
             txtBoxProductsSearch.TextAlignment = HorizontalAlignment.Left;
             txtBoxProductsSearch.UseSystemPasswordChar = false;
+            txtBoxProductsSearch.TextChanged += txtBoxProductsSearch_TextChanged;
             // 
             // ProductSelector
             // 
