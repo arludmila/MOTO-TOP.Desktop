@@ -291,6 +291,7 @@ namespace WinFormsApp
 
                     // 2. Elimina el elemento de la lista _invoiceDetails
                     _invoiceDetails.Remove(selectedDetail);
+                    CheckStock();
                 }
 
             }

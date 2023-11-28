@@ -128,6 +128,7 @@ namespace WinFormsApp
             if (!_allStockAvailable)
             {
                 MessageBoxHelper.ShowErrorMessageBox("No hay suficiente stock para facturar el pedido.");
+                return;
             }
             else
             {
